@@ -1,0 +1,48 @@
+
+//colors
+$color-white: #fff;
+$color-pariswhite:#bfcbbe;
+$color-darkblue:#002F87;
+$color-blue:#01449B;
+$color-primary: #002f87;
+$color-black: #000;
+$color-whitesmoke:#f5f5f5;
+
+$color-dimgray:#666666;
+$color-gainsboro:#DDDDDD;
+
+$color-charcoal:#444444;
+$color-nobel:#999999;
+$color-red:#FF0000;
+$color-gray61:#9c9c9c;
+$color-atengray:#ddd;
+$color-whisper:#eaeaea;
+
+$color-whitesmok:#F8F8F8;
+
+
+//Footer colors
+$color-strongblu:#0195D4;
+$color-grey:#888888;
+$color-azure:#0634a5;
+$color-regentblue:#94a1d0;
+
+//font family
+$font-family:'Open Sans', sans-serif;
+
+
+
+// font sizes
+$font-12: 12px;
+$font-14: 14px;
+$font-16: 16px;
+
+:export {
+  whitecolor: $color-white;
+  darkcolor: $color-darkblue;
+  strongblu: $color-strongblu;
+  azure:$color-azure;
+  regentblue:$color-regentblue;
+  fontfamily: $font-family
+}
+

@@ -1,0 +1,296 @@
+@import './variables.scss';
+
+
+body {
+        background: whitesmoke no-repeat center center fixed;
+    }
+    
+    .navbar { 
+        box-shadow: 1px 0px 10px $color-nobel;
+       }
+ 
+   
+   .header-main {
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        background: $color-white;
+    }
+    #signup-header { padding-top: 110px; }
+    
+    .card-header {
+    background: transparent !important;
+    border-bottom: 2px solid $color-whisper !important;
+    padding: 20px 0px !important;
+    }
+    .card-block { 
+        padding: 15px 0px;
+    }
+    .card { padding: 20px 30px !important;}
+    .navbar,.navbar-inverse{
+        margin-top:0px;
+    }
+    
+    .after-sign-up{
+        height: 187px;	
+        width: 550px;
+    }
+    .after-sign-up-your{	
+       color: $color-charcoal;		
+       font-size: 20px;	
+       font-weight: 600;	
+       line-height: 24px;
+    }
+    
+    .tell-us-about{	
+        color: $color-charcoal;		
+        font-size: 20px;	
+        line-height: 51px;
+        margin-left:10px;
+    }
+
+    .num{
+        height: 28px;	
+        width: 28px;	
+        background-color: $color-nobel;
+        border-radius: 50%;
+        margin: 0px auto;
+        display: inline-block;
+        padding-top: 3px;
+        text-align:center;
+        color: $color-white;
+       } 
+    
+    .numbered-list{
+        list-style-type: none;
+       padding-left: 0px;
+       margin-top: 20px;
+       }
+    .navbar-brand {
+        margin: 0;
+        padding: 0 22px 0 0;
+    }
+    .header-tel-no{
+        height: 17px;	
+        width: 94px;
+        font-family:$font-family;	
+        color: $color-dimgray;		
+        font-size: 16px;	
+        line-height: 17px;
+        padding-right:15px;
+       
+        // border-right:1px solid $color-gainsboro;
+       
+    }
+    .header-help{
+        height: 17px;	
+        width: 30px;	
+        color: $color-strongblu;	
+        font-size: 16px;	
+        line-height: 17px; 
+        padding-left:9px;
+        
+    }
+    .header-line{
+        height: 26px;
+        margin-left: 10px;
+        margin-right: 8px;
+        border-left:1px solid $color-gainsboro ;
+       
+    }
+    .already-have-account{
+        height: 17px;	
+        text-align: center;	
+        color: $color-dimgray;		
+        font-size: 16px;	
+        line-height: 17px;	
+        margin:auto;
+        padding:35px 0px 5px 0px;
+    }
+    .login-link{
+        height: 17px;	
+        width: 39px;		
+        font-size: 16px;	
+        font-weight: 600;	
+        line-height: 17px;
+        text-align:right;
+        padding-left:10px;
+        color: $color-strongblu;
+        
+    }
+
+    .page-header {
+            margin: 20px 0 37px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid $color-pariswhite;
+            color: $color-dimgray;
+            font-size: 42px;
+            font-weight: 400;
+        }
+    
+    .form-terms{
+        height: 60px;	
+        width: 416px;	
+        color: $color-grey;	
+        font-size: 16px;
+        padding:15px;	
+        line-height: 20px;
+        margin-bottom:20px;
+        span{
+            color:$color-strongblu;
+        }
+    }
+    
+
+    .card {
+        -webkit-box-shadow: 0 2px 2px 0 $color-gray61;
+        -moz-box-shadow: 0 2px 2px 0 $color-gray61;
+         box-shadow: 0 2px 2px 0 $color-gray61;
+         background: $color-white;
+         border: 1px solid $color-atengray;
+         padding: 20px;
+    }
+
+    .m-0 {
+        margin: 0px;
+    }
+
+    .form-signup-head h3 {
+        color: $color-charcoal;
+        font-size: 18px;
+        font-weight: 500;
+        padding-bottom: 20px;
+        border-bottom: 1px solid $color-atengray;
+    }
+
+    .form-body {
+        padding-top: 15px;
+    }
+
+    .form-group {
+        padding-top: 10px;
+    }
+
+    .form-group label {
+        text-transform: uppercase;
+        color: $color-dimgray;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .login-box { margin: 0px auto; } 
+    .validate-email-box{
+        margin: 0px auto;
+    }
+    .login-box .card-header { 
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    }
+    .login-box .label-text p {
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .login-box .label-text a {
+        float: right; 
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .loginbtn {
+    height: auto;
+    width: auto;
+    color: $color-white;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    text-align: center;
+    }
+    .donthvacnt {
+    text-align: center;
+    font-size: 20px;
+    line-height: 28px;
+    }
+    .forgot-box  { margin: 0px auto; } 
+   
+
+    .checkbox {
+        padding: 10px 20px;
+    }
+
+    .checkbox span {
+        color: $color-dimgray;
+    }
+
+  .form-body {
+        margin-bottom: 20px;
+    }
+    
+  
+    .margin0{
+        margin-bottom: 0px !important;
+    }
+
+    .error-broder{
+        border: 1px solid $color-red !important;
+    }
+    .has-feedback{
+        position: relative;
+    }
+    .form-control-feedback{
+        position: absolute;
+        right: 10px;
+        top: 56px;
+        color: $color-red;
+        font-size: 20px;
+    }
+
+
+ .footer-main {
+    background-color: $color-azure;
+    padding: 30px 100px !important;
+    margin-top: 60px;
+    }
+  
+  .footer-list { border-right: 1px solid $color-white; }
+  .footer-list ul { padding-left: 0px; margin: 0px; padding: 5px 0px; }
+  .footer-list ul li { list-style-type: none; display: inline; padding-right: 40px; }
+  .footer-list ul li a { color: $color-white; }
+  .footer-middle { border-right: 1px solid $color-white; }
+  .footer-middle p { color: $color-regentblue; font-size: 16px; }
+  .footer-right p {
+      text-align: center;
+    color: $color-regentblue;
+    font-size: 16px;
+    padding-top: 25px;
+  }
+  .footer-right p a {
+  color: $color-white;
+    font-size: 18px;
+    padding-left: 10px;
+    }
+    .footer-bottom p {
+    text-align: left;
+    color: $color-regentblue;
+    font-size: 16px;
+    margin-bottom: 0px;
+    }
+
+
+
+
+
+   .header-contact{
+    // background-color: $color-whitesmok;
+    // margin-left: 20px;
+    height: 50px;
+    // padding-top: 10px;
+     text-align:right;
+   }
+  
+
+    @media (min-width: 1350px) {
+.container {
+    max-width: 1320px !important;
+}
+}
