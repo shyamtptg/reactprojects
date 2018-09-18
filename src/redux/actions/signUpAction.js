@@ -9,12 +9,12 @@ export const signUp = (data,token,context) => (dispatch) => {
        }
 
 axios.post(SIGNUP_URL,data,{headers:header}).then(res=>{
-    console.log(res)
-    if(res.status !== 409){
+    console.log(res);
      dispatch({
             type:USER_SIGNUP,
             data: res.data
         });
+    if(res && res.data && res.data.status !== "409"){
       context.history.push('/validateEmail')
     }
     // else{

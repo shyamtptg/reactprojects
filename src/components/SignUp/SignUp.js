@@ -28,11 +28,11 @@ class SignUp extends Component {
       email: '',
       password: '',
       errors: {
-        firstName: '',
-        lastName: '',
-        userName: '',
-        email: '',
-        password: ''
+        firstName: undefined,
+        lastName: undefined,
+        userName: undefined,
+        email: undefined,
+        password: undefined
 
       },
       touched: {
@@ -171,15 +171,27 @@ class SignUp extends Component {
         .forEach((key) => {
           let errors = { ...this.props.getValidateForm };
           if (!errorKeys.includes(name)) {
-            errors[name] = '';
-            this.setState({
-              errors: errors
-            });
+           // errors[name] = '';
+            // this.setState({
+            //   errors: errors
+            // });
+            this.setState(prevState => ({
+              errors: {
+                ...prevState.errors,
+                [name]: undefined
+              }
+            }))
           } else if (key[0] === name && key[1].length > 0) {
-            errors[name] = key[1][0];
-            this.setState({
-              errors: errors
-            });
+            //errors[name] = key[1][0];
+            // this.setState({
+            //   errors: errors
+            // });
+            this.setState(prevState => ({
+              errors: {
+                ...prevState.errors,
+                [name]: key[1][0]
+              }
+            }))
           }
         });
     }
@@ -208,17 +220,19 @@ class SignUp extends Component {
         }
       });
     });
-    
-    if (this.state.userName !== "" && this.state.firstName !== "" && this.state.lastName !== "" && this.state.email !== "" && this.state.password !== "") {
-      const registerData = {
-        'userName': this.state.userName,
-        'displayName': this.state.firstName + '' + this.state.lastName,
-        'emails': [{ value: this.state.email }],
-        'password': this.state.password
+    console.log(this.state.errors);
+    if(this.state.errors && !this.state.errors.firstName && !this.state.errors.lastName && !this.state.errors.email && !this.state.errors.userName &&  !this.state.errors.password) {
+      if (this.state.userName !== "" && this.state.firstName !== "" && this.state.lastName !== "" && this.state.email !== "" && this.state.password !== "") {
+        const registerData = {
+          'userName': this.state.userName,
+          'displayName': this.state.firstName + '' + this.state.lastName,
+          'emails': [{ value: this.state.email }],
+          'password': this.state.password
+        }
+        this.props.signUp(registerData,this.props.userDetails['access_token'],this.props);
+  
+       
       }
-      this.props.signUp(registerData,this.props.userDetails['access_token'],this.props);
-
-     
     }
     else {
       console.log("Form is invalid");
