@@ -227,8 +227,11 @@ body {
     }
     
   
-    .margin0{
-        margin-bottom: 0px !important;
+    .errorMessage{
+        font-size: 14px;	
+        line-height: 17px;
+        margin-bottom: 4px !important;
+        color: $color-orange;
     }
 
     .error-broder{

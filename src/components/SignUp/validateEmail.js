@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import { validateData } from '../../redux/actions/validateEmailAction';
 import { Link } from 'react-router-dom';
@@ -105,11 +106,8 @@ class ValidateEmail extends Component {
     }
   }
   render() {
-    
     console.log("Email validation",this.props.getEmailValidate);
-    // const formErrors = validate(this.state,this.constraints);
-
-    return (
+     return (
       <div className='card validate-email-box col-sm-5'>
        <div className='card-header'>
           VALIDATE YOUR EMAIL
@@ -144,6 +142,12 @@ class ValidateEmail extends Component {
 
     )
   }
+}
+ValidateEmail.propTypes = {
+ userDetails: PropTypes.any,
+  userResponse: PropTypes.any,
+  getEmailValidate:PropTypes.any,
+  validateData:PropTypes.func
 }
 const mapStateToProps = (state) => {
   return {

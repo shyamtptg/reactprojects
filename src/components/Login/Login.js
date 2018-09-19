@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { styles } from '../common/style';
 import { login } from '../../redux/actions/getUserLogin'
@@ -177,12 +178,14 @@ class Login extends Component {
     )
   }
 }
+Login.propTypes = {
+  user: PropTypes.any,
+  login:PropTypes.func
+  
+ }
 const mapStateToProps = (state) => {
   return {
     user: state.user.getUser
-
-
-
-  }
+ }
 }
-export default withRouter(connect(mapStateToProps, { login })(Login));
+export default withRouter(connect(mapStateToProps,{login})(Login));

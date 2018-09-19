@@ -14,7 +14,7 @@ axios.post(SIGNUP_URL,data,{headers:header}).then(res=>{
             type:USER_SIGNUP,
             data: res.data
         });
-    if(res && res.data && res.data.status !== "409"){
+    if(res && res.data && res.data.status === undefined){
       context.history.push('/validateEmail')
     }
     // else{
