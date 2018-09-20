@@ -28,13 +28,15 @@ class SignUp extends Component {
       email: '',
       password: '',
       accessCode:'',
+      certify:false,
       errors: {
         firstName: undefined,
         lastName: undefined,
         userName: undefined,
         email: undefined,
         password: undefined,
-        accessCode:undefined
+        accessCode:undefined,
+        certify:undefined
 
       },
       touched: {
@@ -43,7 +45,8 @@ class SignUp extends Component {
         userName: false,
         email: false,
         password: false,
-        accessCode:false
+        accessCode:false,
+        certify:false
 
       },
       isSubmitted: false
@@ -90,6 +93,15 @@ class SignUp extends Component {
         presence: {
           allowEmpty: false
         }
+      },
+      certify: {
+        presence: {
+          message: "^You must be a U.S citizen permantly residing in the U.S to use the service"
+        },
+        inclusion: {
+          within: [true],
+          message: "^You must be a U.S citizen permantly residing in the U.S to use the service"
+        }
       }
     }
     const data = new URLSearchParams();
@@ -108,17 +120,18 @@ class SignUp extends Component {
     console.log(validJsErrors);
     const inputSpace = inputType.replace(/([A-Z])/g, ' $1').trim()
     const toUpper = inputSpace.charAt(0).toUpperCase() + inputSpace.substr(1).toLowerCase();
-    console.log(toUpper);
     for (let k in validJsErrors) {
+    console.log(inputType , k);
+
       if (validJsErrors.hasOwnProperty(k)) {
         if (k === inputType && k !== 'password') {
           return (validJsErrors[k].map((ele, index) => {
             return <p className='errorMessage' key={index}> {ele === toUpper + ' is too short (minimum is 8 characters)' ? 'Must be atleast 8 characters long' : ele === toUpper + ' can\'t be blank' ? 'A ' + toUpper.toLowerCase() + ' is required' : ele === toUpper + ' is invalid' ? toUpper + '  is not valid' : ele === toUpper + ' is not a valid email' ? toUpper + '  is not valid' : ele}</p>
           })
           )
-        } else if (k === 'password') {
+        } else if ( k === inputType && k === 'password') {
           return (validJsErrors[k].map((ele, index) => {
-            return <p className='errorMessage' key={index}> {ele === toUpper + ' is too short (minimum is 8 characters)' ? 'Must be atleast 8 characters long' : ele === toUpper + ' can\'t be blank' ? 'A ' + toUpper.toLowerCase() + ' is required' : ele === toUpper + ' is invalid' ? 'Must contain atleast one lower case, upper case and one number' : ele === toUpper + ' is not a valid email' ? toUpper + '  is not valid' : ele}</p>
+            return <p className='errorMessage' key={index}> {ele === toUpper + ' is too short (minimum is 8 characters)' ? 'Must be atleast 8 characters long' : ele === toUpper + ' can\'t be blank' ? '' : ele === toUpper + ' is invalid' ? 'Must contain atleast one lower case, upper case and one number' : ele === toUpper + ' is not a valid email' ? toUpper + '  is not valid' : ele}</p>
           })
           )
         }
@@ -130,11 +143,11 @@ class SignUp extends Component {
 
   handleChange(e) {
     const name = e.target.name;
-    const value = e.target.value;
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
     this.setState({
       [name]: value
     }, () => {
-
+console.log(this.state);
       this.setState(prevState => ({
         touched: {
           ...prevState.touched,
@@ -151,7 +164,7 @@ class SignUp extends Component {
 
   validateCheck = (name) => {
     const validJsErrors = validate(this.state, this.constraints);
-
+console.log(validJsErrors);
     const errorKeys = validJsErrors ? Object.keys(validJsErrors) : {};
     if (validJsErrors) {
       Object.entries(validJsErrors)
@@ -164,7 +177,9 @@ class SignUp extends Component {
                 ...prevState.errors,
                 [name]: undefined
               }
-            }))
+            }),() => {
+              console.log(this.state);
+            })
           } else if (key[0] === name && key[1].length > 0) {
             //errors[name] = key[1][0];
             // this.setState({
@@ -187,7 +202,8 @@ class SignUp extends Component {
           userName: undefined,
           email: undefined,
           password: undefined,
-          accessCode:undefined
+          accessCode:undefined,
+          certify: undefined
 
         }
       });
@@ -215,13 +231,14 @@ class SignUp extends Component {
           userName: false,
           email: false,
           password: false,
-          accessCode:false
+          accessCode:false,
+          certify: false
         }
       });
     });
     console.log(this.state.errors);
-    if (this.state.errors && !this.state.errors.firstName && !this.state.errors.lastName && !this.state.errors.email && !this.state.errors.userName && !this.state.errors.password) {
-      if (this.state.userName !== "" && this.state.firstName !== "" && this.state.lastName !== "" && this.state.email !== "" && this.state.password !== "") {
+    if (this.state.errors && !this.state.errors.firstName && !this.state.errors.lastName && !this.state.errors.email && !this.state.errors.userName && !this.state.errors.password && !this.state.errors.accessCode && !this.state.errors.certify) {
+      if (this.state.userName !== "" && this.state.firstName !== "" && this.state.lastName !== "" && this.state.email !== "" && this.state.password !== "" && this.state.certify&&this.state.accessCode !== "") {
         const registerData = {
           'userName': this.state.userName,
           'displayName': this.state.firstName + '' + this.state.lastName,
@@ -239,7 +256,7 @@ class SignUp extends Component {
     }
   }
   render() {
-    const formErrors = validate(this.state, this.constraints);
+    const formErrors = validate(this.state,this.constraints);
     return (
       <React.Fragment>
         <div className='col-md-7'>
@@ -249,12 +266,12 @@ class SignUp extends Component {
             <div className='card-header'>
               <h3 className='m-0'>SIGN UP NOW</h3>
             </div>
-            {(this.props.userResponse.status === '409') ?
+            {(this.props.userResponse.status === '409' && !this.props.userResponse.detail.includes("UID")) ?
               <Errormessage error={this.props.userResponse.detail} /> : ''}
             <div className='card-block'>
               <div className='form-group has-feedback'>
                 <label className='control-label'>FirstName:</label>
-                <input type='text' className={(this.state.isSubmitted && !this.state.touched.firstName && formErrors && formErrors.firstName) ? 'form-control form-control-lg error-broder' : 'form-control form-control-lg'}
+                <input type='text' className={(this.state.isSubmitted && !this.state.touched.firstName && formErrors && formErrors.firstName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='firstName' placeholder='FirstName'
                   name='firstName' value={this.state.firstName}
                   onChange={this.handleChange}/>
@@ -263,7 +280,7 @@ class SignUp extends Component {
               </div>
               <div className='form-group has-feedback'>
                 <label className='control-label'>LastName:</label>
-                <input type='text' className={(this.state.isSubmitted && !this.state.touched.lastName && formErrors && formErrors.lastName) ? 'form-control form-control-lg error-broder' : 'form-control form-control-lg'}
+                <input type='text' className={(this.state.isSubmitted && !this.state.touched.lastName && formErrors && formErrors.lastName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='lastName' placeholder='LastName'
                   name='lastName' value={this.state.lastName}
                   onChange={this.handleChange}/>
@@ -272,7 +289,7 @@ class SignUp extends Component {
               </div>
               <div className='form-group has-feedback'>
                 <label className='control-label'>EMAIL:</label>
-                <input type='email' className={(this.state.isSubmitted && !this.state.touched.email && formErrors && formErrors.email) ? 'form-control form-control-lg error-broder' : 'form-control form-control-lg'}
+                <input type='email' className={(this.state.isSubmitted && !this.state.touched.email && formErrors && formErrors.email) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='email' placeholder='Email'
                   name='email' value={this.state.email}
                   onChange={this.handleChange} data-tip='' data-for='emailToolTip' data-event='blur' />
@@ -284,18 +301,20 @@ class SignUp extends Component {
               </div>
               <div className='form-group has-feedback'>
                 <label className='control-label'>USERNAME:</label>
-                <input type='text' className={(this.state.isSubmitted && !this.state.touched.userName && formErrors && formErrors.userName) ? 'form-control form-control-lg error-broder' : 'form-control form-control-lg'}
+                <input type='text' className={(this.state.isSubmitted && !this.state.touched.userName && formErrors && formErrors.userName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='userName' placeholder='UserName'
                   name='userName' value={this.state.userName}
                   onChange={this.handleChange} data-tip=''/>
                 {(this.state.isSubmitted && !this.state.touched.userName && formErrors && formErrors.userName) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
                 {formErrors && this.state.errors.userName ?
 
-                  this.getErrorMessage('userName') : ''}
+                this.getErrorMessage('userName') :  ( this.props.userResponse && this.props.userResponse.status === '409' && this.props.userResponse.detail.includes("UID"))? (
+                <p className='errorMessage' >This username is not available<br/>
+                                                A usernames can contains letters{'{a-z}'}, numbers(0-9), dash{'{-}'}, underscore(_), period(.)</p>) :''}
               </div>
               <div className='form-group has-feedback'>
                 <label className='control-label'>PASSWORD:</label>
-                <input type='password' className={(this.state.isSubmitted && !this.state.touched.password && formErrors && formErrors.password) ? 'form-control form-control-lg error-broder' : 'form-control form-control-lg'}
+                <input type='password' className={(this.state.isSubmitted && !this.state.touched.password && formErrors && formErrors.password) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='password' placeholder='Password'
                   name='password' value={this.state.password}
                   onChange={this.handleChange} />
@@ -304,16 +323,19 @@ class SignUp extends Component {
               </div>
               <div className='form-group has-feedback'>
                 <label className='control-label'>AccessCode:</label>
-                <input type='password' className={(this.state.isSubmitted && !this.state.touched.accessCode && formErrors && formErrors.accessCode) ? 'form-control form-control-lg error-broder' : 'form-control form-control-lg'}
+                <input type='password' className={(this.state.isSubmitted && !this.state.touched.accessCode && formErrors && formErrors.accessCode) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='accessCode' placeholder='AccessCode'
                   name='accessCode' value={this.state.accessCode}
                   onChange={this.handleChange}/>
                 {(this.state.isSubmitted && !this.state.touched.accessCode && formErrors && formErrors.accessCode) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
                 {formErrors && this.state.errors.accessCode ? this.getErrorMessage('accessCode') : ''}
               </div>
-              <div className='form-check'>
-                <input type='checkbox' className='form-check-input' id='exampleCheck1' />
+              <div  className={(this.state.isSubmitted && !this.state.touched.certify && formErrors && formErrors.certify) ? 'form-check error-border' : 'form-check'}>
+                <input type='checkbox' name="certify" onChange ={this.handleChange} className='form-check-input' value={this.state.certify} id='exampleCheck1' />
                 <span className='form-check-label'>I certify that I am a U.S. citizen and I permanently reside in the U.S.</span>
+                {(this.state.isSubmitted && !this.state.touched.certify && formErrors && formErrors.certify) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-check-feedback" /> : ''}
+                {formErrors && this.state.errors.certify ? this.getErrorMessage('certify') : ''}
+
               </div>
               <div className='form-group'>
                 <button type='button' style={styles.Button} onClick={this.register}><span style={styles.textOnButton}> SIGN UP</span></button>

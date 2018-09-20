@@ -21,7 +21,7 @@ const Header = (props) => {
                            <span className='header-tel-no'>{props.property.telephonenumber}</span>
                             <span className='header-line'></span>
                             <span className='header-help'>Help</span>
-                            <button style={styles.headerButton}><span style={styles.headerTextButton}>{props.property.path.split('/')[1] === 'signup'?<Link to='/'>LOGIN</Link>:<Link to='/signup'>SIGNUP</Link>} </span></button>
+                            <button style={styles.headerButton}><span>{props.property.path.split('/')[1] === 'signup'?<Link to='/' style={styles.headerTextButton}>LOGIN</Link>:<Link to='/signup' style={styles.headerTextButton}>SIGNUP</Link>} </span></button>
                             </div>
                     </div>
                 </nav>

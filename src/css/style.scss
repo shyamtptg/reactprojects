@@ -230,21 +230,43 @@ body {
     .errorMessage{
         font-size: 14px;	
         line-height: 17px;
-        margin-bottom: 4px !important;
+        margin-bottom: 2px !important;
         color: $color-orange;
     }
-
-    .error-broder{
-        border: 1px solid $color-red !important;
+    
+    p.errorMessage:first-of-type{
+        margin-top:6px!important;
     }
+
+    .error-border{
+        // border: 1px solid $color-red !important;
+        border: 1px solid $color-orange!important;
+        box-shadow: 0 0 4px 0 rgba(255,102,51,0.3)!important;
+    }
+   
     .has-feedback{
         position: relative;
+    }
+    .form-check-label{
+        height: 40px;	
+        width: 354px;	
+        color: $color-dimgray;	
+        font-family: $font-family-prox;
+        font-size: 14px;	
+        line-height: 20px;
     }
     .form-control-feedback{
         position: absolute;
         right: 10px;
         top: 56px;
-        color: $color-red;
+        color: $color-orange;
+        font-size: 20px;
+    }
+    .form-control-check-feedback{
+        position: absolute;
+        right: 10px;
+        top: 16px;
+        color: $color-orange;
         font-size: 20px;
     }
 
