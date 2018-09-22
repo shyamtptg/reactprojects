@@ -1,5 +1,5 @@
 import React from 'react';
-import PageHeader from './PageHeader';
+import PageHeader from '../common/Header/PageHeader/PageHeader';
 import PhoneHeader  from '../common/Header/phoneHeader';
 import Login from '../Login/Login';
 import { Route,Switch } from "react-router-dom";

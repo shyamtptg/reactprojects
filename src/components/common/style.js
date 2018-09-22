@@ -27,7 +27,11 @@ const Button = {
   marginLeft:'26.5px',
   border: `1px solid ${variables.darkcolor}`,
   borderRadius: '3px',
-  backgroundColor:variables.whitecolor
+  backgroundColor:variables.whitecolor,
+  position: "absolute",
+    
+   
+    top: "-22%"
 }
  const headerTextButton={
   height: '16px',	

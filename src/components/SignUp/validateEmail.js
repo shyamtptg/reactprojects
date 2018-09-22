@@ -21,7 +21,8 @@ class ValidateEmail extends Component {
        preferredLanguage: false
 
       },
-      isSubmitted: false
+      isSubmitted: false,
+      isCapitalOn: false
     }
 
     this.constraints = {
@@ -81,6 +82,15 @@ class ValidateEmail extends Component {
   console.log(this.props.userResponse["id"]);
   console.log("user response",this.props.userResponse);
   }
+  getkey(e){
+console.log(e);
+console.log(e.keyCode);
+if(e.keyCode === 20) {
+  this.setState(prevState => ({
+    isCapitalOn: !prevState.isCapitalOn
+  }));
+}
+  }
  
 
   validateCheck = (name) => {
@@ -121,7 +131,8 @@ class ValidateEmail extends Component {
                 </div>
               </div>
               <input type='text' id='preferredLanguage' placeholder='OTP'
-                  name='preferredLanguage' value={this.state.preferredLanguage} onChange={this.handleChange} />
+                  name='preferredLanguage' onKeyDown={(event)=> this.getkey(event)} value={this.state.preferredLanguage} onChange={this.handleChange} />
+                  <p>{this.state.isCapitalOn? 'capital on': ''}</p>
 
             </div>
             <div className='form-group col-12'>
