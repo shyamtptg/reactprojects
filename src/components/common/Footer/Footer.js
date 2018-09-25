@@ -9,7 +9,7 @@ const Footer = () => {
         <React.Fragment>
             <div className="container-fluid footer-main">
                 <div className="row">
-                    <div className="col-sm-3">
+                    <div className="col-md-4 col-sm-6">
                         <div className="footer-list">
                             <ul>
                                 <li><Link to="#">Privacy Policy</Link></li>
@@ -21,13 +21,13 @@ const Footer = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className="col-sm-6">
+                    <div className="col-md-6 col-sm-6">
                         <div className="footer-middle">
                             <p>NextGen Investment Advisors is a registered Investment Adviser under the rules of the SEC. All data provided by Xignite</p>
                             <p className="copyright">&copy; 2018 NextGen Bank. All Rights Reserved</p>
                         </div>
                     </div>
-                    <div className="col-sm-3">
+                    <div className="col-md-2 col-xs-12">
                         <div className="footer-right">
                             <p>Powered by <Link to="#">Jemstep</Link></p>
                         </div>

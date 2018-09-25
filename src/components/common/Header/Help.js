@@ -36,17 +36,15 @@ this.setState((prevState) => {
         <span style={{color:"#0195D4"}} onClick={()=>this.toggleBtn()}>
           Help
         </span>
-        {/* <ReactTooltip id='global' place="bottom">
-        <div><div>Email:<span>Support@Jemstep.com</span></div><div>Learn More:<span>NextGenBank FAQ's</span></div></div>
-        </ReactTooltip> */}
        
       </div>
       {this.state.show === true ?
-        <div className="help-box">
-         <p>Email:jemstep.com</p>
-         <p>Learn More:NextGen Bank FAQ's</p>
-        </div>
-        :""}
+        <table className="help-box borderless">
+        <tbody><tr><td>Email:</td><td>support@jemstep.com</td></tr>
+        <tr><td>Learn More:</td><td>NextGenBank FAQ's</td></tr>
+        </tbody>
+       </table>
+       :""}
         </React.Fragment>
     );
   }

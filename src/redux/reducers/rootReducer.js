@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import tokenReducer from './tokenReducer';
 import signupReducer from './signUpReducer';
 import getUserReducer from './getUserReducer';
+import resendOtpReducer from './resendOtpReducer'
 import validateFormReducer from '../reducers/validateFormReducer';
 import validateEmailReducer from '../reducers/validateEmailReducer';
 // import userReducer from './userReducer';
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     signup:signupReducer,
     user:getUserReducer,
     getValidate:validateFormReducer,
+    resendOtp:resendOtpReducer,
     getEmailValidation:validateEmailReducer
    
 });

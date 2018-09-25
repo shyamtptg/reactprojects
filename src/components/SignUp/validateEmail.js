@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import { validateData } from '../../redux/actions/validateEmailAction';
+import {resendData} from '../../redux/actions/resendOtp';
 import { Link } from 'react-router-dom';
 import {styles} from '../common/style';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
+import Errormessage from '../common/Errormessage/Errormessage';
 
 class ValidateEmail extends Component {
 
@@ -37,6 +39,7 @@ class ValidateEmail extends Component {
       }
     }
     this.validateSecurity = this.validateSecurity.bind(this);
+    this.resend = this.resend.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -56,9 +59,15 @@ class ValidateEmail extends Component {
       'preferredLanguage': this.state.preferredLanguage
       
     }
-    this.props.validateData(OTP,this.props.userDetails['access_token'],this.props.userResponse["id"],this.props);
+    this.props.validateData(OTP,this.props.userDetails['access_token'],this.props.userResponse['id'],this.props);
 
    
+  }
+  resend(){
+    const email={
+      'emails': this.props.userResponse['emails']
+    }
+    this.props.resendData(email,this.props.userDetails['access_token'],this.props.userResponse['id'],this.props);
   }
   handleChange(e) {
     const name = e.target.name;
@@ -79,8 +88,8 @@ class ValidateEmail extends Component {
 
   }
   componentDidMount(){
-  console.log(this.props.userResponse["id"]);
-  console.log("user response",this.props.userResponse);
+  console.log(this.props.userResponse['id']);
+  console.log('user response',this.props.userResponse);
   }
   getkey(e){
 console.log(e);
@@ -95,7 +104,7 @@ if(e.keyCode === 20) {
 
   validateCheck = (name) => {
     const validJsErrors = validate(this.state,this.constraints);
-    console.log("valid Js errors", validJsErrors)
+    console.log('valid Js errors', validJsErrors)
     const errorKeys = validJsErrors ? Object.keys(validJsErrors) : {};
     if (validJsErrors) {
       Object.entries(validJsErrors)
@@ -116,33 +125,36 @@ if(e.keyCode === 20) {
     }
   }
   render() {
-    console.log("Email validation",this.props.getEmailValidate);
+    
      return (
-      <div className='card validate-email-box col-sm-5'>
+      <div className='card validate-email-box col-md-5'>
        <div className='card-header'>
           VALIDATE YOUR EMAIL
            </div>
+           {(this.props.getEmailValidate !=='') ?
+           '' : <Errormessage error="Invalid Security Code.Please try again."/>}
+        
         <div className='card-block'>
           <form>
             <div className='form-group col-12'>
-              <div className="row label-text">
-                <div className="col-12">
+              <div className='row label-text-security'>
+                <div className='col-12'>
                   <label>Security Code</label>
                 </div>
               </div>
-              <input type='text' id='preferredLanguage' placeholder='OTP'
+              <input type='text' className="input-validate-email" placeholder='security code'
                   name='preferredLanguage' onKeyDown={(event)=> this.getkey(event)} value={this.state.preferredLanguage} onChange={this.handleChange} />
                   <p>{this.state.isCapitalOn? 'capital on': ''}</p>
 
             </div>
-            <div className='form-group col-12'>
-              <button className="forgotbtn" onClick={this.validateSecurity} type='button' style={styles.Button}><span style={styles.textOnButton}>SUBMIT</span></button>
+            <div className='form-group col-11'>
+              <button className='forgotbtn' onClick={this.validateSecurity} type='button' style={styles.Button}><span style={styles.textOnButton}>SUBMIT</span></button>
             </div>
-            <div className="col-12">
-            <span>Didn't Recieve Security code</span><span style={{float:"right"}}><Link to='/validateEmail'>Resend</Link></span>
+            <div className='col-12'>
+            <span>Didn't Recieve Security code</span><span style={{float:'right'}} onClick={this.resend}>Resend</span>
 
             </div>
-            <div className="col-12">
+            <div className='col-12'>
             <span><Link to='/'>Back to Login</Link></span>
 
             </div>
@@ -169,4 +181,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps,{validateData})(ValidateEmail));
+export default withRouter(connect(mapStateToProps,{validateData,resendData})(ValidateEmail));

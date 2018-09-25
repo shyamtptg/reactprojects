@@ -16,7 +16,7 @@ body {
         z-index: 1000;
         background: $color-white;
     }
-    .signup-header { padding-top: 110px; }
+    
     
     .card-header {
     background: transparent !important;
@@ -32,26 +32,31 @@ body {
     }
     
     .after-sign-up{
-        height: 187px;	
-        width: 550px;
+        height: auto;	
+        width: auto;
     }
     .after-sign-up-your{	
        color: $color-charcoal;		
-       font-size: 20px;	
-       font-weight: 600;	
+       font-size: 18px;	
+       font-weight: 500;	
        line-height: 24px;
+       margin-bottom: 30px;
     }
+    
     
     .tell-us-about{	
         color: $color-charcoal;		
-        font-size: 20px;	
-        line-height: 51px;
+        font-size: 16px;	
+        line-height: 48px;
         margin-left:10px;
+        display:inline;
+
     }
+    
 
     .num{
-        height: 28px;	
-        width: 28px;	
+        height: 32px;	
+        width: 32px;	
         background-color: $color-nobel;
         border-radius: 50%;
         margin: 0px auto;
@@ -59,88 +64,101 @@ body {
         padding-top: 3px;
         text-align:center;
         color: $color-white;
-       } 
+        display:inline-block;
+         } 
     
     .numbered-list{
-        list-style-type: none;
+       list-style-type: none;
        padding-left: 0px;
        margin-top: 20px;
+       
        }
     .navbar-brand {
         margin: 0;
         padding: 0 22px 0 0;
     }
     .header-tel-no{
-        height: 17px;	
-        width: 94px;
-        font-family:$font-family;	
-        color: $color-dimgray;		
-        font-size: 16px;	
+        height: 17px;
+        width: auto;
+        font-family: "Open Sans",sans-serif;
+        color: #666666;
+        font-size: 14px;
         line-height: 17px;
-        padding-right:33px;
-        position: relative;
-        top: 14px;
-        margin-left: 26%;
+        padding-right: 15px;
+        font-weight: normal;
         
        
-        // border-right:1px solid $color-gainsboro;
-       
     }
-    .help-box{
-        display: inline;
-        position: absolute;
-        top: 3pc;
-        border: 1px solid;
-        padding: 29px;
-        right: 34%;
-        height: 108.01px;
-        width: 261px;
-        background-color: #FFFFFF;
-        box-shadow: 0 2px 10px 0 rgba(0,0,0,0.3);
-        
-    }
-    .help-box:after {
-    content: "";
-    position: absolute;
-    left: 87%;
-    top: -13%;
-    border: 12px solid transparent;
-    border: 7px solid transparent;
-    border-bottom-color: #fff;
 
-    }
-    .help-class{
-     display:inline;
-     position: relative;
-    top: 10px;
-    }
+//rounded circles paragraphics
+
+
+.rounded-list ol 
+{
+counter-reset:li; /* Initiate a counter */
+margin-left:0; /* Remove the default left margin */
+padding-left:0; /* Remove the default left padding */
+}
+
+/* item  */
+.rounded-list ol > li
+{
+position:relative; /* Create a positioning context */
+list-style:none; /* Disable the normal item numbering */
+background:#f6f6f6; /* Item background color */
+margin:0; /* Give each list item a left margin to make room for the numbers */
+padding-left: 15px; /* Add some spacing around the content */
+padding-bottom:0px;
+padding-top:0px;
+}
+
+/* number  */
+.rounded-list ol > li p:before
+{
+content: counter(li); 
+counter-increment: li; 
+position: absolute; 
+left: -1.7em;
+top: 28%;
+
+/* number background */
+background: #989ea0; 
+height: 38px;
+width: 38px;
+margin-top: -1em;
+line-height: 1.5em;
+border: .3em solid #fff;
+text-align: center;
+font-weight: bold;
+border-radius: 2em;
+}
+
+
+
     .header-help{
-        height: 17px;	
-        width: 30px;	
-        // color: $color-strongblu;	
-        font-size: 16px;
-        line-height: 17px; 
         padding-left:9px;
+        color: $color-strongblu;;
+        font-size: 14px;
+        line-height: 17px;
+        padding-left: 9px;
+        font-weight: normal;
         
     }
     .header-line{
-        height: 28px;
+        height: 26px;
         margin-left: 10px;
         margin-right: 8px;
         border-left:1px solid $color-gainsboro ;
-        position: absolute;
-        top: 10px;
-        right:46%;
        
     }
     .already-have-account{
-        height: 17px;	
+        height: auto;	
         text-align: center;	
         color: $color-dimgray;		
         font-size: 16px;	
         line-height: 17px;	
-        margin:auto;
-        padding:35px 0px 5px 0px;
+        padding: 20px 0px 0px 0px;
+        margin-bottom: 0px;
     }
     .login-link{
         height: 17px;	
@@ -159,24 +177,26 @@ body {
             padding-bottom: 28px;
             border-bottom: 1px solid $color-pariswhite;
             color: $color-dimgray;
-            font-family:$font-family-museo;
             font-size: 30px;
-            font-weight: 400;
+            font-weight: normal;
         }
     
     .form-terms{
-        height: 60px;	
-        width: 416px;	
+        height: auto;	
+        width: auto;	
         color: $color-grey;	
-        font-size: 16px;
-        padding:15px;	
+        font-size: 14px;
+        padding:0px 15px;	
         line-height: 20px;
-        margin-bottom:20px;
         span{
             color:$color-strongblu;
         }
     }
-    
+    .numbered-list{
+        li{
+            display: inline-flex;
+        }
+    }
 
     .card {
         -webkit-box-shadow: 0 2px 2px 0 $color-gray61;
@@ -187,9 +207,7 @@ body {
          padding: 20px;
     }
 
-    .m-0 {
-        margin: 0px;
-    }
+   
 
     .form-signup-head h3 {
         color: $color-charcoal;
@@ -208,130 +226,72 @@ body {
     }
 
     .form-group label {
-        text-transform: uppercase;
         color: $color-dimgray;
-        font-size: 16px;
-        font-weight: 600;
+        font-size: 14px;
+        font-weight: normal;
     }
     .login-box { margin: 0px auto; } 
     .validate-email-box{
         margin: 0px auto;
     }
+    .input-validate-email{
+        height: 40px;	
+        width: 416px;	
+        border: 1px solid #DBDBDB;	
+        background-color: #FFFFFF;
+    }
+    
     .login-box .card-header { 
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 30px;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 24px;
     }
     .login-box .label-text p {
         font-size: 20px;
         line-height: 28px;
     }
     .login-box .label-text a {
-        float: right; 
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 28px;
+        float: right;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 14px;
+    }
+    .label-text-security{
+        // height: 17px;
+        // width: 84px;
+        color: #666666;
+        font-family: "Proxima Nova";
+        font-size: 14px;
+        line-height: 17px;
     }
     .loginbtn {
-    height: auto;
-    width: auto;
-    color: $color-white;
-    font-family: inherit;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 28px;
-    text-align: center;
+        height: auto;
+        width: auto;
+        color: $color-white;
+        font-family: inherit;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 28px;
+        text-align: center;
     }
     .donthvacnt {
     text-align: center;
-    font-size: 20px;
-    line-height: 28px;
+    font-size: 14px;
+    line-height: 24px;
     }
     .forgot-box  { margin: 0px auto; } 
+    .question{
+        padding-right:10px;
+    }
+
    
-
-    .checkbox {
-        padding: 10px 20px;
-    }
-
-    .checkbox span {
-        color: $color-dimgray;
-    }
 
   .form-body {
         margin-bottom: 20px;
     }
     
   
-    .errorMessage{
-        font-size: 14px;	
-        line-height: 17px;
-        margin-bottom: 2px !important;
-        color: $color-orange;
-    }
-    
-    p.errorMessage:first-of-type{
-        margin-top:6px!important;
-    }
-
-    .error-border{
-        // border: 1px solid $color-red !important;
-        border: 1px solid $color-orange!important;
-        box-shadow: 0 0 4px 0 rgba(255,102,51,0.3)!important;
-    }
-    .form-check.error-border {
-        padding-left: 25px;
-    }
    
-    .has-feedback{
-        position: relative;
-    }
-    
-    .form-check{
-        margin-bottom: 5px;
-        .form-check-label{
-            height: 34px;
-            width: 97%;
-            padding-top: 5px;
-            color: #666666;
-            font-family: "Proxima Nova";
-            font-size: 16px;
-            margin-left: 10px;
-            display: flex;
-            justify-content: center;
-            align-content: center;
-        }
-        .form-check-input{
-            width:20px;
-            height:20px;
-        }
-        
-    }
-    
-    
-    .form-control-feedback{
-        position: absolute;
-        right: 10px;
-        top: 56px;
-        color: $color-orange;
-        font-size: 20px;
-    }
-    .form-control-passwordicon{
-        position: absolute;
-        right: 10px;
-        top: 56px;
-        color: black;
-        font-size: 20px;
-    }
-    .form-control-check-feedback{
-        position: absolute;
-        right: 10px;
-        top: 16px;
-        color: $color-orange;
-        font-size: 20px;
-    }
-
-
  .footer-main {
     background-color: $color-azure;
     padding: 30px 100px !important;
@@ -341,44 +301,182 @@ body {
   .footer-list { border-right: 1px solid $color-white; }
   .footer-list ul { padding-left: 0px; margin: 0px; padding: 5px 0px; }
   .footer-list ul li { list-style-type: none; display: inline; padding-right: 40px; }
-  .footer-list ul li a { color: $color-white; }
-  .footer-middle { border-right: 1px solid $color-white; }
-  .footer-middle p { color: $color-regentblue; font-size: 16px; }
+  .footer-list ul li a { color: $color-white; font-size: 14px; }
+  .footer-middle { border-right: 1px solid $color-white; padding-right: 20px; }
+  .footer-middle p { color: $color-regentblue; font-size: 13px; }
   .footer-right p {
-    text-align: center;
+      text-align: center;
     color: $color-regentblue;
-    font-size: 16px;
+    font-size: 13px;
     padding-top: 25px;
   }
   .footer-right p a {
   color: $color-white;
-    font-size: 18px;
+    font-size: 13px;
     padding-left: 10px;
     }
     .footer-bottom p {
     text-align: left;
     color: $color-regentblue;
-    font-size: 16px;
+    font-size: 13px;
     margin-bottom: 0px;
     }
 
+    table.help-box{
+        display: inline;
+        position: absolute;
+        
+        top: 3pc;
+        border: 1px solid;
+        padding: 29px;
+        right: 24%;
+        height: 108.01px;
+        width: 320px;
+        background-color: #FFFFFF!important;
+        box-shadow: 0 2px 10px 0 rgba(0,0,0,0.3)!important;
+        tr{
+            text-align:left;
+            td{
+                line-height:30px;
+            }
+        }
+        
+    }
+    .help-box:after {
+    content: "";
+    position: absolute;
+    left: 87%;
+    top: -13%;
+    border: 12px solid transparent;
+    border: 7px solid transparent;
+    border-bottom-color: #fff;
 
+    }
+    .help-class{
+     display:inline;
+     position: relative;
+    // top: 10px;
+    }
+    .header-help{
+        height: 17px;	
+        // width: 30px;	
+        // color: $color-strongblu;	
+        font-size: 16px;
+        line-height: 17px; 
+        padding-left:9px;
+        
+    }
+    .help-email{
+        // width: 35%;
+        font-weight: 500;
+        line-height: 15px;
+        float: left;
 
-.header{
-    
-}
+    }
 
-   .header-contact{
-    // background-color: $color-whitesmok;
-    // margin-left: 20px;
+    .help-info{
+        // width: 65%;
+        font-weight: 300;
+        
+        white-space: wrap;
+        overflow: hidden;
+        text-align:right;
+        text-overflow: ellipsis;
+
+    }
+
+ .header-contact{
     height: 50px;
-    // padding-top: 10px;
-    //  text-align:right;
+    text-align:right;
    }
+   
+   .form-control-lg {
+       font-size: 14px !important;
+   }
+   .login-form-exclamation{
+   .form-control-feedback{
+    position: absolute;
+    right: 20px;
+    top: 56px;
+    color: $color-orange;
+    font-size: 20px;
+  }
+}
   
 
     @media (min-width: 1350px) {
 .container {
     max-width: 1320px !important;
 }
+}
+
+@media screen and (max-width: 767px) {
+    .header-contact {
+        height: auto;
+        text-align: left;
+    }
+    
+    .login-box {
+        max-width: 90% !important;
+        flex: 0 0 90% !important;
+    }
+    .footer-main {
+        padding: 30px !important;
+    }
+    .footer-list, .footer-middle {
+        border-right: 0px;
+    }
+    .footer-middle {
+        padding-top: 20px;
+    }
+    .footer-right p {
+        text-align: left;
+        padding-top: 10px;
+        margin-bottom: 0px;
+    }
+   
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .login-box {
+        max-width: 60% !important;
+        flex: 0 0 60% !important;
+    }
+    .footer-main {
+        padding: 30px 40px !important;
+    }
+    .signup-left,.signup-right {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+    }
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+    .login-box {
+        max-width: 50% !important;
+        flex: 0 0 50% !important;
+    }
+}
+@media screen and (max-width: 768px) {
+   .tell-us-about{
+     line-height:25px;
+     
+    //    position:relative;
+    //    text-align: left;
+    //    display:flex;
+    //    align-items: center;
+    //    justify-content: center;
+
+       }
+       .num{
+           display:inline-block;
+           box-sizing: border-box;
+    
+       }
+    
+   
+     
+}
+@media screen and (min-width: 924px) {
+    .rounded-list ol > li p:before {
+        top: 52% ;
+    }
 }

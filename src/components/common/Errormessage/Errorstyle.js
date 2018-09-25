@@ -2,22 +2,29 @@
 
 const Errormessage={
   height:"65px",
-  width: "416px",
   border:"1px solid #FF6633",
  position:'relative'
 }
 
 const ErrorIcon={
-  height:"65px",
+  height:"64px",
   width: "66px",
-  border: "1px solid #FF6633",
   backgroundColor: "#FF6633",
   display:'inline-block'
 }
+const checkIcon = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  alignContent: 'center',
+  height: '64px',
+  width: '66px',
+}
 
 const errorContent= {
-  display: 'inline',
-    position: 'absolute'
+  display: 'inline-block',
+  color:'#FF6633',
+  marginLeft: '20px'
 }
 
 
@@ -25,5 +32,6 @@ const errorContent= {
 export const Errorstyle ={
   Errormessage:Errormessage,
   ErrorIcon:ErrorIcon,
-  errorContent: errorContent
+  errorContent: errorContent,
+  checkIcon: checkIcon
 }

@@ -1,11 +1,7 @@
 import React from 'react';
 import PageHeader from '../common/Header/PageHeader/PageHeader';
 import PhoneHeader  from '../common/Header/phoneHeader';
-import Login from '../Login/Login';
-import { Route,Switch } from "react-router-dom";
-import SignUp from '../SignUp/SignUp';
-import ForgotPassword from '../Login/ForgotPassword';
-import ValidateEmail from '../SignUp/validateEmail';
+import NavigateComponent from './NavigateComponents';
 import Footer from '../common/Footer/Footer';
 
 const Home = () => {
@@ -16,12 +12,7 @@ const Home = () => {
       <div className='container'>
         
         <div className='row form-body'>
-        <Switch>  
-         <Route exact path='/' component={Login}/>
-         <Route path='/signup' component={SignUp}/>
-         <Route path='/forgotpassword' component={ForgotPassword}/>
-         <Route path='/validateEmail' component={ValidateEmail}/>
-      </Switch>
+        <NavigateComponent/>
      
             </div>
         </div>

@@ -1,22 +1,20 @@
-import { GET_EMAIL_VALIDATE,GET_EMAIL_URL} from '../constants/constant';
+import { GET_RESEND_VALIDATE,GET_RESEND_URL} from '../constants/constant';
 import axios from 'axios';
 
-export const validateData = (data,token,id,context) => (dispatch) => {
+export const resendData = (data,token,id) => (dispatch) => {
   const header = {
     'Content-type':'application/json',
     'Authorization':`Bearer ${token}`,
     'code':`${id}`
    }
  
-axios.put(GET_EMAIL_URL,data,{headers:header}).then(res=>{
-  console.log("this is response email validate",res);
+axios.put(GET_RESEND_URL,data,{headers:header}).then(res=>{
+  console.log("this is response resend validate",res);
      dispatch({
-            type:GET_EMAIL_VALIDATE,
+            type:GET_RESEND_VALIDATE,
             data: res.data
         });
-        if(res && res.data){
-          context.history.push('/TwoFactor')
-        }
+      
     
 })
 .catch(error => {

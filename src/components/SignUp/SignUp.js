@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import validate from 'validate.js';
 // import {validatingFields} from '../common/validation';
-import '../../css/style.scss';
+import './SignUp.scss';
 import PropTypes from 'prop-types';
 // import ReactTooltip from 'react-tooltip'
 // import { validateCheck } from "../../redux/actions/validationAction"
@@ -14,7 +14,7 @@ import { styles } from '../common/style';
 import About from '../Home/About';
 import Errormessage from '../common/Errormessage/Errormessage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationCircle, faEyeSlash, faEye} from '@fortawesome/free-solid-svg-icons'
+import { faExclamationCircle, faEyeSlash, faEye} from '@fortawesome/free-solid-svg-icons';
 // import variables from '../../css/variables.scss'
 
 class SignUp extends Component {
@@ -264,12 +264,14 @@ console.log(validJsErrors);
     const formErrors = validate(this.state,this.constraints);
     return (
       <React.Fragment>
-        <div className='col-md-7'>
+       
+
+        <div className='col-md-7 signup-left'>
           <About /></div>
-        <div className='col-md-5 col-xs-12 col-sm-12'>
+        <div className='col-md-5 signup-right'>
           <div className='card'>
             <div className='card-header'>
-              <h3 className='m-0'>SIGN UP NOW</h3>
+              <h3 className='m-0 signup-text'>SIGN UP NOW</h3>
             </div>
             {(this.props.userResponse.status === '409' && !this.props.userResponse.detail.includes("UID")) ?
               <Errormessage error={this.props.userResponse.detail} /> : ''}
@@ -335,7 +337,7 @@ console.log(validJsErrors);
                 {(this.state.isSubmitted && !this.state.touched.accessCode && formErrors && formErrors.accessCode) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
                 {formErrors && this.state.errors.accessCode ? this.getErrorMessage('accessCode') : ''}
               </div>
-              <div  className={(this.state.isSubmitted && !this.state.touched.certify && formErrors && formErrors.certify) ? 'form-check error-border' : 'form-check'}>
+              <div  className={(this.state.isSubmitted && !this.state.touched.certify && formErrors && formErrors.certify) ? 'form-check error-border-check' : 'form-check'}>
                 <input type='checkbox' name="certify" onChange ={this.handleChange} className='form-check-input' value={this.state.certify} id='exampleCheck1' />
                 <span className='form-check-label'>I certify that I am a U.S. citizen and I permanently reside in the U.S.</span>
                 {(this.state.isSubmitted && !this.state.touched.certify && formErrors && formErrors.certify) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-check-feedback" /> : ''}

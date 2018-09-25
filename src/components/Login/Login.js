@@ -5,12 +5,16 @@ import { styles } from '../common/style';
 import { login } from '../../redux/actions/getUserLogin'
 import { connect } from 'react-redux';
 import validate from 'validate.js';
+import  '../../css/style.scss'
 // // import Header from '../common/Header';
 // import { Route,Switch} from 'react-router-dom';
 // import SignUp from './SignUp'
 import { withRouter } from 'react-router';
 import SuccessMessage from '../common/SuccessMessage/SuccessMessage';
 import Errormessage from '../common/Errormessage/Errormessage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationCircle} from '@fortawesome/free-solid-svg-icons';
+
 
 // import { token } from '../actions/tokenAction';
 
@@ -93,6 +97,29 @@ class Login extends Component {
 
 
   }
+  getErrorMessage(inputType) {
+    const validJsErrors = validate(this.state, this.constraints);
+    console.log(validJsErrors);
+    const inputSpace = inputType.replace(/([A-Z])/g, ' $1').trim()
+    const toUpper = inputSpace.charAt(0).toUpperCase() + inputSpace.substr(1).toLowerCase();
+    for (let k in validJsErrors) {
+    console.log(inputType , k);
+
+      if (validJsErrors.hasOwnProperty(k)) {
+        if (k === inputType && k !== 'password') {
+          return (validJsErrors[k].map((ele, index) => {
+            return <p className='errorMessage' key={index}> {ele === toUpper + ' is too short (minimum is 8 characters)' ? 'Must be atleast 8 characters long' : ele === toUpper + ' can\'t be blank' ? 'A ' + toUpper.toLowerCase() + ' is required' : ele === toUpper + ' is invalid' ? toUpper + '  is not valid' : ele === toUpper + ' is not a valid email' ? toUpper + '  is not valid' : ele}</p>
+          })
+          )
+        } else if ( k === inputType && k === 'password') {
+          return (validJsErrors[k].map((ele, index) => {
+            return <p className='errorMessage' key={index}> {ele === toUpper + ' is too short (minimum is 8 characters)' ? 'Must be atleast 8 characters long' : ele === toUpper + ' can\'t be blank' ? '' : ele === toUpper + ' is invalid' ? 'Must contain atleast one lower case, upper case and one number' : ele === toUpper + ' is not a valid email' ? toUpper + '  is not valid' : ele}</p>
+          })
+          )
+        }
+      }
+    }
+  }
 
   validateCheck = (name) => {
     const validJsErrors = validate(this.state, this.constraints);
@@ -129,16 +156,16 @@ class Login extends Component {
 
     return (
 
-      <div className='card login-box col-sm-5'>
+      <div className='card login-box col-xs-12 col-sm-6 col-md-4'>
         <div className='card-header'>
           LOGIN TO YOUR ACCOUNT
            </div>
         {(this.props.user === 200) ?
           <SuccessMessage success="Login Successful"/> : (this.props.user === 401) ?
             <Errormessage error="Invalid Username or Password" /> : ''}
-        <div className='card-block'>
+        <div className='card-block login-form-exclamation'>
           <form>
-            <div className='form-group col-12'>
+            <div className='form-group  col-12'>
               <div className="row label-text">
                 <div className="col-6">
                   <label>Username</label>
@@ -147,8 +174,11 @@ class Login extends Component {
                   <Link to="#">Forgot username ?</Link>
                 </div>
               </div>
-              <input type='text' className={(this.state.isSubmitted && !this.state.touched.userName&&formErrors&&formErrors.userName) ? 'form-control form-control-lg error-broder' : 'form-control form-control-lg'} id='userName' name='userName' value={this.state.userName}
+              <input type='text' className={(this.state.isSubmitted && !this.state.touched.userName&&formErrors&&formErrors.userName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'} id='userName' name='userName' value={this.state.userName}
                 onChange={this.handleChange} />
+                {(this.state.isSubmitted && !this.state.touched.userName && formErrors && formErrors.userName) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
+                {formErrors && this.state.errors.userName? this.getErrorMessage('userName') : ''}
+
             </div>
             <div className='form-group col-12'>
               <div className="row label-text">
@@ -159,8 +189,11 @@ class Login extends Component {
                   <Link to="/forgotpassword">Forgot password ?</Link>
                 </div>
               </div>
-              <input type='password' className={(this.state.isSubmitted && !this.state.touched.password&&formErrors&&formErrors.password) ? 'form-control form-control-lg error-broder' : 'form-control form-control-lg'} id='pwd' name='password' value={this.state.password}
+              <input type='password' className={(this.state.isSubmitted && !this.state.touched.password&&formErrors&&formErrors.password) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'} id='pwd' name='password' value={this.state.password}
                 onChange={this.handleChange} />
+                {(this.state.isSubmitted && !this.state.touched.password && formErrors && formErrors.password) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
+                {formErrors && this.state.errors.password? this.getErrorMessage('password') : ''}
+                
             </div>
             <div className='form-group col-12'>
               <button className="loginbtn" onClick={this.login} type='button' style={styles.Button}><span style={styles.textOnButton}>Login</span></button>

@@ -27,11 +27,7 @@ const Button = {
   marginLeft:'26.5px',
   border: `1px solid ${variables.darkcolor}`,
   borderRadius: '3px',
-  backgroundColor:variables.whitecolor,
-  position: "absolute",
-    
-   
-    top: "-22%"
+  backgroundColor:variables.whitecolor
 }
  const headerTextButton={
   height: '16px',	
@@ -47,9 +43,9 @@ const Button = {
 }
  const textOnButton = {
   color: variables.whitecolor,
-  fontSize: '20px',
-  fontWeight: 600,
-  lineHeight: '28px',
+  fontSize: '14px',
+  fontWeight: 400,
+  lineHeight: '24px',
   textAlign: 'center'
 }
 export const styles = {
