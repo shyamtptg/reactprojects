@@ -4,7 +4,8 @@ import SignUp from '../SignUp/SignUp';
 import ForgotPassword from '../Login/ForgotPassword';
 import ValidateEmail from '../SignUp/validateEmail';
 import Login from '../Login/Login';
-import TwoFactor from '../TwoFactor/TwoFactor'
+import TwoFactor from '../TwoFactor/TwoFactor';
+import TwoFactorDetails from '../TwoFactor/TwoFactorDetails';
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
          <Route path='/forgotpassword' component={ForgotPassword}/>
          <Route path='/validateEmail' component={ValidateEmail}/>
          <Route path='/TwoFactor' component={TwoFactor}/>
+         <Route path='/TwoFactorDetails' component={TwoFactorDetails}/>
       </Switch>
     </React.Fragment>
   )

@@ -4,6 +4,7 @@ import validate from 'validate.js';
 // import {validatingFields} from '../common/validation';
 import './SignUp.scss';
 import PropTypes from 'prop-types';
+import check from '../../assets/check.svg';
 // import ReactTooltip from 'react-tooltip'
 // import { validateCheck } from "../../redux/actions/validationAction"
 import { signUp } from '../../redux/actions/signUpAction';
@@ -12,9 +13,11 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { styles } from '../common/style';
 import About from '../Home/About';
+import icon_hide from '../../assets/icon_hide.svg';
+import icon_show from '../../assets/icon_show.svg';
 import Errormessage from '../common/Errormessage/Errormessage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationCircle, faEyeSlash, faEye} from '@fortawesome/free-solid-svg-icons';
+import { faExclamationCircle} from '@fortawesome/free-solid-svg-icons';
 // import variables from '../../css/variables.scss'
 
 class SignUp extends Component {
@@ -112,7 +115,7 @@ class SignUp extends Component {
     this.register = this.register.bind(this);
     this.getErrorMessage = this.getErrorMessage.bind(this);
     
-    // this.handleBlur = this.handleBlur.bind(this);
+   
   }
 
 
@@ -271,31 +274,32 @@ console.log(validJsErrors);
         <div className='col-md-5 signup-right'>
           <div className='card'>
             <div className='card-header'>
-              <h3 className='m-0 signup-text'>SIGN UP NOW</h3>
+              <h3 className='m-0 signup-text'>Sign up now</h3>
             </div>
+            <img className="iconshow" src={check} alt="iconshow"/>
             {(this.props.userResponse.status === '409' && !this.props.userResponse.detail.includes("UID")) ?
               <Errormessage error={this.props.userResponse.detail} /> : ''}
             <div className='card-block'>
               <div className='form-group has-feedback'>
-                <label className='control-label'>FirstName:</label>
+                <label className='control-label'>First name:</label>
                 <input type='text' className={(this.state.isSubmitted && !this.state.touched.firstName && formErrors && formErrors.firstName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
-                  id='firstName' placeholder='FirstName'
+                  id='firstName' placeholder='Firstname'
                   name='firstName' value={this.state.firstName}
                   onChange={this.handleChange}/>
                 {(this.state.isSubmitted && !this.state.touched.firstName && formErrors && formErrors.firstName) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
                 {formErrors && this.state.errors.firstName ? this.getErrorMessage('firstName') : ''}
               </div>
               <div className='form-group has-feedback'>
-                <label className='control-label'>LastName:</label>
+                <label className='control-label'>Last name:</label>
                 <input type='text' className={(this.state.isSubmitted && !this.state.touched.lastName && formErrors && formErrors.lastName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
-                  id='lastName' placeholder='LastName'
+                  id='lastName' placeholder='Lastname'
                   name='lastName' value={this.state.lastName}
                   onChange={this.handleChange}/>
                 {(this.state.isSubmitted && !this.state.touched.lastName && formErrors && formErrors.lastName) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
                 {formErrors && this.state.errors.lastName ? this.getErrorMessage('lastName') : ''}
               </div>
               <div className='form-group has-feedback'>
-                <label className='control-label'>EMAIL:</label>
+                <label className='control-label'>Email:</label>
                 <input type='email' className={(this.state.isSubmitted && !this.state.touched.email && formErrors && formErrors.email) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='email' placeholder='Email'
                   name='email' value={this.state.email}
@@ -307,9 +311,9 @@ console.log(validJsErrors);
 
               </div>
               <div className='form-group has-feedback'>
-                <label className='control-label'>USERNAME:</label>
+                <label className='control-label'>Username:</label>
                 <input type='text' className={(this.state.isSubmitted && !this.state.touched.userName && formErrors && formErrors.userName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
-                  id='userName' placeholder='UserName'
+                  id='userName' placeholder='Username'
                   name='userName' value={this.state.userName}
                   onChange={this.handleChange}/>
                 {(this.state.isSubmitted && !this.state.touched.userName && formErrors && formErrors.userName) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
@@ -320,18 +324,18 @@ console.log(validJsErrors);
                                                 A usernames can contains letters{'{a-z}'}, numbers(0-9), dash{'{-}'}, underscore(_), period(.)</p>) :''}
               </div>
               <div className='form-group has-feedback'>
-                <label className='control-label'>PASSWORD:</label>
+                <label className='control-label'>Password:</label>
                 <input type={this.state.type} className={(this.state.isSubmitted && !this.state.touched.password && formErrors && formErrors.password) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='password' placeholder='Password'
                   name='password' value={this.state.password}
                   onChange={this.handleChange} />
-                {(this.state.isSubmitted && !this.state.touched.password && formErrors && formErrors.password) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : this.state.type === 'password'? (<FontAwesomeIcon icon={faEyeSlash} className="form-control-passwordicon" onClick ={() => this.showHidePassword()}/>): (<FontAwesomeIcon icon={faEye} className="form-control-passwordicon" onClick ={() => this.showHidePassword()}/>)}
+                {(this.state.isSubmitted && !this.state.touched.password && formErrors && formErrors.password) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : this.state.type === 'password'? (<img className="iconhide" src={icon_hide} alt='Eye' onClick ={() => this.showHidePassword()}/>): (<img className="iconshow" src={icon_show} alt='Eye' onClick ={() => this.showHidePassword()}/>)}
                 {formErrors && this.state.errors.password ? this.getErrorMessage('password') : ''}
               </div>
               <div className='form-group has-feedback'>
-                <label className='control-label'>AccessCode:</label>
+                <label className='control-label'>Access code:</label>
                 <input type='text' className={(this.state.isSubmitted && !this.state.touched.accessCode && formErrors && formErrors.accessCode) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
-                  id='accessCode' placeholder='AccessCode'
+                  id='accessCode' placeholder='Access code'
                   name='accessCode' value={this.state.accessCode}
                   onChange={this.handleChange}/>
                 {(this.state.isSubmitted && !this.state.touched.accessCode && formErrors && formErrors.accessCode) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}

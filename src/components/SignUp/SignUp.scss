@@ -41,7 +41,7 @@ p.errorMessage:first-of-type{
   width: 354px;	
   color: $color-dimgray;	
   font-family: $font-family-prox;
-  font-size: 14px;	
+  font-size: 16px;	
   line-height: 20px;
   margin-left: 5px;
 }
@@ -80,6 +80,20 @@ input[type=checkbox] {
 
 .checkbox span {
   color: $color-dimgray;
+}
+.iconhide{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 46px;
+  right: 10px;
+}
+.iconshow{
+  width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 46px;
+    right: 10px;
 }
 @media screen and (max-width: 767px) {
 .signup-header {

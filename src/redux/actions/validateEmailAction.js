@@ -9,7 +9,7 @@ export const validateData = (data,token,id,context) => (dispatch) => {
    }
  
 axios.put(GET_EMAIL_URL,data,{headers:header}).then(res=>{
-  console.log("this is response email validate",res);
+ 
      dispatch({
             type:GET_EMAIL_VALIDATE,
             data: res.data

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import { validateData } from '../../redux/actions/validateEmailAction';
 import {resendData} from '../../redux/actions/resendOtp';
-import { Link } from 'react-router-dom';
 import {styles} from '../common/style';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
@@ -151,13 +150,10 @@ if(e.keyCode === 20) {
               <button className='forgotbtn' onClick={this.validateSecurity} type='button' style={styles.Button}><span style={styles.textOnButton}>SUBMIT</span></button>
             </div>
             <div className='col-12'>
-            <span>Didn't Recieve Security code</span><span style={{float:'right'}} onClick={this.resend}>Resend</span>
+            <span>Didn't Recieve Security code</span><span style={{float:'right',color: "#0195D4"}} onClick={this.resend}>Resend</span>
 
             </div>
-            <div className='col-12'>
-            <span><Link to='/'>Back to Login</Link></span>
-
-            </div>
+           
           </form>
         </div>
       </div>

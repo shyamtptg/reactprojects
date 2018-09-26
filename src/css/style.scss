@@ -41,6 +41,7 @@ body {
        font-weight: 500;	
        line-height: 24px;
        margin-bottom: 30px;
+       margin-left:36px;
     }
     
     
@@ -91,6 +92,20 @@ body {
     }
 
 //rounded circles paragraphics
+.iconhidelog{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 46px;
+    right: 20px;
+  }
+  .iconshowlog{
+    width: 40px;
+      height: 40px;
+      position: absolute;
+      top: 46px;
+      right: 20px;
+  }
 
 
 .rounded-list ol 
@@ -111,7 +126,11 @@ padding-left: 15px; /* Add some spacing around the content */
 padding-bottom:0px;
 padding-top:0px;
 }
-
+.rounded-list ol > li p
+{
+    margin-left:65px;
+    
+}
 /* number  */
 .rounded-list ol > li p:before
 {
@@ -468,7 +487,7 @@ border-radius: 2em;
        }
        .num{
            display:inline-block;
-           box-sizing: border-box;
+        //    box-sizing: border-box;
     
        }
     
@@ -478,5 +497,16 @@ border-radius: 2em;
 @media screen and (min-width: 924px) {
     .rounded-list ol > li p:before {
         top: 52% ;
+        left:30px;
     }
+    
+}
+@media screen and (min-width: 768px) and (max-width: 1366px) {
+    .rounded-list ol > li p {
+       background-color:white;
+    }
+    .rounded-list ol > li {
+        background-color:white;
+    }
+    
 }

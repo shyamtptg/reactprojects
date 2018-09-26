@@ -5,7 +5,9 @@ import { styles } from '../common/style';
 import { login } from '../../redux/actions/getUserLogin'
 import { connect } from 'react-redux';
 import validate from 'validate.js';
-import  '../../css/style.scss'
+import  '../../css/style.scss';
+import icon_hide from '../../assets/icon_hide.svg';
+import icon_show from '../../assets/icon_show.svg';
 // // import Header from '../common/Header';
 // import { Route,Switch} from 'react-router-dom';
 // import SignUp from './SignUp'
@@ -25,9 +27,10 @@ class Login extends Component {
     this.state = {
       userName: '',
       password: '',
+      type:'password',
       errors: {
-        userName: '',
-        password: ''
+        userName:undefined,
+        password: undefined
 
       },
       touched: {
@@ -97,6 +100,11 @@ class Login extends Component {
 
 
   }
+  showHidePassword(){
+    this.setState(prevState => ({
+      type: prevState.type ==='password'? 'text' : 'password'
+    }));
+  }
   getErrorMessage(inputType) {
     const validJsErrors = validate(this.state, this.constraints);
     console.log(validJsErrors);
@@ -123,26 +131,54 @@ class Login extends Component {
 
   validateCheck = (name) => {
     const validJsErrors = validate(this.state, this.constraints);
-
+console.log(validJsErrors);
     const errorKeys = validJsErrors ? Object.keys(validJsErrors) : {};
     if (validJsErrors) {
       Object.entries(validJsErrors)
         .forEach((key) => {
-          let errors = { ...this.state.errors };
+          // let errors = { ...this.props.getValidateForm };
           if (!errorKeys.includes(name)) {
-            errors[name] = '';
-            this.setState({
-              errors: errors
-            });
+
+            this.setState(prevState => ({
+              errors: {
+                ...prevState.errors,
+                [name]: undefined
+              }
+            }),() => {
+              console.log(this.state);
+            })
           } else if (key[0] === name && key[1].length > 0) {
-            errors[name] = key[1][0];
-            this.setState({
-              errors: errors
-            });
+            //errors[name] = key[1][0];
+            // this.setState({
+            //   errors: errors
+            // });
+            this.setState(prevState => ({
+              errors: {
+                ...prevState.errors,
+                [name]: key[1][0]
+              }
+            }))
           }
         });
     }
+    else {
+      this.setState({
+        errors: {
+          firstName: undefined,
+          lastName: undefined,
+          userName: undefined,
+          email: undefined,
+          password: undefined,
+          accessCode:undefined,
+          certify: undefined
+
+        }
+      });
+
+    }
   }
+
+
   componentDidMount() {
 
   }
@@ -156,7 +192,7 @@ class Login extends Component {
 
     return (
 
-      <div className='card login-box col-xs-12 col-sm-6 col-md-4'>
+      <div className='card login-box col-xs-12 col-sm-6 col-md-5'>
         <div className='card-header'>
           LOGIN TO YOUR ACCOUNT
            </div>
@@ -191,8 +227,8 @@ class Login extends Component {
               </div>
               <input type='password' className={(this.state.isSubmitted && !this.state.touched.password&&formErrors&&formErrors.password) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'} id='pwd' name='password' value={this.state.password}
                 onChange={this.handleChange} />
-                {(this.state.isSubmitted && !this.state.touched.password && formErrors && formErrors.password) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
-                {formErrors && this.state.errors.password? this.getErrorMessage('password') : ''}
+                {(this.state.isSubmitted && !this.state.touched.password && formErrors && formErrors.password) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : this.state.type === 'password'? (<img className="iconhidelog" src={icon_hide} alt='Eye' onClick ={() => this.showHidePassword()}/>): (<img className="iconshowlog" src={icon_show} alt='Eye' onClick ={() => this.showHidePassword()}/>)}
+                {formErrors && this.state.errors.password ? this.getErrorMessage('password') : ''}
                 
             </div>
             <div className='form-group col-12'>
