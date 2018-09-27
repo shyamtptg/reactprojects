@@ -36,7 +36,7 @@ const TwoFactor = () => {
 
             </div>
             <div className='form-group col-11'>
-              <button className='Enable2FA'  type='button' style={styles.Button}><span style={styles.textOnButton}>ENABLE 2FA</span></button>
+              <button className='Enable2FA'  type='button' style={styles.Button}><span style={styles.textOnButton}><Link to ='/TwoFactorDetails'>ENABLE 2FA</Link></span></button>
             </div>
             <div className='col-8 offset-5'>
             <p className="skip"><Link to ='/'>Skip</Link></p>

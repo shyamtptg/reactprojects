@@ -19,12 +19,12 @@ const Header = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <div className='col-md-6 header-contact'>
+                        <div className='col-md-6 col-sm-6 header-contact'>
                            <img className="question" src={question} alt='Contact'/>
                            <span className='header-tel-no'>{props.property.telephonenumber}</span>
                             <span className='header-line'></span>
                             <span className='header-help'><Help/></span>
-                            <button hidden={props.property.path.split('/')[1] === 'TwoFactor'||props.property.path.split('/')[1] === 'TwoFactorDetails'||props.property.path.split('/')[1] === 'validateEmail'} style={styles.headerButton}><span>{props.property.path.split('/')[1] === 'signup'?<Link to='/' style={styles.headerTextButton}>LOGIN</Link>:<Link to='/signup' style={styles.headerTextButton}>SIGNUP</Link>} </span></button>
+                            <button hidden={props.property.path.split('/')[1] === 'TwoFactor'||props.property.path.split('/')[1] === 'TwoFactorDetails'||props.property.path.split('/')[1] === 'validateEmail'||props.property.path.split('/')[1] === 'TwoFactorAuth'} style={styles.headerButton}><span>{props.property.path.split('/')[1] === 'signup'?<Link to='/' style={styles.headerTextButton}>LOGIN</Link>:<Link to='/signup' style={styles.headerTextButton}>SIGNUP</Link>} </span></button>
                             </div>
                     </div>
                 </nav>

@@ -194,48 +194,48 @@ console.log(validJsErrors);
 
       <div className='card login-box col-xs-12 col-sm-6 col-md-5'>
         <div className='card-header'>
-          LOGIN TO YOUR ACCOUNT
+          Log in to your account
            </div>
         {(this.props.user === 200) ?
-          <SuccessMessage success="Login Successful"/> : (this.props.user === 401) ?
-            <Errormessage error="Invalid Username or Password" /> : ''}
+          <SuccessMessage success='Login Successful'/> : (this.props.user === 401) ?
+            <Errormessage error='Invalid username or password' /> : ''}
         <div className='card-block login-form-exclamation'>
           <form>
             <div className='form-group  col-12'>
-              <div className="row label-text">
-                <div className="col-6">
+              <div className='row label-text'>
+                <div className='col-6'>
                   <label>Username</label>
                 </div>
-                <div className="col-6">
-                  <Link to="#">Forgot username ?</Link>
+                <div className='col-6 forgot-align'>
+                  <Link style={{color:"#0195D4"}} to='#'>Forgot username?</Link>
                 </div>
               </div>
               <input type='text' className={(this.state.isSubmitted && !this.state.touched.userName&&formErrors&&formErrors.userName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'} id='userName' name='userName' value={this.state.userName}
                 onChange={this.handleChange} />
-                {(this.state.isSubmitted && !this.state.touched.userName && formErrors && formErrors.userName) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
+                {(this.state.isSubmitted && !this.state.touched.userName && formErrors && formErrors.userName) ? <FontAwesomeIcon icon={faExclamationCircle} className='form-control-feedback' /> : ''}
                 {formErrors && this.state.errors.userName? this.getErrorMessage('userName') : ''}
 
             </div>
             <div className='form-group col-12'>
-              <div className="row label-text">
-                <div className="col-6">
+              <div className='row label-text'>
+                <div className='col-6'>
                   <label>Password</label>
                 </div>
-                <div className="col-6">
-                  <Link to="/forgotpassword">Forgot password ?</Link>
+                <div className='col-6 forgot-align'>
+                  <Link style={{color:"#0195D4"}} to='/forgotpassword'>Forgot password?</Link>
                 </div>
               </div>
-              <input type='password' className={(this.state.isSubmitted && !this.state.touched.password&&formErrors&&formErrors.password) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'} id='pwd' name='password' value={this.state.password}
+              <input type={this.state.type} className={(this.state.isSubmitted && !this.state.touched.password&&formErrors&&formErrors.password) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'} id='pwd' name='password' value={this.state.password}
                 onChange={this.handleChange} />
-                {(this.state.isSubmitted && !this.state.touched.password && formErrors && formErrors.password) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : this.state.type === 'password'? (<img className="iconhidelog" src={icon_hide} alt='Eye' onClick ={() => this.showHidePassword()}/>): (<img className="iconshowlog" src={icon_show} alt='Eye' onClick ={() => this.showHidePassword()}/>)}
+                {(this.state.isSubmitted && !this.state.touched.password && formErrors && formErrors.password) ? <FontAwesomeIcon icon={faExclamationCircle} className='form-control-feedback' /> : this.state.type === 'password'? (<img className='iconhidelog' src={icon_hide} alt='Eye' onClick ={() => this.showHidePassword()}/>): (<img className='iconshowlog' src={icon_show} alt='Eye' onClick ={() => this.showHidePassword()}/>)}
                 {formErrors && this.state.errors.password ? this.getErrorMessage('password') : ''}
                 
             </div>
             <div className='form-group col-12'>
-              <button className="loginbtn" onClick={this.login} type='button' style={styles.Button}><span style={styles.textOnButton}>Login</span></button>
+              <button className='loginbtn' onClick={this.login} type='button' style={styles.Button}><span style={styles.textOnButton}>Login</span></button>
             </div>
-            <div className="col-12 donthvacnt">
-              <span>Don't have an account ?</span><Link to='/signup'> SignUp</Link>
+            <div className='col-12 donthvacnt'>
+              <span>Don't have an account ?</span><Link to='/signup' style={{ paddingLeft:"9px",fontWeight:"500",color:"#0195D4"}}>Sign up</Link>
 
             </div>
           </form>

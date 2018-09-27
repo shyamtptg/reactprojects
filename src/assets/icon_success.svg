@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="14px" viewBox="0 0 18 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>icon success</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 0 18 0 18 13.65308 0 13.65308"></polygon>
+    </defs>
+    <g id="Designs-14th-sep" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="9.1_Mobile" transform="translate(-31.000000, -192.000000)">
+            <g id="alert" transform="translate(20.000000, 159.000000)">
+                <g id="icon-success" transform="translate(11.000000, 33.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="path-1"></g>
+                    <path d="M17.6234625,0.374920001 C17.12115,-0.125160001 16.307775,-0.125160001 15.8054625,0.374920001 L5.5713375,10.56356 L2.19465,7.20188004 C1.6923375,6.70180005 0.8789625,6.70180005 0.37665,7.20188004 C-0.1256625,7.70140001 -0.1256625,8.51228004 0.37665,9.01180001 L4.6623375,13.2784401 C4.913775,13.5282 5.242275,13.65308 5.5713375,13.65308 C5.9004,13.65308 6.2294625,13.5282 6.4803375,13.2784401 L17.6234625,2.18484001 C18.125775,1.68532001 18.125775,0.875000002 17.6234625,0.374920001" id="Fill-1" fill="#FFFFFF" fill-rule="nonzero" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

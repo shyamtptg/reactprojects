@@ -21,6 +21,7 @@ const PageHeader = (props) => {
          (<div><h2>{PageHeaderRoutes.PageHeader.validateEmailRoute}</h2><p className="header-content">{PageHeaderRoutes.PageHeader.validateEmailRouteContent1.replace('j@gmail',user)}</p><p className="header-content">{PageHeaderRoutes.PageHeader.validateEmailRouteContent2}</p></div>)
          :path.split('/')[1] === 'TwoFactor'?(<div className="Congrats-Header">{PageHeaderRoutes.PageHeader.sucessvalidateRoute}</div>)
          :path.split('/')[1] === 'TwoFactorDetails'?(<div className="Two-Factor-Details"><h2>{PageHeaderRoutes.PageHeader.twofactorAuthenticationRoute}</h2><p className="header-content">{PageHeaderRoutes.PageHeader.twofactorContent1}</p><p className="header-content">{PageHeaderRoutes.PageHeader.twofactorContent2}</p></div>)
+         :path.split('/')[1] === 'TwoFactorAuth'?(<div className="Two-Factor-Details"><h2>{PageHeaderRoutes.PageHeader.twofactorAuthenticationRoute}</h2></div>)
          :PageHeaderRoutes.PageHeader.loginRoute}</h1>
  
           </div>)

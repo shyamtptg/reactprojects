@@ -4,7 +4,7 @@ import validate from 'validate.js';
 // import {validatingFields} from '../common/validation';
 import './SignUp.scss';
 import PropTypes from 'prop-types';
-import check from '../../assets/check.svg';
+// import icon_success from '../../assets/icon_success.svg';
 // import ReactTooltip from 'react-tooltip'
 // import { validateCheck } from "../../redux/actions/validationAction"
 import { signUp } from '../../redux/actions/signUpAction';
@@ -13,6 +13,8 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { styles } from '../common/style';
 import About from '../Home/About';
+// import Pagelevelerror from '../../assets/pagelevel-error.svg';
+// import check from '../../assets/check.svg';
 import icon_hide from '../../assets/icon_hide.svg';
 import icon_show from '../../assets/icon_show.svg';
 import Errormessage from '../common/Errormessage/Errormessage';
@@ -276,12 +278,12 @@ console.log(validJsErrors);
             <div className='card-header'>
               <h3 className='m-0 signup-text'>Sign up now</h3>
             </div>
-            <img className="iconshow" src={check} alt="iconshow"/>
+           
             {(this.props.userResponse.status === '409' && !this.props.userResponse.detail.includes("UID")) ?
               <Errormessage error={this.props.userResponse.detail} /> : ''}
             <div className='card-block'>
               <div className='form-group has-feedback'>
-                <label className='control-label'>First name:</label>
+                <label className='control-label'>First name</label>
                 <input type='text' className={(this.state.isSubmitted && !this.state.touched.firstName && formErrors && formErrors.firstName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='firstName' placeholder='Firstname'
                   name='firstName' value={this.state.firstName}
@@ -290,7 +292,7 @@ console.log(validJsErrors);
                 {formErrors && this.state.errors.firstName ? this.getErrorMessage('firstName') : ''}
               </div>
               <div className='form-group has-feedback'>
-                <label className='control-label'>Last name:</label>
+                <label className='control-label'>Last name</label>
                 <input type='text' className={(this.state.isSubmitted && !this.state.touched.lastName && formErrors && formErrors.lastName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='lastName' placeholder='Lastname'
                   name='lastName' value={this.state.lastName}
@@ -299,7 +301,7 @@ console.log(validJsErrors);
                 {formErrors && this.state.errors.lastName ? this.getErrorMessage('lastName') : ''}
               </div>
               <div className='form-group has-feedback'>
-                <label className='control-label'>Email:</label>
+                <label className='control-label'>Email</label>
                 <input type='email' className={(this.state.isSubmitted && !this.state.touched.email && formErrors && formErrors.email) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='email' placeholder='Email'
                   name='email' value={this.state.email}
@@ -311,7 +313,7 @@ console.log(validJsErrors);
 
               </div>
               <div className='form-group has-feedback'>
-                <label className='control-label'>Username:</label>
+                <label className='control-label'>Username</label>
                 <input type='text' className={(this.state.isSubmitted && !this.state.touched.userName && formErrors && formErrors.userName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='userName' placeholder='Username'
                   name='userName' value={this.state.userName}
@@ -319,12 +321,12 @@ console.log(validJsErrors);
                 {(this.state.isSubmitted && !this.state.touched.userName && formErrors && formErrors.userName) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
                 {formErrors && this.state.errors.userName ?
 
-                this.getErrorMessage('userName') :  ( this.props.userResponse && this.props.userResponse.status === '409' && this.props.userResponse.detail.includes("UID"))? (
+                this.getErrorMessage('userName') :  (!this.state.touched.userName && this.props.userResponse && this.props.userResponse.status === '409' && this.props.userResponse.detail.includes("UID"))? (
                 <p className='errorMessage' >This username is not available<br/>
                                                 A usernames can contains letters{'{a-z}'}, numbers(0-9), dash{'{-}'}, underscore(_), period(.)</p>) :''}
               </div>
               <div className='form-group has-feedback'>
-                <label className='control-label'>Password:</label>
+                <label className='control-label'>Password</label>
                 <input type={this.state.type} className={(this.state.isSubmitted && !this.state.touched.password && formErrors && formErrors.password) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='password' placeholder='Password'
                   name='password' value={this.state.password}
@@ -333,7 +335,7 @@ console.log(validJsErrors);
                 {formErrors && this.state.errors.password ? this.getErrorMessage('password') : ''}
               </div>
               <div className='form-group has-feedback'>
-                <label className='control-label'>Access code:</label>
+                <label className='control-label'>Access code</label>
                 <input type='text' className={(this.state.isSubmitted && !this.state.touched.accessCode && formErrors && formErrors.accessCode) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='accessCode' placeholder='Access code'
                   name='accessCode' value={this.state.accessCode}
@@ -350,11 +352,10 @@ console.log(validJsErrors);
               </div>
               <div className='form-group'>
                 <button type='button' style={styles.Button} onClick={this.register}><span style={styles.textOnButton}> SIGN UP</span></button>
-                <div className="already-have-account">Already have an account?<span><Link className="login-link" to='/'>Login</Link></span></div>
+                <div className="already-have-account">Already have an account?<span><Link className="login-link" to='/'>Log in</Link></span></div>
               </div>
-              <div className='form-terms'>By clicking sign up, you agree to the <span>Terms&nbsp;of&nbsp;Use</span> and <span>Privacy Policy</span>,
-              and acknowledge that you have read and understood our disclosure brochure, which can be accessed here:
-            <span>FormADV2</span>.</div>
+              <div className='form-terms'>By clicking sign up, you agree to the <span>terms of use</span> and <span>privacy</span><p style={{marginBottom:"0px"}}>policy,
+              and acknowledge that you have read and understood</p>our disclosure brochure, which can be accessed here <span>FormADV2</span>.</div>
             </div>
           </div>
         </div>

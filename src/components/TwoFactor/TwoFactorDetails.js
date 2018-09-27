@@ -1,30 +1,34 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { styles } from '../common/style';
-
+import validate from 'validate.js';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import {updateUser} from '../../redux/actions/updateUserAction';
 
 
 class TwoFactorDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      countryCode: '',
+      country: '',
       mobileNo: '',
 
       errors: {
-        countryCode: undefined,
+        country: undefined,
         mobileNo: undefined
 
       },
       touched: {
-        countryCode: false,
+        country: false,
         mobileNo: false
 
       },
       isSubmitted: false
     }
     this.constraints = {
-      countryCode: {
+      country: {
         presence: {
           allowEmpty: false
         }
@@ -44,11 +48,70 @@ class TwoFactorDetails extends Component {
     const value = e.target.value;
     this.setState({
       [name]: value
+    }, () => {
+      this.setState(prevState => ({
+         touched: {
+           ...prevState.touched,
+           [name]: true
+         }
+       }))
+       this.validateCheck(name)
+     }
+     );
+ 
+ 
+   }
+   twoFactorDetails(){
+    this.setState({
+      ...this.state,
+      isSubmitted: true
+    }, () => {
+      this.setState({
+        touched: {
+          country: false,
+          mobileNo:false
+         }
+      });
+    });
+    
+    const data = 
+      {"addresses": [{
+ 
+        "country": this.state.country
+        
+       }],
+      "phoneNumbers": [{"value":this.state.mobileNo,"type":"mobile"}]
+      
     }
-    );
+    console.log(data);
+    this.props.updateUser(data,this.props.userDetails['access_token'],this.props.userResponse['id'],this.props);
 
-
+   
   }
+   
+   validateCheck = (name) => {
+    const validJsErrors = validate(this.state,this.constraints);
+    console.log('valid Js errors', validJsErrors)
+    const errorKeys = validJsErrors ? Object.keys(validJsErrors) : {};
+    if (validJsErrors) {
+      Object.entries(validJsErrors)
+        .forEach((key) => {
+          let errors = { ...this.state.errors };
+          if (!errorKeys.includes(name)) {
+            errors[name] = '';
+            this.setState({
+              errors: errors
+            });
+          } else if (key[0] === name && key[1].length > 0) {
+            errors[name] = key[1][0];
+            this.setState({
+              errors: errors
+            });
+          }
+        });
+      }
+  
+    }
 
   render() {
 
@@ -67,7 +130,7 @@ class TwoFactorDetails extends Component {
                         <label>Country Code</label>
                       </div>
                     </div>
-                    <select className="form-control input-select" id="countryCode" name="countryCode" value={this.state.countryCode} placeholder="select"
+                    <select className="form-control input-select" id="country" name="country" value={this.state.country} placeholder="select"
                       onChange={this.handleChange} >
                       <option>Uganda</option>
                       <option>Ukraine</option>
@@ -89,7 +152,7 @@ class TwoFactorDetails extends Component {
 
                   </div>
                   <div className='form-group col-12'>
-                    <button className='Enable2FA' type='button' style={styles.Button}><span style={styles.textOnButton}>ENABLE 2FA</span></button>
+                    <button className='Enable2FA' type='button' style={styles.Button} onClick={()=>this.twoFactorDetails()}><span style={styles.textOnButton}>SUBMIT</span></button>
                   </div>
                   <div className='col-8 offset-5'>
                     <p className="skip"><Link to='/'>Skip</Link></p>
@@ -110,4 +173,20 @@ class TwoFactorDetails extends Component {
   }
 
 }
-export default TwoFactorDetails;
+TwoFactorDetails.propTypes = {
+  userDetails: PropTypes.any,
+   userResponse: PropTypes.any,
+   getEmailValidate:PropTypes.any,
+   validateData:PropTypes.func
+ }
+ const mapStateToProps = (state) => {
+   return {
+     userDetails: state.token.userDetails,
+     userResponse: state.signup.userSignupDetails,
+     getEmailValidate:state.getEmailValidation.getEmailValidate
+ 
+   }
+ }
+ 
+ export default withRouter(connect(mapStateToProps,{updateUser})(TwoFactorDetails));
+

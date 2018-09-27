@@ -6,7 +6,7 @@ import ValidateEmail from '../SignUp/validateEmail';
 import Login from '../Login/Login';
 import TwoFactor from '../TwoFactor/TwoFactor';
 import TwoFactorDetails from '../TwoFactor/TwoFactorDetails';
-
+import TwoFactorAuth from '../TwoFactor/TwoFactorAuth';
 const Home = () => {
   return (
     <React.Fragment>
@@ -17,6 +17,7 @@ const Home = () => {
          <Route path='/validateEmail' component={ValidateEmail}/>
          <Route path='/TwoFactor' component={TwoFactor}/>
          <Route path='/TwoFactorDetails' component={TwoFactorDetails}/>
+         <Route path='/TwoFactorAuth' component={TwoFactorAuth}/>
       </Switch>
     </React.Fragment>
   )
