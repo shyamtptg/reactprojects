@@ -279,35 +279,37 @@ console.log(validJsErrors);
               <h3 className='m-0 signup-text'>Sign up now</h3>
             </div>
            
-            {(this.props.userResponse.status === '409' && !this.props.userResponse.detail.includes("UID")) ?
-              <Errormessage error={this.props.userResponse.detail} /> : ''}
+            {/* {(this.props.userResponse.status === '409' && !this.props.userResponse.detail.includes("UID")) ?
+              <Errormessage error={this.props.userResponse.detail} /> : ''} */}
+              {(this.props.userResponse.status === '500' ) ?
+              <Errormessage error="This email is already in use.Try logging in to your account" /> : ''}
             <div className='card-block'>
               <div className='form-group has-feedback'>
                 <label className='control-label'>First name</label>
                 <input type='text' className={(this.state.isSubmitted && !this.state.touched.firstName && formErrors && formErrors.firstName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='firstName' placeholder='Firstname'
                   name='firstName' value={this.state.firstName}
-                  onChange={this.handleChange}/>
+                  onChange={this.handleChange} onFocus={this.handleChange}/>
                 {(this.state.isSubmitted && !this.state.touched.firstName && formErrors && formErrors.firstName) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
-                {formErrors && this.state.errors.firstName ? this.getErrorMessage('firstName') : ''}
+                {this.state.isSubmitted && this.state.touched.firstName && formErrors && this.state.errors.firstName ? this.getErrorMessage('firstName') : ''}
               </div>
               <div className='form-group has-feedback'>
                 <label className='control-label'>Last name</label>
                 <input type='text' className={(this.state.isSubmitted && !this.state.touched.lastName && formErrors && formErrors.lastName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='lastName' placeholder='Lastname'
                   name='lastName' value={this.state.lastName}
-                  onChange={this.handleChange}/>
+                  onChange={this.handleChange} onFocus={this.handleChange}/>
                 {(this.state.isSubmitted && !this.state.touched.lastName && formErrors && formErrors.lastName) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
-                {formErrors && this.state.errors.lastName ? this.getErrorMessage('lastName') : ''}
+                { this.state.isSubmitted && this.state.touched.lastName && formErrors && this.state.errors.lastName ? this.getErrorMessage('lastName') : ''}
               </div>
               <div className='form-group has-feedback'>
                 <label className='control-label'>Email</label>
                 <input type='email' className={(this.state.isSubmitted && !this.state.touched.email && formErrors && formErrors.email) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='email' placeholder='Email'
                   name='email' value={this.state.email}
-                  onChange={this.handleChange} />
+                  onChange={this.handleChange} onFocus={this.handleChange} />
                 {(this.state.isSubmitted && !this.state.touched.email && formErrors && formErrors.email) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
-                {formErrors && this.state.errors.email ?
+                { this.state.isSubmitted && this.state.touched.email && formErrors && this.state.errors.email ?
 
                   this.getErrorMessage('email') : ''}
 
@@ -317,9 +319,9 @@ console.log(validJsErrors);
                 <input type='text' className={(this.state.isSubmitted && !this.state.touched.userName && formErrors && formErrors.userName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='userName' placeholder='Username'
                   name='userName' value={this.state.userName}
-                  onChange={this.handleChange}/>
+                  onChange={this.handleChange} onFocus={this.handleChange}/>
                 {(this.state.isSubmitted && !this.state.touched.userName && formErrors && formErrors.userName) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
-                {formErrors && this.state.errors.userName ?
+                { this.state.isSubmitted && this.state.touched.userName && formErrors && this.state.errors.userName ?
 
                 this.getErrorMessage('userName') :  (!this.state.touched.userName && this.props.userResponse && this.props.userResponse.status === '409' && this.props.userResponse.detail.includes("UID"))? (
                 <p className='errorMessage' >This username is not available<br/>
@@ -330,9 +332,9 @@ console.log(validJsErrors);
                 <input type={this.state.type} className={(this.state.isSubmitted && !this.state.touched.password && formErrors && formErrors.password) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='password' placeholder='Password'
                   name='password' value={this.state.password}
-                  onChange={this.handleChange} />
+                  onChange={this.handleChange}  onFocus={this.handleChange} />
                 {(this.state.isSubmitted && !this.state.touched.password && formErrors && formErrors.password) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : this.state.type === 'password'? (<img className="iconhide" src={icon_hide} alt='Eye' onClick ={() => this.showHidePassword()}/>): (<img className="iconshow" src={icon_show} alt='Eye' onClick ={() => this.showHidePassword()}/>)}
-                {formErrors && this.state.errors.password ? this.getErrorMessage('password') : ''}
+                {this.state.isSubmitted&& this.state.touched.password &&  formErrors && this.state.errors.password ? this.getErrorMessage('password') : ''}
               </div>
               <div className='form-group has-feedback'>
                 <label className='control-label'>Access code</label>
@@ -341,13 +343,14 @@ console.log(validJsErrors);
                   name='accessCode' value={this.state.accessCode}
                   onChange={this.handleChange}/>
                 {(this.state.isSubmitted && !this.state.touched.accessCode && formErrors && formErrors.accessCode) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
-                {formErrors && this.state.errors.accessCode ? this.getErrorMessage('accessCode') : ''}
+                {this.state.isSubmitted && this.state.touched.accessCode && formErrors && this.state.errors.accessCode ? this.getErrorMessage('accessCode') : ''}
               </div>
               <div  className={(this.state.isSubmitted && !this.state.touched.certify && formErrors && formErrors.certify) ? 'form-check error-border-check' : 'form-check'}>
                 <input type='checkbox' name="certify" onChange ={this.handleChange} className='form-check-input' value={this.state.certify} id='exampleCheck1' />
                 <span className='form-check-label'>I certify that I am a U.S. citizen and I permanently reside in the U.S.</span>
                 {(this.state.isSubmitted && !this.state.touched.certify && formErrors && formErrors.certify) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-check-feedback" /> : ''}
-                {formErrors && this.state.errors.certify ? this.getErrorMessage('certify') : ''}
+                {/* {formErrors && !this.state.isSubmitted && this.state.errors.certify ? this.getErrorMessage('certify') : ''} */}
+                {this.state.isSubmitted && formErrors && formErrors.certify ? this.getErrorMessage('certify') : ''}
 
               </div>
               <div className='form-group'>

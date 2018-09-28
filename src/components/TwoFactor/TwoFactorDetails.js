@@ -137,6 +137,7 @@ class TwoFactorDetails extends Component {
                       <option>United Arab Emirates 971</option>
                       <option>Unite states +1</option>
                       <option>United Kingdom44</option>
+                      <option>IN</option>
 
                     </select>
                   </div>

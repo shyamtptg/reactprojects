@@ -10,7 +10,8 @@ const ErrorIcon={
   height:"64px",
   width: "66px",
   backgroundColor: "#FF6633",
-  display:'inline-block'
+  display:'inline-block',
+  float:"left"
 }
 const checkIcon = {
   display: 'flex',
@@ -22,9 +23,15 @@ const checkIcon = {
 }
 
 const errorContent= {
-  display: 'inline-block',
-  color:'#FF6633',
-  marginLeft: '20px'
+  // display: 'inline-block',
+  // color:'#FF6633',
+  // marginLeft: '7px',
+  // float:"left"
+  display:"inline-block",
+    color:"rgb(255, 102, 51)",
+  marginLeft:"7px",
+  position:"absolute",
+  top:"3px"
 }
 
 
