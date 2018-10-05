@@ -1,6 +1,5 @@
 .two-fact-auth{
-  // height: 22px;
-  // width: 206px;
+  
   color: #444444;
   font-family: "Proxima Nova";
   font-size: 18px;
@@ -9,30 +8,27 @@
 }
 .Success{
   margin-bottom: 40px;
-  // display:flex;
-  // justify-content:center;
+  
 }
 .two-fact-card{
+  padding-top:25px;
   margin:0px auto;
+  
 }
 .please-enable-tfa{
   height: 120px;
   width: 420px;
   color: #444444;
-  // font-family: "Proxima Nova";
+ 
   font-size: 16px;
-	// line-height: 20px;
+
 }
-.skip {	
-  height: 17px;
-  width: 28px;
-  color: #0195D4;
-  font-family: "Proxima Nova";
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 17px;
-  text-align: center;
-  margin-top:20px;
+.Skip {	
+  height: 46px;
+    width: 100%;
+    border: 1px solid rgb(0, 47, 135);
+    border-radius: 3px;
+    background: white;
  }
  .edit-two-fact  
   { 
@@ -46,8 +42,6 @@
  }
  .Congrats-Header{
   padding:25px;
-  // height: 45px;
-  // width: 234px;
   color: #666666;
   font-family: "Museo Sans";
   font-size: 30px;
@@ -55,7 +49,11 @@
   text-align: center;
  }
  .header-content{
- font-size:20px;
- line-height:11px;
- font-family:"Proxima Nova"
+  font-size:20px;
+  line-height:11px;
+  font-family:"Proxima Nova"
+ }
+ .two-fact-validate{
+  font-size:20px;
+  margin-bottom:3px;
  }

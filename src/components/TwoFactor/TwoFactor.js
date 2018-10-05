@@ -13,39 +13,51 @@ const TwoFactor = () => {
         <Successmessage success="Your email has been validated successfully"/></div>
         <div className='card'>
       <div className='card-header two-fact-auth'>
-          Two factor authentication
+          Set up two-factor authentication
            </div>
           <div className='card-block'>
           <form>
             <div className='form-group col-12'>
               <div className='row'>
-                <div className='col-12'>
-                  <p>Now please enable Two factor authentication to add</p><p>an extra layer of security to your account</p>
-                </div>
-              </div>
-             </div>
-            <div className='form-group col-12'>
-              <div className='row'>
-                <div className='col-12'>
-                  <p>You will have to select your country code and enter phone</p>
-                  <p>number.We will send an SMS with security code to verify</p>
-                  <p>Your phone number and enable two factor authentication</p>
+                <div className='col-12 setup'>
+                  <p>Set up two-factor authentication(2FA) to add an extra layer of
+                     security to your account. if enabled,you'll need to enter both
+                     your password and security code recieved on your mobile
+                     device when logging in to this website</p>
                 </div>
               </div>
               
 
             </div>
-            <div className='form-group col-11'>
-              <button className='Enable2FA'  type='button' style={styles.Button}><span style={styles.textOnButton}><Link to ='/TwoFactorDetails' style={{color:"white"}}>ENABLE 2FA</Link></span></button>
+            <div className='form-group col-12'>
+              <div className='row'>
+                <div className='col-6'>
+                <button className='Enable2FA' type='button' style={styles.Button}><span style={styles.textOnButton}><Link to ='/TwoFactorDetails' style={{color:"white"}}>SET UP 2FA</Link></span></button>                 
+                </div>
+                <div className='col-6'>
+                <button className='Skip' type='button'><Link to ='/' style={{color:"#002F87"}}>SKIP</Link></button>
+                </div>
+              </div>
+             </div>
+            <div className='form-group col-12'>
+              <div className='row'>
+                <div className='col-12 decide'>
+                  <p>if you decide to skip this step,you can enable two factor
+                     authentication settings</p>
+                </div>
+              </div>
+             </div>
+            {/* <div className='form-group col-11'>
+              
             </div>
             <div className='col-8 offset-5'>
             <p className="skip"><Link to ='/'>Skip</Link></p>
 
-            </div>
-            <div className='col-8 offset-2'>
+            </div> */}
+            {/* <div className='col-8 offset-2'>
             <p className="edit-two-fact">Edit Two factor authentication settings</p>
 
-            </div>
+            </div> */}
           </form>
         </div>
       </div>

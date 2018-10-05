@@ -11,7 +11,8 @@ body {
  
    
    .header-main {
-        position: fixed;
+        position: sticky;
+        top: 0px;
         width: 100%;
         z-index: 1000;
         background: $color-white;
@@ -442,6 +443,34 @@ border-radius: 2em;
   }
 }
   
+//X Icon in header
+.close {
+   margin-left:38px;
+    opacity: 1;
+    float:none!important;
+    font-size:0!important;    
+  }
+
+  .close:before, .close:after {
+    position: absolute;
+    
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+  }
+  .close:before {
+    transform: rotate(45deg);
+  }
+  .close:after {
+    transform: rotate(-45deg);
+  }
+  //setupheader
+  .setup-header{
+      padding:20px;
+      font-size:18px;
+      font-weight:500;
+  }
 
     @media (min-width: 1350px) {
 .container {

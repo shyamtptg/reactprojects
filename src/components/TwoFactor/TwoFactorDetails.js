@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { styles } from '../common/style';
 import validate from 'validate.js';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {updateUser} from '../../redux/actions/updateUserAction';
+import { updateUser } from '../../redux/actions/updateUserAction';
 
 
 class TwoFactorDetails extends Component {
@@ -14,7 +14,7 @@ class TwoFactorDetails extends Component {
     this.state = {
       country: '',
       mobileNo: '',
-
+      
       errors: {
         country: undefined,
         mobileNo: undefined
@@ -50,18 +50,18 @@ class TwoFactorDetails extends Component {
       [name]: value
     }, () => {
       this.setState(prevState => ({
-         touched: {
-           ...prevState.touched,
-           [name]: true
-         }
-       }))
-       this.validateCheck(name)
-     }
-     );
- 
- 
-   }
-   twoFactorDetails(){
+        touched: {
+          ...prevState.touched,
+          [name]: true
+        }
+      }))
+      this.validateCheck(name)
+    }
+    );
+
+
+  }
+  twoFactorDetails() {
     this.setState({
       ...this.state,
       isSubmitted: true
@@ -69,28 +69,30 @@ class TwoFactorDetails extends Component {
       this.setState({
         touched: {
           country: false,
-          mobileNo:false
-         }
+          mobileNo: false
+        }
       });
     });
-    
-    const data = 
-      {"addresses": [{
- 
+
+    const data =
+    {
+      "addresses": [{
+
         "country": this.state.country
-        
-       }],
-      "phoneNumbers": [{"value":this.state.mobileNo,"type":"mobile"}]
-      
+
+      }],
+      "phoneNumbers": [{ "value": this.state.mobileNo, "type": "mobile" }]
+     
+
     }
     console.log(data);
-    this.props.updateUser(data,this.props.userDetails['access_token'],this.props.userResponse['id'],this.props);
+    this.props.updateUser(data, this.props.userDetails['access_token'], this.props.userResponse['id'], this.props);
 
-   
+
   }
-   
-   validateCheck = (name) => {
-    const validJsErrors = validate(this.state,this.constraints);
+
+  validateCheck = (name) => {
+    const validJsErrors = validate(this.state, this.constraints);
     console.log('valid Js errors', validJsErrors)
     const errorKeys = validJsErrors ? Object.keys(validJsErrors) : {};
     if (validJsErrors) {
@@ -109,9 +111,9 @@ class TwoFactorDetails extends Component {
             });
           }
         });
-      }
-  
     }
+
+  }
 
   render() {
 
@@ -119,11 +121,21 @@ class TwoFactorDetails extends Component {
       <React.Fragment>
         <div className='two-fact-card col-md-5'>
           <div className='Success'>
-
             <div className='card'>
-
+              <div className='card-header two-fact-auth'>
+                Provide your phone number
+              </div>
               <div className='card-block'>
                 <form>
+                  <div className='form-group col-12'>
+                  <div className='row'>
+                  <div className='col-12 '>
+                    <p>You will receive a security code at this number every time you 
+                       sign in.Standard messaging rates will apply.
+                     </p>
+                  </div>
+                  </div>
+                  </div>
                   <div className='form-group col-12'>
                     <div className='row'>
                       <div className="col-6">
@@ -153,16 +165,9 @@ class TwoFactorDetails extends Component {
 
                   </div>
                   <div className='form-group col-12'>
-                    <button className='Enable2FA' type='button' style={styles.Button} onClick={()=>this.twoFactorDetails()}><span style={styles.textOnButton}>SUBMIT</span></button>
+                    <button className='Enable2FA' type='button' style={styles.Button} onClick={() => this.twoFactorDetails()}><span style={styles.textOnButton}>CONTINUE</span></button>
                   </div>
-                  <div className='col-8 offset-5'>
-                    <p className="skip"><Link to='/'>Skip</Link></p>
-
-                  </div>
-                  <div className='col-8 offset-2'>
-                    <p className="edit-two-fact">Edit Two factor authentication settings</p>
-
-                  </div>
+                  
                 </form>
               </div>
             </div>
@@ -176,18 +181,18 @@ class TwoFactorDetails extends Component {
 }
 TwoFactorDetails.propTypes = {
   userDetails: PropTypes.any,
-   userResponse: PropTypes.any,
-   getEmailValidate:PropTypes.any,
-   validateData:PropTypes.func
- }
- const mapStateToProps = (state) => {
-   return {
-     userDetails: state.token.userDetails,
-     userResponse: state.signup.userSignupDetails,
-     getEmailValidate:state.getEmailValidation.getEmailValidate
- 
-   }
- }
- 
- export default withRouter(connect(mapStateToProps,{updateUser})(TwoFactorDetails));
+  userResponse: PropTypes.any,
+  getEmailValidate: PropTypes.any,
+  validateData: PropTypes.func
+}
+const mapStateToProps = (state) => {
+  return {
+    userDetails: state.token.userDetails,
+    userResponse: state.signup.userSignupDetails,
+    getEmailValidate: state.getEmailValidation.getEmailValidate
+
+  }
+}
+
+export default withRouter(connect(mapStateToProps, { updateUser })(TwoFactorDetails));
 

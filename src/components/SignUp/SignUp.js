@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import validate from 'validate.js';
+import check from '../../assets/check.svg';
 // import {validatingFields} from '../common/validation';
 import './SignUp.scss';
 import PropTypes from 'prop-types';
-// import icon_success from '../../assets/icon_success.svg';
+
 // import ReactTooltip from 'react-tooltip'
 // import { validateCheck } from "../../redux/actions/validationAction"
 import { signUp } from '../../redux/actions/signUpAction';
@@ -14,12 +15,12 @@ import { connect } from 'react-redux';
 import { styles } from '../common/style';
 import About from '../Home/About';
 // import Pagelevelerror from '../../assets/pagelevel-error.svg';
-// import check from '../../assets/check.svg';
+
 import icon_hide from '../../assets/icon_hide.svg';
 import icon_show from '../../assets/icon_show.svg';
 import Errormessage from '../common/Errormessage/Errormessage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationCircle} from '@fortawesome/free-solid-svg-icons';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 // import variables from '../../css/variables.scss'
 
 class SignUp extends Component {
@@ -32,17 +33,17 @@ class SignUp extends Component {
       displayName: '',
       email: '',
       password: '',
-      accessCode:'',
-      certify:false,
-      type:'password',
+      accessCode: '',
+      certify: false,
+      type: 'password',
       errors: {
         firstName: undefined,
         lastName: undefined,
         userName: undefined,
         email: undefined,
         password: undefined,
-        accessCode:undefined,
-        certify:undefined
+        accessCode: undefined,
+        certify: undefined
 
       },
       touched: {
@@ -51,8 +52,8 @@ class SignUp extends Component {
         userName: false,
         email: false,
         password: false,
-        accessCode:false,
-        certify:false
+        accessCode: false,
+        certify: false
 
       },
       isSubmitted: false
@@ -116,8 +117,9 @@ class SignUp extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.register = this.register.bind(this);
     this.getErrorMessage = this.getErrorMessage.bind(this);
-    
-   
+    this.checked = this.checked.bind(this);
+
+
   }
 
 
@@ -127,7 +129,7 @@ class SignUp extends Component {
     const inputSpace = inputType.replace(/([A-Z])/g, ' $1').trim()
     const toUpper = inputSpace.charAt(0).toUpperCase() + inputSpace.substr(1).toLowerCase();
     for (let k in validJsErrors) {
-    console.log(inputType , k);
+      console.log(inputType, k);
 
       if (validJsErrors.hasOwnProperty(k)) {
         if (k === inputType && k !== 'password') {
@@ -135,7 +137,7 @@ class SignUp extends Component {
             return <p className='errorMessage' key={index}> {ele === toUpper + ' is too short (minimum is 8 characters)' ? 'Must be atleast 8 characters long' : ele === toUpper + ' can\'t be blank' ? 'A ' + toUpper.toLowerCase() + ' is required' : ele === toUpper + ' is invalid' ? toUpper + '  is not valid' : ele === toUpper + ' is not a valid email' ? toUpper + '  is not valid' : ele}</p>
           })
           )
-        } else if ( k === inputType && k === 'password') {
+        } else if (k === inputType && k === 'password') {
           return (validJsErrors[k].map((ele, index) => {
             return <p className='errorMessage' key={index}> {ele === toUpper + ' is too short (minimum is 8 characters)' ? 'Must be atleast 8 characters long' : ele === toUpper + ' can\'t be blank' ? '' : ele === toUpper + ' is invalid' ? 'Must contain atleast one lower case, upper case and one number' : ele === toUpper + ' is not a valid email' ? toUpper + '  is not valid' : ele}</p>
           })
@@ -145,10 +147,14 @@ class SignUp extends Component {
     }
   }
 
-  showHidePassword(){
+  showHidePassword() {
     this.setState(prevState => ({
-      type: prevState.type ==='password'? 'text' : 'password'
+      type: prevState.type === 'password' ? 'text' : 'password'
     }));
+  }
+
+  checked() {
+    this.setState(prevState => ({ certify: !prevState.certify }))
   }
 
   handleChange(e) {
@@ -157,7 +163,7 @@ class SignUp extends Component {
     this.setState({
       [name]: value
     }, () => {
-console.log(this.state);
+      console.log(this.state);
       this.setState(prevState => ({
         touched: {
           ...prevState.touched,
@@ -174,7 +180,7 @@ console.log(this.state);
 
   validateCheck = (name) => {
     const validJsErrors = validate(this.state, this.constraints);
-console.log(validJsErrors);
+    console.log(validJsErrors);
     const errorKeys = validJsErrors ? Object.keys(validJsErrors) : {};
     if (validJsErrors) {
       Object.entries(validJsErrors)
@@ -187,7 +193,7 @@ console.log(validJsErrors);
                 ...prevState.errors,
                 [name]: undefined
               }
-            }),() => {
+            }), () => {
               console.log(this.state);
             })
           } else if (key[0] === name && key[1].length > 0) {
@@ -212,7 +218,7 @@ console.log(validJsErrors);
           userName: undefined,
           email: undefined,
           password: undefined,
-          accessCode:undefined,
+          accessCode: undefined,
           certify: undefined
 
         }
@@ -241,20 +247,20 @@ console.log(validJsErrors);
           userName: false,
           email: false,
           password: false,
-          accessCode:false,
+          accessCode: false,
           certify: false
         }
       });
     });
     console.log(this.state.errors);
     if (this.state.errors && !this.state.errors.firstName && !this.state.errors.lastName && !this.state.errors.email && !this.state.errors.userName && !this.state.errors.password && !this.state.errors.accessCode && !this.state.errors.certify) {
-      if (this.state.userName !== "" && this.state.firstName !== "" && this.state.lastName !== "" && this.state.email !== "" && this.state.password !== "" && this.state.certify&&this.state.accessCode !== "") {
+      if (this.state.userName !== "" && this.state.firstName !== "" && this.state.lastName !== "" && this.state.email !== "" && this.state.password !== "" && this.state.certify && this.state.accessCode !== "") {
         const registerData = {
           'userName': this.state.userName,
           'displayName': this.state.firstName + '' + this.state.lastName,
           'emails': [{ value: this.state.email }],
           'password': this.state.password,
-          'nickName':this.state.accessCode
+          'nickName': this.state.accessCode
         }
         this.props.signUp(registerData, this.props.userDetails['access_token'], this.props);
 
@@ -266,10 +272,10 @@ console.log(validJsErrors);
     }
   }
   render() {
-    const formErrors = validate(this.state,this.constraints);
+    const formErrors = validate(this.state, this.constraints);
     return (
       <React.Fragment>
-       
+
 
         <div className='col-md-7 signup-left'>
           <About /></div>
@@ -278,10 +284,10 @@ console.log(validJsErrors);
             <div className='card-header'>
               <h3 className='m-0 signup-text'>Sign up now</h3>
             </div>
-           
+
             {/* {(this.props.userResponse.status === '409' && !this.props.userResponse.detail.includes("UID")) ?
               <Errormessage error={this.props.userResponse.detail} /> : ''} */}
-              {(this.props.userResponse.status === '500' ) ?
+            {(this.props.userResponse.status === '500') ?
               <Errormessage error="This email is already in use.Try logging in to your account" /> : ''}
             <div className='card-block'>
               <div className='form-group has-feedback'>
@@ -289,7 +295,7 @@ console.log(validJsErrors);
                 <input type='text' className={(this.state.isSubmitted && !this.state.touched.firstName && formErrors && formErrors.firstName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='firstName' placeholder='Firstname'
                   name='firstName' value={this.state.firstName}
-                  onChange={this.handleChange} onFocus={this.handleChange}/>
+                  onChange={this.handleChange} onFocus={this.handleChange} />
                 {(this.state.isSubmitted && !this.state.touched.firstName && formErrors && formErrors.firstName) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
                 {this.state.isSubmitted && this.state.touched.firstName && formErrors && this.state.errors.firstName ? this.getErrorMessage('firstName') : ''}
               </div>
@@ -298,9 +304,9 @@ console.log(validJsErrors);
                 <input type='text' className={(this.state.isSubmitted && !this.state.touched.lastName && formErrors && formErrors.lastName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='lastName' placeholder='Lastname'
                   name='lastName' value={this.state.lastName}
-                  onChange={this.handleChange} onFocus={this.handleChange}/>
+                  onChange={this.handleChange} onFocus={this.handleChange} />
                 {(this.state.isSubmitted && !this.state.touched.lastName && formErrors && formErrors.lastName) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
-                { this.state.isSubmitted && this.state.touched.lastName && formErrors && this.state.errors.lastName ? this.getErrorMessage('lastName') : ''}
+                {this.state.isSubmitted && this.state.touched.lastName && formErrors && this.state.errors.lastName ? this.getErrorMessage('lastName') : ''}
               </div>
               <div className='form-group has-feedback'>
                 <label className='control-label'>Email</label>
@@ -309,7 +315,7 @@ console.log(validJsErrors);
                   name='email' value={this.state.email}
                   onChange={this.handleChange} onFocus={this.handleChange} />
                 {(this.state.isSubmitted && !this.state.touched.email && formErrors && formErrors.email) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
-                { this.state.isSubmitted && this.state.touched.email && formErrors && this.state.errors.email ?
+                {this.state.isSubmitted && this.state.touched.email && formErrors && this.state.errors.email ?
 
                   this.getErrorMessage('email') : ''}
 
@@ -319,34 +325,36 @@ console.log(validJsErrors);
                 <input type='text' className={(this.state.isSubmitted && !this.state.touched.userName && formErrors && formErrors.userName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='userName' placeholder='Username'
                   name='userName' value={this.state.userName}
-                  onChange={this.handleChange} onFocus={this.handleChange}/>
+                  onChange={this.handleChange} onFocus={this.handleChange} />
                 {(this.state.isSubmitted && !this.state.touched.userName && formErrors && formErrors.userName) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
-                { this.state.isSubmitted && this.state.touched.userName && formErrors && this.state.errors.userName ?
+                {this.state.isSubmitted && this.state.touched.userName && formErrors && this.state.errors.userName ?
 
-                this.getErrorMessage('userName') :  (!this.state.touched.userName && this.props.userResponse && this.props.userResponse.status === '409' && this.props.userResponse.detail.includes("UID"))? (
-                <p className='errorMessage' >This username is not available<br/>
-                                                A usernames can contains letters{'{a-z}'}, numbers(0-9), dash{'{-}'}, underscore(_), period(.)</p>) :''}
+                  this.getErrorMessage('userName') : (!this.state.touched.userName && this.props.userResponse && this.props.userResponse.status === '409' && this.props.userResponse.detail.includes("UID")) ? (
+                    <p className='errorMessage' >This username is not available<br />
+                      A usernames can contains letters{'{a-z}'}, numbers(0-9), dash{'{-}'}, underscore(_), period(.)</p>) : ''}
               </div>
               <div className='form-group has-feedback'>
                 <label className='control-label'>Password</label>
                 <input type={this.state.type} className={(this.state.isSubmitted && !this.state.touched.password && formErrors && formErrors.password) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='password' placeholder='Password'
                   name='password' value={this.state.password}
-                  onChange={this.handleChange}  onFocus={this.handleChange} />
-                {(this.state.isSubmitted && !this.state.touched.password && formErrors && formErrors.password) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : this.state.type === 'password'? (<img className="iconhide" src={icon_hide} alt='Eye' onClick ={() => this.showHidePassword()}/>): (<img className="iconshow" src={icon_show} alt='Eye' onClick ={() => this.showHidePassword()}/>)}
-                {this.state.isSubmitted&& this.state.touched.password &&  formErrors && this.state.errors.password ? this.getErrorMessage('password') : ''}
+                  onChange={this.handleChange} onFocus={this.handleChange} />
+                {(this.state.isSubmitted && !this.state.touched.password && formErrors && formErrors.password) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : this.state.type === 'password' ? (<img className="iconhide" src={icon_hide} alt='Eye' onClick={() => this.showHidePassword()} />) : (<img className="iconshow" src={icon_show} alt='Eye' onClick={() => this.showHidePassword()} />)}
+                {this.state.isSubmitted && this.state.touched.password && formErrors && this.state.errors.password ? this.getErrorMessage('password') : ''}
               </div>
               <div className='form-group has-feedback'>
                 <label className='control-label'>Access code</label>
                 <input type='text' className={(this.state.isSubmitted && !this.state.touched.accessCode && formErrors && formErrors.accessCode) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='accessCode' placeholder='Access code'
                   name='accessCode' value={this.state.accessCode}
-                  onChange={this.handleChange}/>
+                  onChange={this.handleChange} />
                 {(this.state.isSubmitted && !this.state.touched.accessCode && formErrors && formErrors.accessCode) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
                 {this.state.isSubmitted && this.state.touched.accessCode && formErrors && this.state.errors.accessCode ? this.getErrorMessage('accessCode') : ''}
               </div>
-              <div  className={(this.state.isSubmitted && !this.state.touched.certify && formErrors && formErrors.certify) ? 'form-check error-border-check' : 'form-check'}>
-                <input type='checkbox' name="certify" onChange ={this.handleChange} className='form-check-input' value={this.state.certify} id='exampleCheck1' />
+              <div className={(this.state.isSubmitted && !this.state.touched.certify && formErrors && formErrors.certify) ? 'form-check error-border-check' : 'form-check'}>
+                {/* <input type='checkbox' name="certify" onChange ={this.handleChange} className='form-check-input' value={this.state.certify} id='exampleCheck1' /> */}
+                
+           {!this.state.certify ? (<span className='check' onClick={this.checked}><img src={check} alt="check" /></span>) : (<span className='form-check-fill' onClick={this.checked}><img src={check} alt="check" /></span>)}
                 <span className='form-check-label'>I certify that I am a U.S. citizen and I permanently reside in the U.S.</span>
                 {(this.state.isSubmitted && !this.state.touched.certify && formErrors && formErrors.certify) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-check-feedback" /> : ''}
                 {/* {formErrors && !this.state.isSubmitted && this.state.errors.certify ? this.getErrorMessage('certify') : ''} */}
@@ -357,7 +365,7 @@ console.log(validJsErrors);
                 <button type='button' style={styles.Button} onClick={this.register}><span style={styles.textOnButton}> SIGN UP</span></button>
                 <div className="already-have-account">Already have an account?<span><Link className="login-link" to='/'>Log in</Link></span></div>
               </div>
-              <div className='form-terms'>By clicking sign up, you agree to the <span>terms of use</span> and <span>privacy</span><p style={{marginBottom:"0px"}}>policy,
+              <div className='form-terms'>By clicking sign up, you agree to the <span>terms of use</span> and <span>privacy</span><p style={{ marginBottom: "0px" }}>policy,
               and acknowledge that you have read and understood</p>our disclosure brochure, which can be accessed here <span>FormADV2</span>.</div>
             </div>
           </div>

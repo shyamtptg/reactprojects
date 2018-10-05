@@ -5,18 +5,17 @@ import NavigateComponent from './NavigateComponents';
 import Footer from '../common/Footer/Footer';
 
 const Home = () => {
+  console.log(window.location.pathname);
   return (
     <React.Fragment>
-     <PhoneHeader/>
-     <PageHeader pathName ={window.location.pathname}/>
+      <PhoneHeader/>
+      {window.location.pathname === '/TwilioSuccess'||window.location.pathname === '/TwoFactorDetails'? '' :   (<PageHeader pathName ={window.location.pathname}/>)}
       <div className='container'>
-        
         <div className='row form-body'>
-        <NavigateComponent/>
-     
-            </div>
+          <NavigateComponent/>
         </div>
-        <Footer/>
+      </div>
+      <Footer/>
     </React.Fragment>
   )
 }

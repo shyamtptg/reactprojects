@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
-import { validateData } from '../../redux/actions/validateEmailAction';
+import { validateTwilio } from '../../redux/actions/validateTwilio';
 import {resendData} from '../../redux/actions/resendOtp';
 import {styles} from '../common/style';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-
 import Errormessage from '../common/Errormessage/Errormessage';
 import './Twofactor.scss';
 
@@ -61,7 +59,7 @@ class TwoFactorAuth extends Component {
       'preferredLanguage': this.state.preferredLanguage
       
     }
-    this.props.validateData(OTP,this.props.userDetails['access_token'],this.props.userResponse['id'],this.props);
+    this.props.validateTwilio(OTP,this.props.userDetails['access_token'],this.props.userResponse['id'],this.props);
 
    
   }
@@ -129,9 +127,10 @@ if(e.keyCode === 20) {
   render() {
     
      return (
-      <div className='card validate-email-box col-md-5'>
+      <div className='two-fact-card col-md-5'>
+      <div className="card">
        <div className='card-header'>
-          Two Factor Authentication
+          Enter security code
            </div>
            {(this.props.getEmailValidate !=='') ?
            '' : <Errormessage error="Invalid Security Code.Please try again."/>}
@@ -140,32 +139,23 @@ if(e.keyCode === 20) {
           <form>
             <div className='form-group col-12'>
               <div className='row label-text-security'>
-                <div className='col-12'>
+                <div className='col-9'>
                   <label>Security Code</label>
                 </div>
+                <div className='col-3'>
+                  <label onClick={this.resend} style={{color: "#0195D4"}}>Resend code</label>
+                </div>
               </div>
-              <input type='text' className="input-validate-email" placeholder='security code'
+              <input type='text' className="input-validate-email"
                   name='preferredLanguage' onKeyDown={(event)=> this.getkey(event)} value={this.state.preferredLanguage} onChange={this.handleChange} />
                   <p>{this.state.isCapitalOn? 'capital on': ''}</p>
 
             </div>
             <div className='form-group col-11'>
-              <button className='enable2fA' onClick={this.validateSecurity} type='button' style={styles.Button}><span style={styles.textOnButton}>Enable 2FA</span></button>
+              <button className='enable2fA' onClick={this.validateSecurity} type='button' style={styles.Button}><span style={styles.textOnButton}>CONTINUE</span></button>
             </div>
-            <div className='col-12'>
-            <span>Didn't Recieve Security code</span><span style={{float:'right',color: "#0195D4"}} onClick={this.resend}>Resend</span>
-
-            </div>
-            <div className='col-8 offset-5'>
-                    <p className="skip"><Link to='/'>Skip</Link></p>
-
-                  </div>
-                  <div className='col-8 offset-2'>
-                    <p className="edit-two-fact">Edit Two factor authentication settings</p>
-
-                  </div>
-           
-          </form>
+           </form>
+        </div>
         </div>
       </div>
 
@@ -188,4 +178,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps,{validateData,resendData})(TwoFactorAuth));
+export default withRouter(connect(mapStateToProps,{validateTwilio,resendData})(TwoFactorAuth));

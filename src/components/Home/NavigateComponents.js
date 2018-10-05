@@ -7,6 +7,7 @@ import Login from '../Login/Login';
 import TwoFactor from '../TwoFactor/TwoFactor';
 import TwoFactorDetails from '../TwoFactor/TwoFactorDetails';
 import TwoFactorAuth from '../TwoFactor/TwoFactorAuth';
+import TwilioSuccess from '../TwoFactor/TwilioSuccess';
 const Home = () => {
   return (
     <React.Fragment>
@@ -18,6 +19,7 @@ const Home = () => {
          <Route path='/TwoFactor' component={TwoFactor}/>
          <Route path='/TwoFactorDetails' component={TwoFactorDetails}/>
          <Route path='/TwoFactorAuth' component={TwoFactorAuth}/>
+         <Route path='/TwilioSuccess' component={TwilioSuccess}/>
       </Switch>
     </React.Fragment>
   )

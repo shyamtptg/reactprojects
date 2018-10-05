@@ -4,6 +4,7 @@ export const USER_SIGNUP = "USER_SIGNUP";
 export const UPDATE_USER= "UPDATE_USER";
 export const GET_VALIDATE="GET_VALIDATE";
 export const GET_USER="GET_USER";
+export const GET_TWILIO="GET_TWILIO";
 export const GET_EMAIL_VALIDATE="GET_EMAIL_VALIDATE";
 export const GET_RESEND_VALIDATE="GET_RESEND_VALIDATE";
 export const GET_EMAIL_URL="http://192.168.208.233:80/jemstepUser/user/emailOtpUser"
@@ -12,7 +13,7 @@ export const GET_RESEND_URL="http://mahesh.myglu.com/jemstepUser/user/emailOtpUs
 // export const USER_ERROR="USER_ERROR";
 export const UPDATE_USER_URL="http://192.168.208.233:80/jemstepUser/user/userUpdate"
 export const GET_USERLOGIN_URL = "https://myinno.myglu.com/oxauth/restv1/token";
-
+export const GET_TWILIO_URL="https://api.twilio.com/2010-04-01/Accounts/AC9d24e8015e42295d43e643093fdb6f24/Messages.json"
 export const SIGNUP_URL = "http://mahesh.myglu.com/jemstepUser/user/createUser";
 export const GETUSERS_URL = "http://192.168.208.233/jemstepUser/user/retrievUser";
 

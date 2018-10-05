@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Successtyle } from './SuccessStyle';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
-
+import iconsuccess from '../../../assets/icon_success.svg';
 
 class SuccessMessage extends Component {
 
@@ -10,7 +8,7 @@ class SuccessMessage extends Component {
     return (
       <div style={Successtyle.SuccessMessage}>
         <div style={Successtyle.SuccessIcon}>
-          <div style={Successtyle.checkIcon}>  <FontAwesomeIcon icon={faCheck} style={{color: 'white', fontSize: '20px'}}/></div>
+          <div style={Successtyle.checkIcon}><img src={iconsuccess} alt="success"/></div>
         </div>
         <div style={Successtyle.SuccessContent}> {this.props.success} </div>
       </div>

@@ -6,6 +6,7 @@ import {resendData} from '../../redux/actions/resendOtp';
 import {styles} from '../common/style';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Errormessage from '../common/Errormessage/Errormessage';
 
 class ValidateEmail extends Component {
@@ -137,8 +138,11 @@ if(e.keyCode === 20) {
           <form>
             <div className='form-group col-12'>
               <div className='row label-text-security'>
-                <div className='col-12'>
+                <div className='col-9'>
                   <label>Security Code</label>
+                </div>
+                <div className="col-3">
+                <Link to='/validateEmail' style={{color:"#0195D4"}}>Resend</Link>
                 </div>
               </div>
               <input type='text' className="input-validate-email" placeholder='security code'
@@ -149,10 +153,10 @@ if(e.keyCode === 20) {
             <div className='form-group col-11'>
               <button className='forgotbtn' onClick={this.validateSecurity} type='button' style={styles.Button}><span style={styles.textOnButton}>SUBMIT</span></button>
             </div>
-            <div className='col-12'>
+            {/* <div className='col-12'>
             <span>Didn't Recieve Security code</span><span style={{float:'right',color: "#0195D4"}} onClick={this.resend}>Resend</span>
 
-            </div>
+            </div> */}
            
           </form>
         </div>
