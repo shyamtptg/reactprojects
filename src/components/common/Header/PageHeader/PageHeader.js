@@ -29,11 +29,11 @@ const PageHeader = (props) => {
          {/* <h1 className='page-header text-center'>{path.split('/')[1] === 'signup'? 'Now take the next step to financial freedom' : 'Welcome Back to Bank' }</h1> */}
          <h1 className='page-header text-center'>
          {path.split('/')[1] === 'signup'?PageHeaderRoutes.PageHeader.signUpRoute 
-         :path.split('/')[1] === 'validateEmail'?
+         :path.split('/')[1] === 'validatemail'?
          (<div><h2>{PageHeaderRoutes.PageHeader.validateEmailRoute}</h2><p className="header-content">{PageHeaderRoutes.PageHeader.validateEmailRouteContent1.replace('j@gmail',user)}</p><p className="header-content">{PageHeaderRoutes.PageHeader.validateEmailRouteContent2}</p></div>)
-         :path.split('/')[1] === 'TwoFactor'?(<div className="Congrats-Header">{PageHeaderRoutes.PageHeader.sucessvalidateRoute}</div>)
-         :path.split('/')[1] === 'TwoFactorDetails'?(<div className="Two-Factor-Details"><h2>{PageHeaderRoutes.PageHeader.twofactorAuthenticationRoute}</h2><p className="header-content">{PageHeaderRoutes.PageHeader.twofactorContent1}</p><p className="header-content">{PageHeaderRoutes.PageHeader.twofactorContent2}</p></div>)
-         :path.split('/')[1] === 'TwoFactorAuth'?(<div><h2>{PageHeaderRoutes.PageHeader.checkyourcode}</h2><p className="two-fact-validate">{PageHeaderRoutes.PageHeader.checkvalidateContent.replace('number',phoneNumber)}</p><p className="two-fact-validate">{PageHeaderRoutes.PageHeader.checkwithtime}</p></div>)
+         :path.split('/')[1] === 'twofactor'?(<div className="Congrats-Header">{PageHeaderRoutes.PageHeader.sucessvalidateRoute}</div>)
+         :path.split('/')[1] === 'twofactordetails'?(<div className="Two-Factor-Details"><h2>{PageHeaderRoutes.PageHeader.twofactorAuthenticationRoute}</h2><p className="header-content">{PageHeaderRoutes.PageHeader.twofactorContent1}</p><p className="header-content">{PageHeaderRoutes.PageHeader.twofactorContent2}</p></div>)
+         :path.split('/')[1] === 'twofactorauth'?(<div><h2>{PageHeaderRoutes.PageHeader.checkyourcode}</h2><p className="two-fact-validate">{PageHeaderRoutes.PageHeader.checkvalidateContent.replace('number',phoneNumber)}</p><p className="two-fact-validate">{PageHeaderRoutes.PageHeader.checkwithtime}</p></div>)
          :path.split('/')[1] === 'logintwofact'?(<div><h2>{PageHeaderRoutes.PageHeader.checkyourcode}</h2><p className="two-fact-validate">{PageHeaderRoutes.PageHeader.checkvalidateContent.replace('number',phoneNumber)}</p><p className="two-fact-validate">{PageHeaderRoutes.PageHeader.checkwithtime}</p></div>)
          :PageHeaderRoutes.PageHeader.loginRoute}</h1>
  

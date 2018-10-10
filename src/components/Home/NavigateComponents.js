@@ -17,11 +17,11 @@ const Home = () => {
          <Route exact path='/' component={Login}/>
          <Route path='/signup' component={SignUp}/>
          <Route path='/forgotpassword' component={ForgotPassword}/>
-         <Route path='/validateEmail' component={ValidateEmail}/>
-         <Route path='/TwoFactor' component={TwoFactor}/>
-         <Route path='/TwoFactorDetails' component={TwoFactorDetails}/>
-         <Route path='/TwoFactorAuth' component={TwoFactorAuth}/>
-         <Route path='/TwilioSuccess' component={TwilioSuccess}/>
+         <Route path='/validatemail' component={ValidateEmail}/>
+         <Route path='/twofactor' component={TwoFactor}/>
+         <Route path='/twofactordetails' component={TwoFactorDetails}/>
+         <Route path='/twofactorauth' component={TwoFactorAuth}/>
+         <Route path='/twiliosuccess' component={TwilioSuccess}/>
          <Route path='/logintwofact' component={LogintwoFactor}/>
          <Route path='/loginsuccess' component={LoginSuccess}/>
 

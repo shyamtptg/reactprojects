@@ -30,7 +30,7 @@ axios.put(UPDATE_USER_URL,data,{headers:header}).then(res=>{
             console.log('error');
           });
          console.log("response otp",res.data)
-          context.history.push('/TwoFactorAuth');
+          context.history.push('/twofactorauth');
         }
     
 })

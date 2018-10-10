@@ -9,13 +9,13 @@ const Home = () => {
   return (
     <React.Fragment>
       <PhoneHeader/>
-      {window.location.pathname === '/TwilioSuccess'||window.location.pathname === '/TwoFactorDetails'||window.location.pathname === '/loginsuccess'? '' :   (<PageHeader pathName ={window.location.pathname}/>)}
+      {window.location.pathname === '/twiliosuccess'||window.location.pathname === '/twofactordetails'||window.location.pathname === '/loginsuccess'? '' :   (<PageHeader pathName ={window.location.pathname}/>)}
       <div className='container'>
         <div className='row form-body'>
           <NavigateComponent/>
         </div>
       </div>
-      {window.location.pathname === '/TwilioSuccess'||window.location.pathname === '/TwoFactorDetails'? '' :   <Footer/>}
+      {window.location.pathname === '/twiliosuccess'||window.location.pathname === '/twofactordetails'||window.location.pathname === '/loginsuccess'? '' :   <Footer/>}
     </React.Fragment>
   )
 }

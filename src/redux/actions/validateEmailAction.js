@@ -16,7 +16,7 @@ axios.put(GET_EMAIL_URL,data,{headers:header}).then(res=>{
             resend: false}
         });
         if(res && res.data){
-          context.history.push('/TwoFactor')
+          context.history.push('/twofactor')
         }
     
 })
