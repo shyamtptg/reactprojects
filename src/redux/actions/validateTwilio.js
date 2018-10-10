@@ -12,7 +12,8 @@ axios.put(GET_EMAIL_URL,data,{headers:header}).then(res=>{
  
      dispatch({
             type:GET_EMAIL_VALIDATE,
-            data: res.data
+            data: {isValid:res.data, 
+              resend: false}
         });
         if(res && res.data){
           context.history.push('/TwilioSuccess')

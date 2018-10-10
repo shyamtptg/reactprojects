@@ -17,7 +17,11 @@ body {
         z-index: 1000;
         background: $color-white;
     }
-    
+    .form-group{
+        input{
+            border-radius:0px!important;
+        }
+    }
     
     .card-header {
     background: transparent !important;

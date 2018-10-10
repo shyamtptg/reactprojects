@@ -8,39 +8,28 @@ import PropTypes from 'prop-types';
 import { updateUser } from '../../redux/actions/updateUserAction';
 
 
-class TwoFactorDetails extends Component {
+class Forgotusername extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      country: '',
-      mobileNo: '',
+     email: '',
+     
       
       errors: {
-        country: undefined,
-        mobileNo: undefined
-
+        email: undefined,
+        
       },
       touched: {
-        country: false,
-        mobileNo: false
-
+        email: false
+        
       },
       isSubmitted: false
     }
     this.constraints = {
-      country: {
-        presence: {
-          allowEmpty: false
-        }
-
-      },
-      mobileNo: {
-        presence: {
-          allowEmpty: false
-        }
+      email: {
+        email: true
       }
-
-    }
+}
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(e) {
@@ -61,7 +50,7 @@ class TwoFactorDetails extends Component {
 
 
   }
-  twoFactorDetails() {
+  forgotUsername() {
     this.setState({
       ...this.state,
       isSubmitted: true
@@ -76,15 +65,11 @@ class TwoFactorDetails extends Component {
 
     const data =
     {
-      "addresses": [{
-
-        "country": this.state.country
-
-      }],
-      "phoneNumbers": [{ "value": this.state.mobileNo, "type": "mobile" }]
+      "emails": [{
+       "value": this.state.email
+     }]
      
-
-    }
+     }
     console.log(data);
     this.props.updateUser(data, this.props.userDetails['access_token'], this.props.userResponse['id'], this.props);
 
@@ -123,15 +108,15 @@ class TwoFactorDetails extends Component {
           <div className='Success'>
             <div className='card'>
               <div className='card-header two-fact-auth'>
-                Provide your phone number
+                Provide your email address
               </div>
               <div className='card-block'>
                 <form>
                   <div className='form-group col-12'>
                   <div className='row'>
                   <div className='col-12 '>
-                    <p>You will receive a security code at this number every time you 
-                       sign in.Standard messaging rates will apply.
+                    <p>We will send you an email with instructions on how to 
+                       recover your username.
                      </p>
                   </div>
                   </div>
@@ -139,33 +124,15 @@ class TwoFactorDetails extends Component {
                   <div className='form-group col-12'>
                     <div className='row'>
                       <div className="col-6">
-                        <label>Country Code</label>
+                        <label>Email address</label>
                       </div>
                     </div>
-                    <select className="form-control input-select" id="country" name="country" value={this.state.country} placeholder="select"
-                      onChange={this.handleChange} >
-                      <option>Uganda</option>
-                      <option>Ukraine</option>
-                      <option>United Arab Emirates 971</option>
-                      <option>Unite states +1</option>
-                      <option>United Kingdom44</option>
-                      <option>IN</option>
-
-                    </select>
-                  </div>
-                  <div className='form-group col-12'>
-                    <div className="row label-text">
-                      <div className="col-6">
-                        <label>Mobile number</label>
-                      </div>
-                    </div>
-                    <input type='text' className="form-control" id='mobileNo' name='mobileNo' value={this.state.mobileNo}
+                    <input type='text' className="form-control" id='email' name='email' value={this.state.email}
                       onChange={this.handleChange} />
-
-
                   </div>
+                 
                   <div className='form-group col-12'>
-                    <button className='Enable2FA' type='button' style={styles.Button} onClick={() => this.twoFactorDetails()}><span style={styles.textOnButton}>CONTINUE</span></button>
+                    <button type='button' style={styles.Button} onClick={() => this.forgotUsername}><span style={styles.textOnButton}>CONTINUE</span></button>
                   </div>
                   
                 </form>
@@ -179,7 +146,7 @@ class TwoFactorDetails extends Component {
   }
 
 }
-TwoFactorDetails.propTypes = {
+Forgotusername.propTypes = {
   userDetails: PropTypes.any,
   userResponse: PropTypes.any,
   getEmailValidate: PropTypes.any,
@@ -194,5 +161,5 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, { updateUser })(TwoFactorDetails));
+export default withRouter(connect(mapStateToProps, { updateUser })(Forgotusername));
 

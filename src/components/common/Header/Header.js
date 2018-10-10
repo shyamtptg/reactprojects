@@ -23,7 +23,9 @@ const Header = (props) => {
                             <span>
                               {props.property.path.split('/')[1] === 'TwoFactorDetails'||props.property.path.split('/')[1] === 'TwoFactorAuth'||props.property.path.split('/')[1] === 'TwilioSuccess'? (<Link to='/TwoFactor' className='close'></Link> ): ''}
                             </span>
-                            <button hidden={props.property.path.split('/')[1] === 'TwoFactor'||props.property.path.split('/')[1] === 'TwoFactorDetails'||props.property.path.split('/')[1] === 'validateEmail'||props.property.path.split('/')[1] === 'TwoFactorAuth'||props.property.path.split('/')[1] === 'TwilioSuccess'} style={styles.headerButton}><span>{props.property.path.split('/')[1] === 'signup'?<Link to='/' style={styles.headerTextButton}>LOGIN</Link>:<Link to='/signup' style={styles.headerTextButton}>SIGNUP</Link>} </span></button>
+                            <button hidden={props.property.path.split('/')[1] === 'TwoFactor'||props.property.path.split('/')[1] === 'TwoFactorDetails'||props.property.path.split('/')[1] === 'validateEmail'||props.property.path.split('/')[1] === 'TwoFactorAuth'||props.property.path.split('/')[1] === 'TwilioSuccess'} style={styles.headerButton}><span>{props.property.path.split('/')[1] === 'signup'?<Link to='/' style={styles.headerTextButton}>LOGIN</Link>
+                            :props.property.path.split('/')[1] === 'logintwofact'?<Link to='/' style={styles.headerTextButton}>SIGN OUT</Link>
+                            :<Link to='/signup' style={styles.headerTextButton}>SIGNUP</Link>} </span></button>
                             </div>
                     </div>
                 </nav>

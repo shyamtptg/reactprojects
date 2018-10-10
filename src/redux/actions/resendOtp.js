@@ -1,4 +1,4 @@
-import { GET_RESEND_VALIDATE,GET_RESEND_URL} from '../constants/constant';
+import { GET_EMAIL_VALIDATE, GET_RESEND_URL} from '../constants/constant';
 import axios from 'axios';
 
 export const resendData = (data,token,id) => (dispatch) => {
@@ -11,8 +11,11 @@ export const resendData = (data,token,id) => (dispatch) => {
 axios.put(GET_RESEND_URL,data,{headers:header}).then(res=>{
   console.log("this is response resend validate",res);
      dispatch({
-            type:GET_RESEND_VALIDATE,
-            data: res.data
+            type: GET_EMAIL_VALIDATE,
+            data:{
+              isValid: res.data,
+              resend: true
+            }
         });
       
     

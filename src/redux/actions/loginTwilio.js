@@ -1,7 +1,7 @@
 import { GET_EMAIL_VALIDATE,GET_EMAIL_URL} from '../constants/constant';
 import axios from 'axios';
 
-export const validateData = (data,token,id,context) => (dispatch) => {
+export const loginTwilio = (data,token,id,context) => (dispatch) => {
   const header = {
     'Content-type':'application/json',
     'Authorization':`Bearer ${token}`,
@@ -12,11 +12,11 @@ axios.put(GET_EMAIL_URL,data,{headers:header}).then(res=>{
  
      dispatch({
             type:GET_EMAIL_VALIDATE,
-            data:{isValid: res.data,
-            resend: false}
+            data: {isValid:res.data, 
+              resend: false}
         });
         if(res && res.data){
-          context.history.push('/TwoFactor')
+          context.history.push('/loginsuccess')
         }
     
 })

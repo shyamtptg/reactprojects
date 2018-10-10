@@ -9,7 +9,7 @@ export default function (state=initialState,action){
         case GET_RESEND_VALIDATE:
         return {
             ...state,
-            getResendOtp: action.data
+            getEmailValidate: action.data
         }
         default:
         return state;

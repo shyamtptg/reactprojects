@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import Resendmessage from '../common/ResendMessage/ResendMessage';
-import { validateTwilio } from '../../redux/actions/validateTwilio';
+import { loginTwilio } from '../../redux/actions/loginTwilio';
 import {resendData} from '../../redux/actions/resendOtp';
 import {styles} from '../common/style';
 import { withRouter } from 'react-router';
@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import Errormessage from '../common/Errormessage/Errormessage';
 import './Twofactor.scss';
 
-class TwoFactorAuth extends Component {
+class LogintwoFactor extends Component {
 
   constructor(props) {
     super(props)
@@ -61,7 +61,7 @@ class TwoFactorAuth extends Component {
       'preferredLanguage': this.state.preferredLanguage
       
     }
-    this.props.validateTwilio(OTP,this.props.userDetails['access_token'],this.props.userResponse['id'],this.props);
+    this.props.loginTwilio(OTP,this.props.userDetails['access_token'],this.props.userResponse['id'],this.props);
 
    
   }
@@ -128,11 +128,11 @@ if(e.keyCode === 20) {
     }
   }
   render() {
-    console.log(this.props.getEmailValidate);
     
      return (
        <React.Fragment>
        
+      
       <div className='two-fact-card col-md-5'>
       {this.props.getEmailValidate.resend ? <Resendmessage error="A new security code has sent to your phone" /> : ''}
       <div className="card">
@@ -170,7 +170,7 @@ if(e.keyCode === 20) {
     )
   }
 }
-TwoFactorAuth.propTypes = {
+LogintwoFactor.propTypes = {
  userDetails: PropTypes.any,
   userResponse: PropTypes.any,
   getEmailValidate:PropTypes.any,
@@ -186,4 +186,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps,{validateTwilio,resendData})(TwoFactorAuth));
+export default withRouter(connect(mapStateToProps,{loginTwilio,resendData})(LogintwoFactor));

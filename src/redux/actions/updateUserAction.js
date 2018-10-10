@@ -20,11 +20,6 @@ axios.put(UPDATE_USER_URL,data,{headers:header}).then(res=>{
           formdata.append('From', '+18597590916');
           formdata.append('To', '+91'+ res.data.phoneNumbers[0].value);
          
-          // const formdata = {
-          //   Body: res.data.preferredLanguage,
-          //   From: '\\+18597590916',
-          //   To: '\\+91' + res.data.phoneNumbers[0].value,
-          //  }
            const headers = {
             'Content-type':'application/x-www-form-urlencoded',
             'Authorization': 'Basic QUM5ZDI0ZTgwMTVlNDIyOTVkNDNlNjQzMDkzZmRiNmYyNDowZTY3NWQyYjM2YjYxZmZkYTBhZjc5MWM0MTU1MTAzOQ=='

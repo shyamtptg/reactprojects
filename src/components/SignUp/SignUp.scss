@@ -1,6 +1,8 @@
 
 @import '../../css/variables.scss';
 // .signup-header { padding-top: 110px; }
+
+
 .signup-left {
   padding-bottom: 20px;
 }
@@ -38,13 +40,13 @@ p.errorMessage:first-of-type{
   position: relative;
 }
 .check {
-height: 18px;
-width: 18px;
+height: 24px;
+width: 24px;
 border: 1px solid #989ea0
 }
 .form-check-fill {
-  height: 18px;
-  width: 18px;
+  height: 24px;
+  width: 24px;
   border: 1px solid #989ea0;
   background: #989ea0;
 }
@@ -70,8 +72,20 @@ input[type=checkbox] {
   color: $color-orange;
   font-size: 20px;
 }
+
+.form-check.error-border-check {
+  padding-left: 10px!important;
+}
 .form-check {
   padding-left: 0px!important;
+}
+.form-check-div {
+  display: flex!important;
+   img {
+     position: absolute;
+         top: 4px;
+    left: 3px;
+   }
 }
 
 

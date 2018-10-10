@@ -198,7 +198,7 @@ console.log(validJsErrors);
            </div>
         {(this.props.user === 200) ?
           <SuccessMessage success='Login Successful'/> : (this.props.user === 401) ?
-            <Errormessage error='Invalid username or password' /> : ''}
+            <Errormessage error='Invalid username or password'/> : ''}
         <div className='card-block login-form-exclamation'>
           <form>
             <div className='form-group  col-12'>
@@ -235,7 +235,7 @@ console.log(validJsErrors);
               <button className='loginbtn' onClick={this.login} type='button' style={styles.Button}><span style={styles.textOnButton}>Login</span></button>
             </div>
             <div className='col-12 donthvacnt'>
-              <span>Don't have an account ?</span><Link to='/signup' style={{ paddingLeft:"9px",fontWeight:"500",color:"#0195D4"}}>Sign up</Link>
+              <span>Don't have an account ?</span><Link to='/signup' style={{ paddingLeft:"9px",fontWeight:"500",color:"#0195D4",textDecoration:"none"}}>Sign up</Link>
 
             </div>
           </form>

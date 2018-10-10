@@ -1,15 +1,16 @@
 // import { relative } from 'path';
 
-const Errormessage={
+const resendMessage={
   height:'65px',
-  border:'1px solid #FF6633',
-  position:'relative'
+  border:'1px solid #0252C3',
+ position:'relative',
+ bottom:'20px'
 }
 
-const ErrorIcon={
+const resendIcon={
   height:'64px',
   width: '66px',
-  backgroundColor: '#FF6633',
+  backgroundColor: '#0252C3',
   display:'inline-block',
   float:'left'
 }
@@ -28,7 +29,7 @@ const errorContent= {
   // marginLeft: '7px',
   // float:'left'
   display:'inline-block',
-    color:'rgb(255, 102, 51)',
+    color:'#0252C3',
   marginLeft:'7px',
   position:'absolute',
   top:'18px'
@@ -36,9 +37,9 @@ const errorContent= {
 
 
 
-export const Errorstyle ={
-  Errormessage:Errormessage,
-  ErrorIcon:ErrorIcon,
+export const ResendStyle ={
+  resendMessage:resendMessage,
+  resendIcon:resendIcon,
   errorContent: errorContent,
   checkIcon: checkIcon
 }

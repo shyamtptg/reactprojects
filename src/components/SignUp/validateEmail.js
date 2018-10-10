@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import { validateData } from '../../redux/actions/validateEmailAction';
-import {resendData} from '../../redux/actions/resendOtp';
-import {styles} from '../common/style';
+import { resendData } from '../../redux/actions/resendOtp';
+import { styles } from '../common/style';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+// import Resendmessage from '../common/ResendMessage/ResendMessage';
 import Errormessage from '../common/Errormessage/Errormessage';
 
 class ValidateEmail extends Component {
@@ -14,13 +15,13 @@ class ValidateEmail extends Component {
   constructor(props) {
     super(props)
     this.state = {
-     preferredLanguage:'',
+      preferredLanguage: '',
       errors: {
-        preferredLanguage:''
+        preferredLanguage: ''
 
       },
       touched: {
-       preferredLanguage: false
+        preferredLanguage: false
 
       },
       isSubmitted: false,
@@ -31,7 +32,7 @@ class ValidateEmail extends Component {
       preferredLanguage: {
         length: {
           maximum: 6
-          
+
         },
         presence: {
           allowEmpty: false
@@ -43,7 +44,7 @@ class ValidateEmail extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  validateSecurity(){
+  validateSecurity() {
     this.setState({
       ...this.state,
       isSubmitted: true
@@ -51,23 +52,23 @@ class ValidateEmail extends Component {
       this.setState({
         touched: {
           preferredLanguage: false
-         }
+        }
       });
     });
-    
+
     const OTP = {
       'preferredLanguage': this.state.preferredLanguage
-      
-    }
-    this.props.validateData(OTP,this.props.userDetails['access_token'],this.props.userResponse['id'],this.props);
 
-   
+    }
+    this.props.validateData(OTP, this.props.userDetails['access_token'], this.props.userResponse['id'], this.props);
+
+
   }
-  resend(){
-    const email={
+  resend() {
+    const email = {
       'emails': this.props.userResponse['emails']
     }
-    this.props.resendData(email,this.props.userDetails['access_token'],this.props.userResponse['id'],this.props);
+    this.props.resendData(email, this.props.userDetails['access_token'], this.props.userResponse['id'], this.props);
   }
   handleChange(e) {
     const name = e.target.name;
@@ -75,7 +76,7 @@ class ValidateEmail extends Component {
     this.setState({
       [name]: value
     }, () => {
-     this.setState(prevState => ({
+      this.setState(prevState => ({
         touched: {
           ...prevState.touched,
           [name]: true
@@ -87,23 +88,23 @@ class ValidateEmail extends Component {
 
 
   }
-  componentDidMount(){
-  console.log(this.props.userResponse['id']);
-  console.log('user response',this.props.userResponse);
+  componentDidMount() {
+    console.log(this.props.userResponse['id']);
+    console.log('user response', this.props.userResponse);
   }
-  getkey(e){
-console.log(e);
-console.log(e.keyCode);
-if(e.keyCode === 20) {
-  this.setState(prevState => ({
-    isCapitalOn: !prevState.isCapitalOn
-  }));
-}
+  getkey(e) {
+    console.log(e);
+    console.log(e.keyCode);
+    if (e.keyCode === 20) {
+      this.setState(prevState => ({
+        isCapitalOn: !prevState.isCapitalOn
+      }));
+    }
   }
- 
+
 
   validateCheck = (name) => {
-    const validJsErrors = validate(this.state,this.constraints);
+    const validJsErrors = validate(this.state, this.constraints);
     console.log('valid Js errors', validJsErrors)
     const errorKeys = validJsErrors ? Object.keys(validJsErrors) : {};
     if (validJsErrors) {
@@ -125,15 +126,13 @@ if(e.keyCode === 20) {
     }
   }
   render() {
-    
-     return (
+    return (
       <div className='card validate-email-box col-md-5'>
-       <div className='card-header'>
+        <div className='card-header'>
           VALIDATE YOUR EMAIL
            </div>
-           {(this.props.getEmailValidate !=='') ?
-           '' : <Errormessage error="Invalid Security Code.Please try again."/>}
-        
+        {!this.props.getEmailValidate.resend && this.props.getEmailValidate.isValid === ''?
+           <Errormessage error="Invalid security code. Please try again."/> : ''}
         <div className='card-block'>
           <form>
             <div className='form-group col-12'>
@@ -142,12 +141,12 @@ if(e.keyCode === 20) {
                   <label>Security Code</label>
                 </div>
                 <div className="col-3">
-                <Link to='/validateEmail' style={{color:"#0195D4"}}>Resend</Link>
+                  <span onClick={this.resend} style={{ color: "#0195D4" }}>Resend</span>
                 </div>
               </div>
-              <input type='text' className="input-validate-email" placeholder='security code'
-                  name='preferredLanguage' onKeyDown={(event)=> this.getkey(event)} value={this.state.preferredLanguage} onChange={this.handleChange} />
-                  <p>{this.state.isCapitalOn? 'capital on': ''}</p>
+              <input type='text' className="input-validate-email" placeholder='123456'
+                name='preferredLanguage' onKeyDown={(event) => this.getkey(event)} value={this.state.preferredLanguage} onChange={this.handleChange} />
+              <p>{this.state.isCapitalOn ? 'capital on' : ''}</p>
 
             </div>
             <div className='form-group col-11'>
@@ -157,7 +156,7 @@ if(e.keyCode === 20) {
             <span>Didn't Recieve Security code</span><span style={{float:'right',color: "#0195D4"}} onClick={this.resend}>Resend</span>
 
             </div> */}
-           
+
           </form>
         </div>
       </div>
@@ -167,18 +166,18 @@ if(e.keyCode === 20) {
   }
 }
 ValidateEmail.propTypes = {
- userDetails: PropTypes.any,
+  userDetails: PropTypes.any,
   userResponse: PropTypes.any,
-  getEmailValidate:PropTypes.any,
-  validateData:PropTypes.func
+  getEmailValidate: PropTypes.any,
+  validateData: PropTypes.func
 }
 const mapStateToProps = (state) => {
   return {
     userDetails: state.token.userDetails,
     userResponse: state.signup.userSignupDetails,
-    getEmailValidate:state.getEmailValidation.getEmailValidate
+    getEmailValidate: state.getEmailValidation.getEmailValidate
 
   }
 }
 
-export default withRouter(connect(mapStateToProps,{validateData,resendData})(ValidateEmail));
+export default withRouter(connect(mapStateToProps, { validateData, resendData })(ValidateEmail));

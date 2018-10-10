@@ -5,6 +5,7 @@ import check from '../../assets/check.svg';
 // import {validatingFields} from '../common/validation';
 import './SignUp.scss';
 import PropTypes from 'prop-types';
+// import pagelevel from '../../assets/pagelevel_error.svg';
 
 // import ReactTooltip from 'react-tooltip'
 // import { validateCheck } from "../../redux/actions/validationAction"
@@ -353,9 +354,9 @@ class SignUp extends Component {
               </div>
               <div className={(this.state.isSubmitted && !this.state.touched.certify && formErrors && formErrors.certify) ? 'form-check error-border-check' : 'form-check'}>
                 {/* <input type='checkbox' name="certify" onChange ={this.handleChange} className='form-check-input' value={this.state.certify} id='exampleCheck1' /> */}
-                
-           {!this.state.certify ? (<span className='check' onClick={this.checked}><img src={check} alt="check" /></span>) : (<span className='form-check-fill' onClick={this.checked}><img src={check} alt="check" /></span>)}
-                <span className='form-check-label'>I certify that I am a U.S. citizen and I permanently reside in the U.S.</span>
+
+               <div className='form-check-div'> {!this.state.certify ? (<span className='check' onClick={this.checked}><img src={check} alt="check" /></span>) : (<span className='form-check-fill' onClick={this.checked}><img src={check} alt="check" /></span>)}
+                <span className='form-check-label'>I certify that I am a U.S. citizen and I permanently reside in the U.S.</span></div>
                 {(this.state.isSubmitted && !this.state.touched.certify && formErrors && formErrors.certify) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-check-feedback" /> : ''}
                 {/* {formErrors && !this.state.isSubmitted && this.state.errors.certify ? this.getErrorMessage('certify') : ''} */}
                 {this.state.isSubmitted && formErrors && formErrors.certify ? this.getErrorMessage('certify') : ''}
