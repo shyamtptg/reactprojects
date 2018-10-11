@@ -6,6 +6,7 @@ import resendOtpReducer from './resendOtpReducer'
 import validateFormReducer from '../reducers/validateFormReducer';
 import validateEmailReducer from '../reducers/validateEmailReducer';
 import updateUserReducer from '../reducers/updateUserReducer';
+import getUserTwilioReducer from '../reducers/getUserTwilioReducer';
 // import userReducer from './userReducer';
 
 const rootReducer = combineReducers({
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     getValidate:validateFormReducer,
     resendOtp:resendOtpReducer,
     getEmailValidation:validateEmailReducer,
-    updateUser :updateUserReducer
+    updateUser :updateUserReducer,
+    getTwilio:getUserTwilioReducer
    
 });
 

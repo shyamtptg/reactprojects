@@ -25,9 +25,7 @@ var button={
           
         </div>
         
-       
-          
-           <div className='col-md-6 content-success'>
+       <div className='col-md-6 content-success'>
               
                   <h5>You have successfully set up two-factor authentication</h5>
                   <p>Each time you login, you will be asked to enter a security code sent to your phone

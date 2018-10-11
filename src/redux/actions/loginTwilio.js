@@ -2,13 +2,15 @@ import { GET_EMAIL_VALIDATE,GET_EMAIL_URL} from '../constants/constant';
 import axios from 'axios';
 
 export const loginTwilio = (data,token,id,context) => (dispatch) => {
+  console.log("hitted in login")
   const header = {
     'Content-type':'application/json',
     'Authorization':`Bearer ${token}`,
     'code':`${id}`
    }
- 
+   console.log("logintwilio",header);
 axios.put(GET_EMAIL_URL,data,{headers:header}).then(res=>{
+ console.log("logintwilio",res);
  
      dispatch({
             type:GET_EMAIL_VALIDATE,

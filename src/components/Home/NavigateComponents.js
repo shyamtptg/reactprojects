@@ -10,6 +10,8 @@ import TwoFactorAuth from '../TwoFactor/TwoFactorAuth';
 import TwilioSuccess from '../TwoFactor/TwilioSuccess';
 import LogintwoFactor from '../TwoFactor/logintwofact';
 import LoginSuccess from '../Login/loginsuccess';
+import Forgotusername from '../Login/Recoverusername/forgotusername';
+import Forgotcheckmail from '../Login/Recoverusername/forgotcheckmail';
 const Home = () => {
   return (
     <React.Fragment>
@@ -24,6 +26,9 @@ const Home = () => {
          <Route path='/twiliosuccess' component={TwilioSuccess}/>
          <Route path='/logintwofact' component={LogintwoFactor}/>
          <Route path='/loginsuccess' component={LoginSuccess}/>
+         <Route path='/forgotusername' component={Forgotusername}/>
+         <Route path='/forgotcheckmail' component={Forgotcheckmail}/>
+
 
       </Switch>
     </React.Fragment>

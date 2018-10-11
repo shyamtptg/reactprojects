@@ -4,16 +4,19 @@ import '../TwoFactor/Twofactor.scss';
 
 
 const LoginSuccess = () => {
- 
+ var myStyle={
+  marginTop:'20px',
+  paddingTop:'30px',
+  textAlign:'center'
+  
+ }
 
 
   return (
     <React.Fragment>
-      {/* <div className='col-md-6 offset-5 login-success'>
-        <div style={icon}><img src={iconcheck} alt='success' /></div>
-      </div> */}
-      <div className='col-md-6 content-success'>
-        <h5>You have successfully login</h5>
+      
+      <div className='col-md-6 offset-3'>
+        <h5 style={myStyle}>You have successfully login</h5>
       </div>
 
     </React.Fragment>

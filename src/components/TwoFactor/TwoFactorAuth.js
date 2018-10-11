@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import Resendmessage from '../common/ResendMessage/ResendMessage';
 import { validateTwilio } from '../../redux/actions/validateTwilio';
-import {resendData} from '../../redux/actions/resendOtp';
+import {resendTwilioOtp} from '../../redux/actions/resendTwilioOtp';
 import {styles} from '../common/style';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import Errormessage from '../common/Errormessage/Errormessage';
+import { Link } from 'react-router-dom';
 import './Twofactor.scss';
+
 
 class TwoFactorAuth extends Component {
 
@@ -67,10 +69,12 @@ class TwoFactorAuth extends Component {
   }
   resend(){
     
-    const email={
-      'emails': this.props.userResponse['emails']
-    }
-    this.props.resendData(email,this.props.userDetails['access_token'],this.props.userResponse['id'],this.props);
+    if(this.props.updateuser  && this.props.updateuser.preferredLanguage && 
+      this.props.updateuser.phoneNumbers && this.props.updateuser.phoneNumbers.length){
+      
+    this.props.resendTwilioOtp(this.props.updateuser.preferredLanguage,this.props.updateuser.phoneNumbers[0].value,this.props);
+
+  }
   }
   handleChange(e) {
     const name = e.target.name;
@@ -129,18 +133,18 @@ if(e.keyCode === 20) {
   }
   render() {
     console.log(this.props.getEmailValidate);
-    
+    console.log("updateuser",this.props.updateuser)
      return (
        <React.Fragment>
        
       <div className='two-fact-card col-md-5'>
-      {this.props.getEmailValidate.resend ? <Resendmessage error="A new security code has sent to your phone" /> : ''}
-      <div className="card">
+      {this.props.getEmailValidate.resend ? <Resendmessage error='A new security code has sent to your phone' /> : ''}
+      <div className='card'>
        <div className='card-header'>
           Enter security code
            </div>
            {!this.props.getEmailValidate.resend && this.props.getEmailValidate.isValid === ''?
-           <Errormessage error="Invalid security code. Please try again."/> : ''}
+           <Errormessage error='Invalid security code. Please try again.'/> : ''}
          
         <div className='card-block'>
           <form>
@@ -150,16 +154,19 @@ if(e.keyCode === 20) {
                   <label>Security Code</label>
                 </div>
                 <div className='col-3'>
-                  <label onClick={this.resend} style={{color: "#0195D4"}}>Resend code</label>
+                  <label onClick={this.resend} style={{color: '#0195D4'}}>Resend code</label>
                 </div>
               </div>
-              <input type='text' className="input-validate-email" placeholder="123456"
+              <input type='text' className='input-validate-email' placeholder='123456'
                   name='preferredLanguage' onKeyDown={(event)=> this.getkey(event)} value={this.state.preferredLanguage} onChange={this.handleChange} />
                   <p>{this.state.isCapitalOn? 'capital on': ''}</p>
 
             </div>
             <div className='form-group col-11'>
               <button className='enable2fA' onClick={this.validateSecurity} type='button' style={styles.Button}><span style={styles.textOnButton}>CONTINUE</span></button>
+            </div>
+            <div className='form-group col-9 offset-2'>
+              <p style={{color:'#0195D4',fontSize: '15px',fontWeight: 600}}><Link style={{color:'#0195D4',textDecoration:'none'}} to='/twofactordetails'>Provide a different phone number</Link></p>
             </div>
            </form>
         </div>
@@ -181,9 +188,10 @@ const mapStateToProps = (state) => {
     userDetails: state.token.userDetails,
     userResponse: state.signup.userSignupDetails,
     getEmailValidate:state.getEmailValidation.getEmailValidate,
-    getResendOtp:state.resendOtp.getResendOtp
+    getResendOtp:state.resendOtp.getResendOtp,
+    updateuser:state.updateUser.updateUser
     
   }
 }
 
-export default withRouter(connect(mapStateToProps,{validateTwilio,resendData})(TwoFactorAuth));
+export default withRouter(connect(mapStateToProps,{validateTwilio, resendTwilioOtp})(TwoFactorAuth));

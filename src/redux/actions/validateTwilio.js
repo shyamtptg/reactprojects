@@ -9,7 +9,7 @@ export const validateTwilio = (data,token,id,context) => (dispatch) => {
    }
  
 axios.put(GET_EMAIL_URL,data,{headers:header}).then(res=>{
- 
+  console.log("validatetwilio",res);
      dispatch({
             type:GET_EMAIL_VALIDATE,
             data: {isValid:res.data, 

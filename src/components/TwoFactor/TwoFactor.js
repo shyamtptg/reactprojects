@@ -47,17 +47,7 @@ const TwoFactor = () => {
                 </div>
               </div>
              </div>
-            {/* <div className='form-group col-11'>
-              
-            </div>
-            <div className='col-8 offset-5'>
-            <p className="skip"><Link to ='/'>Skip</Link></p>
-
-            </div> */}
-            {/* <div className='col-8 offset-2'>
-            <p className="edit-two-fact">Edit Two factor authentication settings</p>
-
-            </div> */}
+            
           </form>
         </div>
       </div>

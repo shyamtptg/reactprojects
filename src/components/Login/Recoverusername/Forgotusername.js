@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
-import { styles } from '../common/style';
+import { styles } from '../../common/style';
 import validate from 'validate.js';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { updateUser } from '../../redux/actions/updateUserAction';
+import { updateUser } from '../../../redux/actions/updateUserAction';
 
 
 class Forgotusername extends Component {
   constructor(props) {
     super(props);
     this.state = {
-     email: '',
-     
-      
+      email: '',
+
+
       errors: {
         email: undefined,
-        
+
       },
       touched: {
         email: false
-        
+
       },
       isSubmitted: false
     }
@@ -29,7 +29,7 @@ class Forgotusername extends Component {
       email: {
         email: true
       }
-}
+    }
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(e) {
@@ -66,10 +66,10 @@ class Forgotusername extends Component {
     const data =
     {
       "emails": [{
-       "value": this.state.email
-     }]
-     
-     }
+        "value": this.state.email
+      }]
+
+    }
     console.log(data);
     this.props.updateUser(data, this.props.userDetails['access_token'], this.props.userResponse['id'], this.props);
 
@@ -113,13 +113,13 @@ class Forgotusername extends Component {
               <div className='card-block'>
                 <form>
                   <div className='form-group col-12'>
-                  <div className='row'>
-                  <div className='col-12 '>
-                    <p>We will send you an email with instructions on how to 
-                       recover your username.
+                    <div className='row'>
+                      <div className='col-12 '>
+                        <p>We will send you an email with instructions on how to
+                           recover your username.
                      </p>
-                  </div>
-                  </div>
+                      </div>
+                    </div>
                   </div>
                   <div className='form-group col-12'>
                     <div className='row'>
@@ -127,14 +127,22 @@ class Forgotusername extends Component {
                         <label>Email address</label>
                       </div>
                     </div>
-                    <input type='text' className="form-control" id='email' name='email' value={this.state.email}
+                    <input type='email' className="form-control" id='email' name='email' value={this.state.email}
                       onChange={this.handleChange} />
                   </div>
-                 
+
                   <div className='form-group col-12'>
                     <button type='button' style={styles.Button} onClick={() => this.forgotUsername}><span style={styles.textOnButton}>CONTINUE</span></button>
                   </div>
-                  
+                  <div className='form-group col-12'>
+                    <div className='row'>
+                      <div className='col-12 decide'>
+                        <p>if you have forgotten the email address associated with your
+                          account, contact our help number</p>
+                      </div>
+                    </div>
+                  </div>
+
                 </form>
               </div>
             </div>

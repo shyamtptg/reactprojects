@@ -68,7 +68,7 @@ class ValidateEmail extends Component {
     const email = {
       'emails': this.props.userResponse['emails']
     }
-    this.props.resendData(email, this.props.userDetails['access_token'], this.props.userResponse['id'], this.props);
+    this.props.resendData(email,this.props.userDetails['access_token'], this.props.userResponse['id'], this.props);
   }
   handleChange(e) {
     const name = e.target.name;
@@ -132,7 +132,7 @@ class ValidateEmail extends Component {
           VALIDATE YOUR EMAIL
            </div>
         {!this.props.getEmailValidate.resend && this.props.getEmailValidate.isValid === ''?
-           <Errormessage error="Invalid security code. Please try again."/> : ''}
+           <Errormessage error='Invalid security code. Please try again.'/> : ''}
         <div className='card-block'>
           <form>
             <div className='form-group col-12'>
@@ -140,11 +140,11 @@ class ValidateEmail extends Component {
                 <div className='col-9'>
                   <label>Security Code</label>
                 </div>
-                <div className="col-3">
-                  <span onClick={this.resend} style={{ color: "#0195D4" }}>Resend</span>
+                <div className='col-3'>
+                  <span onClick={this.resend} style={{ color: '#0195D4',cursor:'pointer' }}>Resend code</span>
                 </div>
               </div>
-              <input type='text' className="input-validate-email" placeholder='123456'
+              <input type='text' className='input-validate-email' placeholder='123456'
                 name='preferredLanguage' onKeyDown={(event) => this.getkey(event)} value={this.state.preferredLanguage} onChange={this.handleChange} />
               <p>{this.state.isCapitalOn ? 'capital on' : ''}</p>
 
@@ -153,7 +153,7 @@ class ValidateEmail extends Component {
               <button className='forgotbtn' onClick={this.validateSecurity} type='button' style={styles.Button}><span style={styles.textOnButton}>SUBMIT</span></button>
             </div>
             {/* <div className='col-12'>
-            <span>Didn't Recieve Security code</span><span style={{float:'right',color: "#0195D4"}} onClick={this.resend}>Resend</span>
+            <span>Didn't Recieve Security code</span><span style={{float:'right',color: '#0195D4'}} onClick={this.resend}>Resend</span>
 
             </div> */}
 

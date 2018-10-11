@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import Resendmessage from '../common/ResendMessage/ResendMessage';
 import { loginTwilio } from '../../redux/actions/loginTwilio';
-import {resendData} from '../../redux/actions/resendOtp';
+// import {resendData} from '../../redux/actions/resendOtp';
 import {styles} from '../common/style';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import Errormessage from '../common/Errormessage/Errormessage';
 import './Twofactor.scss';
+import {resendTwilioOtp} from '../../redux/actions/resendTwilioOtp';
 
 class LogintwoFactor extends Component {
 
@@ -61,16 +62,18 @@ class LogintwoFactor extends Component {
       'preferredLanguage': this.state.preferredLanguage
       
     }
-    this.props.loginTwilio(OTP,this.props.userDetails['access_token'],this.props.userResponse['id'],this.props);
+    this.props.loginTwilio(OTP,this.props.updateuser['access_token'],this.props.updateuser['id'],this.props);
 
    
   }
   resend(){
     
-    const email={
-      'emails': this.props.userResponse['emails']
-    }
-    this.props.resendData(email,this.props.userDetails['access_token'],this.props.userResponse['id'],this.props);
+    if(this.props.updateuser  && this.props.updateuser.preferredLanguage && 
+      this.props.updateuser.phoneNumbers && this.props.updateuser.phoneNumbers.length){
+      
+    this.props.resendTwilioOtp(this.props.updateuser.preferredLanguage,this.props.updateuser.phoneNumbers[0].value,this.props);
+
+  }
   }
   handleChange(e) {
     const name = e.target.name;
@@ -92,7 +95,7 @@ class LogintwoFactor extends Component {
   }
   componentDidMount(){
   console.log(this.props.userResponse['id']);
-  console.log('user response',this.props.userResponse);
+  
   }
   getkey(e){
 console.log(e);
@@ -128,7 +131,7 @@ if(e.keyCode === 20) {
     }
   }
   render() {
-    
+    console.log('user response in logintwofact',this.props.userResponse);
      return (
        <React.Fragment>
        
@@ -150,7 +153,7 @@ if(e.keyCode === 20) {
                   <label>Security Code</label>
                 </div>
                 <div className='col-3'>
-                  <label onClick={this.resend} style={{color: "#0195D4"}}>Resend code</label>
+                  <label onClick={this.resend} style={{color: "#0195D4",cursor:'pointer'}}>Resend code</label>
                 </div>
               </div>
               <input type='text' className="input-validate-email" placeholder="123456"
@@ -181,9 +184,10 @@ const mapStateToProps = (state) => {
     userDetails: state.token.userDetails,
     userResponse: state.signup.userSignupDetails,
     getEmailValidate:state.getEmailValidation.getEmailValidate,
-    getResendOtp:state.resendOtp.getResendOtp
+    getResendOtp:state.resendOtp.getResendOtp,
+    updateuser:state.getTwilio.getTwilioUser
     
   }
 }
 
-export default withRouter(connect(mapStateToProps,{loginTwilio,resendData})(LogintwoFactor));
+export default withRouter(connect(mapStateToProps,{loginTwilio,resendTwilioOtp})(LogintwoFactor));

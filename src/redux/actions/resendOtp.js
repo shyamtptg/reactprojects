@@ -9,7 +9,7 @@ export const resendData = (data,token,id) => (dispatch) => {
    }
  
 axios.put(GET_RESEND_URL,data,{headers:header}).then(res=>{
-  console.log("this is response resend validate",res);
+ 
      dispatch({
             type: GET_EMAIL_VALIDATE,
             data:{
