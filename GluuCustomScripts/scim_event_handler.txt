@@ -1,0 +1,237 @@
+# oxTrust is available under the MIT License (2008). See http://opensource.org/licenses/MIT for full text.
+# Copyright (c) 2014, Gluu
+#
+# Author: Jose Gonzalez
+#
+from org.xdi.model.custom.script.type.scim import ScimType
+from org.xdi.util import StringHelper, ArrayHelper
+from java.util import Arrays, ArrayList
+from org.gluu.oxtrust.ldap.service import PersonService
+from org.xdi.service.cdi.util import CdiUtil
+from org.gluu.oxtrust.model import GluuCustomPerson
+from org.xdi.service import MailService
+from org.xdi.config.oxtrust import AppConfiguration
+from javax.faces.context import ExternalContext
+from org.xdi.ldap.model import GluuStatus
+#from org.xdi.oxauth.util import ServerUtil
+from org.xdi.model.custom.script.type.user import UserRegistrationType
+from org.gluu.jsf2.message import FacesMessages
+from javax.faces.application import FacesMessage
+#from org.jboss.seam.international import StatusMessage
+from datetime import datetime
+from datetime import timedelta
+import org.codehaus.jettison.json.JSONArray as JSONArray
+
+import java
+import random
+#import jarray
+
+class ScimEventHandler(ScimType):
+
+    def __init__(self, currentTimeMillis):
+        self.currentTimeMillis = currentTimeMillis
+
+    def init(self, configurationAttributes):
+        print "ScimEventHandler (init): Initialized successfully"
+        self.guid = random.randint(100000,999999)
+        print " Code ***** %s " % self.guid
+        #self.guid = StringHelper.getRandomString(6)
+        #self.oxOTPDevices=StringHelper.getRandomString(6)
+        return True   
+
+    def destroy(self, configurationAttributes):
+        print "ScimEventHandler (destroy): Destroyed successfully"
+        return True   
+
+    def getApiVersion(self):
+        #return 2 if you want the post* scripts being executed
+        return 2
+
+    def createUser(self, user, configurationAttributes):
+        print "**********createUser*************"
+        print "User Email %s " % user.getMail()
+        accessCode=configurationAttributes.get("accessCode").getValue2() 
+        phonenumber=user.getAttribute("oxTrustPhoneValue")
+        print "****Phone Number**** %s " % phonenumber
+        newEmail=user.getMail()
+        personService = CdiUtil.bean(PersonService)
+		
+        #Getting the person object using the given email to check if a user already exists with the given email in the system
+        oldUser = personService.getPersonByEmail(user.getMail())    
+        if oldUser != None:
+            print "Existing mail : %s " % oldUser.getMail()
+            print "Unique EmailId check, User with given EmailId already exists"
+            return False
+
+        #Checking Registration AccessCode
+        if  user.getAttribute("nickName") != accessCode:
+            print "Security Code: %s " %  user.getAttribute("nickName")
+            print "Invalid Registration AccessCode"       
+            facesContext = CdiUtil.bean(ExternalContext)   
+            facesMessages = CdiUtil.bean(FacesMessages)
+            facesMessages.setKeepMessages()
+            #self.clearFacesMessages(facesContext)
+
+            facesMessages.add(FacesMessage.SEVERITY_ERROR, "User already registered with the given email  account")
+            #facesMessages.add(FacesMessage.SEVERITY_INFO, "User already registered with the given email  account")
+            print " Faces Error  Messages  %s " % facesMessages
+            return False
+			
+        print "ScimEventHandler (createUser): Current id = " + user.getUid()
+        testProp1 = configurationAttributes.get("testProp1").getValue2()
+        testProp2 = configurationAttributes.get("testProp2").getValue2()
+        user.setGuid(str(self.guid))
+
+        print "ScimEventHandler (createUser): testProp1 = " + testProp1
+        print "ScimEventHandler (createUser): testProp2 = " + testProp2
+
+        return True
+
+    def updateUser(self, user, configurationAttributes):
+        personService = CdiUtil.bean(PersonService)
+        oldUser = personService.getPersonByUid(user.getUid())
+        print "******* updateUser ***********"
+        phonenumber=user.getAttribute("oxTrustPhoneValue")
+        print " Phone Number  %s /n" % phonenumber
+        userpwd = user.getUserPassword()
+        reSendOtpMail=user.getMail()
+        otpCreatedDate= str(user.getCreationDate())
+        TupdatedDate=otpCreatedDate.split(" ")
+        TstringDate=TupdatedDate[5]+'-'+TupdatedDate[1]+'-'+TupdatedDate[2]+' '+TupdatedDate[3][0:4]
+        TTstringDate=datetime.strptime(TstringDate,'%Y-%b-%d %I:%M')
+        delta=TTstringDate+timedelta(days=1)
+        t1=datetime.now()
+        print " ******** Delta Time New %s /n" % delta
+        print " ******** TstringDate Time New %s /n" % TstringDate
+        print " ******** TTstringDate Time New%s /n" % TTstringDate
+        print " ******** otpCreatedDate %s" % otpCreatedDate
+        print " ******** Current Time New%s " % t1
+        print "-------- %s " % userpwd
+        print "-------- %s " % reSendOtpMail
+        currentDate=datetime.now()
+        if(delta>currentDate):
+            print " Yes YEssssss " 
+			
+        #Activate user when user send the otp
+        code = user.getPreferredLanguage() 
+        print "User entered OTP/SecurityCode is %s " % code        
+        if code !=None and code !="00" and userpwd == None :
+            print "User Password value is empty and OTP/SecurityCode entered is: %s " % code
+            print "Existing OTP/SecurityCode: %s " % oldUser.getGuid()
+			
+        #Validating security code sent to email
+        if code == oldUser.getGuid() and (delta>currentDate):
+            print "User code::: %s " % code
+            user.setPreferredLanguage("")
+            user.setStatus(GluuStatus.ACTIVE)                   
+            return True
+				
+        #Validating OTP sent to mobile phone
+        if code==oldUser.getPreferredLanguage():
+            print "User code Prepared ::: %s " % code
+            user.setPreferredLanguage("00")
+            print "OTP TO ::: %s " % user.getPreferredLanguage()
+            return True
+            
+        return False
+
+        #Password update 
+        if userpwd != None:
+            print "Updated Password %s " % userpwd
+            user.setUserPassword(userpwd)
+            print "ScimEventHandler (updateUser): Old displayName %s" % oldUser.getDisplayName()
+            print "ScimEventHandler (updateUser): New displayName " + user.getDisplayName()
+            #personService.updatePerson(user)
+            return True
+
+
+        #Update User Address & Ph Number
+        print "Update  Mobile Number: %s /n" % phonenumber
+        if phonenumber != None and (code ==None or code =="00"): 
+            print " ##### User Come Phonenumber User #####"    
+            TPhonenumber=str(phonenumber)
+            Temphonenumber=TPhonenumber.split("value")
+            ActualNumber=Temphonenumber[1][3:16]
+            print " ActualNumber Phone Number  %s" % ActualNumber     
+            self.guid = random.randint(100000,999999)
+            user.setPreferredLanguage(str(self.guid))        
+            return True
+
+        #Resend r Addrss & Ph Number
+        if phonenumber != None and code !=None:
+            print " ** Resend Phonenumber User **"  
+            TPhonenumber=str(phonenumber)
+            Temphonenumber=TPhonenumber.split("value")
+            ActualNumber=Temphonenumber[1][3:16]
+            print " ActualNumber Phone Number  %s" % ActualNumber   
+            self.guid = random.randint(100000,999999)
+            user.setPreferredLanguage(str(self.guid))        
+            return True
+
+        #Resend OTP	
+        if reSendOtpMail != None :
+            print "User Come ReSend OTP"
+            self.guid= random.randint(100000, 999999)
+            user.setGuid(str(self.guid))
+            #self.guid = StringHelper.getRandomString(6)
+            #user.setPreferredLanguage(str(self.guid))
+            appConfiguration = CdiUtil.bean(AppConfiguration)
+	    #CredentialManager application hostname, needs to pull from external
+            hostName="http://192.168.202.19:3000"
+            mailService = CdiUtil.bean(MailService)
+            subject = "Confirmation mail for user registration"
+            
+            body = "Please enter OTP :%s                                                                                                                                                                User Registered for %s.Please Confirm User Registration by clicking url: %s%svalidateEmail?code=%s"%                                 (user.getGuid(), user.getMail(), hostName, "/", user.getGuid())
+            mailService.sendMail(user.getMail(), subject, body )
+            return True
+
+    def deleteUser(self, user, configurationAttributes):
+        print "ScimEventHandler (deleteUser): Current id = " + user.getUid()
+        return True
+
+    def createGroup(self, group, configurationAttributes):
+        print "ScimEventHandler (createGroup): Current displayName = " + group.getDisplayName()
+        return True
+
+    def updateGroup(self, group, configurationAttributes):
+        print "ScimEventHandler (updateGroup): Current displayName = " + group.getDisplayName()
+        return True
+
+    def deleteGroup(self, group, configurationAttributes):
+        print "ScimEventHandler (deleteGroup): Current displayName = " + group.getDisplayName()
+        return True
+        
+    def postCreateUser(self, user, configurationAttributes):
+        print "Inside postCreateUser Method"
+        appConfiguration = CdiUtil.bean(AppConfiguration)
+        print "self %s" % (self)
+		#CredentialManager application hostname, needs to pull from external
+        hostName="http://192.168.202.19:3000"
+        #hostName = appConfiguration.getApplianceUrl()
+        #externalContext = CdiUtil.bean(ExternalContext)
+        #print "externalContext %s" % (externalContext)
+        #contextPath = externalContext.getRequest().getContextPath() 
+        print "WOW %s" % (hostName)
+        mailService = CdiUtil.bean(MailService)
+        subject = "Confirmation mail for user registration"
+        #body = "User Registered for %s. Please Confirm User Registration by clicking url: %s%s/validateEmail?code=%s" % (user.getMail(), hostName, contextPath, self.guid)
+
+        body = " Please enter Code %s                                                                                                                            User Registered for %s.  Please Confirm User Registration by clicking url: %s%svalidateEmail?code=%s"% (user.getGuid(), user.getMail(), hostName, "/", user.getGuid())
+
+        mailService.sendMail(user.getMail(), subject, body )
+        return True
+
+    def postUpdateUser(self, user, configurationAttributes):
+        return True
+
+    def postDeleteUser(self, user, configurationAttributes):
+        return True
+
+    def postUpdateGroup(self, group, configurationAttributes):
+        return True
+
+    def postCreateGroup(self, group, configurationAttributes):
+        return True
+
+    def postDeleteGroup(self, group, configurationAttributes):
+        return True
