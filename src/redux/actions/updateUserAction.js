@@ -7,9 +7,7 @@ export const updateUser = (data,token,id,context) => (dispatch) => {
     'Authorization':`Bearer ${token}`,
     'code':`${id}`
    }
- console.log("This is header",header);
 axios.put(UPDATE_USER_URL,data,{headers:header}).then(res=>{
-  console.log("this is response resend validate",res);
      dispatch({
             type:UPDATE_USER,
             data: res.data
@@ -25,11 +23,8 @@ axios.put(UPDATE_USER_URL,data,{headers:header}).then(res=>{
             'Authorization': 'Basic QUM5ZDI0ZTgwMTVlNDIyOTVkNDNlNjQzMDkzZmRiNmYyNDowZTY3NWQyYjM2YjYxZmZkYTBhZjc5MWM0MTU1MTAzOQ=='
             }
           axios.post(GET_TWILIO_URL, formdata, {headers: headers} ).then(twilldata => {
-            console.log(twilldata);
           }).catch(error => {
-            console.log('error');
           });
-         console.log("response otp",res.data)
           context.history.push('/twofactorauth');
         }
     

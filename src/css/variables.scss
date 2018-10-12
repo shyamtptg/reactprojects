@@ -7,7 +7,10 @@ $color-blue:#01449B;
 $color-primary: #002f87;
 $color-black: #000;
 $color-whitesmoke:#f5f5f5;
+$color-whitesmoked:#f6f6f6;
 $color-orange:#FF6633;
+$color-greyer:#989ea0;
+$color-grey86:#DBDBDB;
 
 $color-dimgray:#666666;
 $color-gainsboro:#DDDDDD;
@@ -16,10 +19,13 @@ $color-charcoal:#444444;
 $color-nobel:#999999;
 $color-red:#FF0000;
 $color-gray61:#9c9c9c;
+$color-grey20:#333;
+$color-darkgrey:#444444;
 $color-atengray:#ddd;
 $color-whisper:#eaeaea;
-
 $color-whitesmok:#F8F8F8;
+$color-lightgreen:#79B876;
+$color-brightblue:#0252C3;
 
 
 //Footer colors
@@ -32,6 +38,7 @@ $color-regentblue:#94a1d0;
 $font-family-museo: "Museo Sans";
 $font-family:'Open Sans',sans-serif;
 $font-family-prox:'Proxima Nova';
+$font-family-azo:'Azo Sans';
 
 
 // font sizes
@@ -43,8 +50,12 @@ $font-16: 16px;
   whitecolor: $color-white;
   darkcolor: $color-darkblue;
   strongblu: $color-strongblu;
+  primary:$color-primary;
+  orange:$color-orange;
   azure:$color-azure;
   regentblue:$color-regentblue;
-  fontfamily: $font-family
+  lightGreen:$color-lightgreen;
+  brightblue:$color-brightblue;
+  fontFamilyProx: $font-family-prox
 }
 

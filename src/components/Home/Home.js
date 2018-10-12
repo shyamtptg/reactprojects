@@ -5,7 +5,6 @@ import NavigateComponent from './NavigateComponents';
 import Footer from '../common/Footer/Footer';
 
 const Home = () => {
-  console.log(window.location.pathname);
   return (
     <React.Fragment>
       <PhoneHeader/>

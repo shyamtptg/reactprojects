@@ -1,20 +1,23 @@
+
+import variables from '../../../css/variables.scss';
 const SuccessMessage = {
   height: '65px',
   // width: '416px',
-  border: '1px solid #79B876',
-  position: 'relative'
+  border: `1px solid ${variables.lightGreen}`,
+  position: 'relative',
+  fontFamily:'Proxima Nova'
 }
 
 const SuccessIcon = {
   height: '64px',
   width: '66px',
-  backgroundColor: '#79B876',
+  backgroundColor: variables.lightGreen,
   display: 'inline-block'
 }
 
 const SuccessContent = {
   display: 'inline-block',
-  color:'#79B876',
+  color:variables.lightGreen,
   marginLeft: '20px'
 }
 const checkIcon = {

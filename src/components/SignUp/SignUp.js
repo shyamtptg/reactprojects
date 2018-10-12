@@ -126,11 +126,9 @@ class SignUp extends Component {
 
   getErrorMessage(inputType) {
     const validJsErrors = validate(this.state, this.constraints);
-    console.log(validJsErrors);
     const inputSpace = inputType.replace(/([A-Z])/g, ' $1').trim()
     const toUpper = inputSpace.charAt(0).toUpperCase() + inputSpace.substr(1).toLowerCase();
     for (let k in validJsErrors) {
-      console.log(inputType, k);
 
       if (validJsErrors.hasOwnProperty(k)) {
         if (k === inputType && k !== 'password') {
@@ -164,7 +162,6 @@ class SignUp extends Component {
     this.setState({
       [name]: value
     }, () => {
-      console.log(this.state);
       this.setState(prevState => ({
         touched: {
           ...prevState.touched,
@@ -181,7 +178,6 @@ class SignUp extends Component {
 
   validateCheck = (name) => {
     const validJsErrors = validate(this.state, this.constraints);
-    console.log(validJsErrors);
     const errorKeys = validJsErrors ? Object.keys(validJsErrors) : {};
     if (validJsErrors) {
       Object.entries(validJsErrors)
@@ -195,7 +191,6 @@ class SignUp extends Component {
                 [name]: undefined
               }
             }), () => {
-              console.log(this.state);
             })
           } else if (key[0] === name && key[1].length > 0) {
             //errors[name] = key[1][0];
@@ -253,7 +248,6 @@ class SignUp extends Component {
         }
       });
     });
-    console.log(this.state.errors);
     if (this.state.errors && !this.state.errors.firstName && !this.state.errors.lastName && !this.state.errors.email && !this.state.errors.userName && !this.state.errors.password && !this.state.errors.accessCode && !this.state.errors.certify) {
       if (this.state.userName !== "" && this.state.firstName !== "" && this.state.lastName !== "" && this.state.email !== "" && this.state.password !== "" && this.state.certify && this.state.accessCode !== "") {
         const registerData = {
@@ -269,7 +263,6 @@ class SignUp extends Component {
       }
     }
     else {
-      console.log("Form is invalid");
     }
   }
   render() {

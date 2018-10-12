@@ -10,8 +10,8 @@ import TwoFactorAuth from '../TwoFactor/TwoFactorAuth';
 import TwilioSuccess from '../TwoFactor/TwilioSuccess';
 import LogintwoFactor from '../TwoFactor/logintwofact';
 import LoginSuccess from '../Login/loginsuccess';
-import Forgotusername from '../Login/Recoverusername/forgotusername';
-import Forgotcheckmail from '../Login/Recoverusername/forgotcheckmail';
+ import Forgotusername from '../Login/Recoverusername/Forgotusername';
+ import Forgotcheckmail from '../Login/Recoverusername/Forgotcheckmail';
 const Home = () => {
   return (
     <React.Fragment>

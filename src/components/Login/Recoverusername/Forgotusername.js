@@ -70,7 +70,6 @@ class Forgotusername extends Component {
       }]
 
     }
-    console.log(data);
     this.props.updateUser(data, this.props.userDetails['access_token'], this.props.userResponse['id'], this.props);
 
 
@@ -78,7 +77,6 @@ class Forgotusername extends Component {
 
   validateCheck = (name) => {
     const validJsErrors = validate(this.state, this.constraints);
-    console.log('valid Js errors', validJsErrors)
     const errorKeys = validJsErrors ? Object.keys(validJsErrors) : {};
     if (validJsErrors) {
       Object.entries(validJsErrors)

@@ -1,15 +1,16 @@
-// import { relative } from 'path';
+import variables from '../../../css/variables.scss';
 
 const Errormessage={
   height:'65px',
-  border:'1px solid #FF6633',
-  position:'relative'
+  border:`1px solid ${variables.orange}`,
+  position:'relative',
+  fontFamily:'Proxima Nova'
 }
 
 const ErrorIcon={
   height:'64px',
   width: '66px',
-  backgroundColor: '#FF6633',
+  backgroundColor: variables.orange,
   display:'inline-block',
   float:'left'
 }
@@ -23,12 +24,9 @@ const checkIcon = {
 }
 
 const errorContent= {
-  // display: 'inline-block',
-  // color:'#FF6633',
-  // marginLeft: '7px',
-  // float:'left'
+  
   display:'inline-block',
-    color:'rgb(255, 102, 51)',
+    color: variables.orange,
   marginLeft:'7px',
   position:'absolute',
   top:'18px'

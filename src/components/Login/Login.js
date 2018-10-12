@@ -6,6 +6,7 @@ import { login } from '../../redux/actions/getUserLogin'
 import { connect } from 'react-redux';
 import validate from 'validate.js';
 import  '../../css/style.scss';
+import variables from '../../css/variables.scss';
 import icon_hide from '../../assets/icon_hide.svg';
 import icon_show from '../../assets/icon_show.svg';
 // // import Header from '../common/Header';
@@ -107,11 +108,9 @@ class Login extends Component {
   }
   getErrorMessage(inputType) {
     const validJsErrors = validate(this.state, this.constraints);
-    console.log(validJsErrors);
     const inputSpace = inputType.replace(/([A-Z])/g, ' $1').trim()
     const toUpper = inputSpace.charAt(0).toUpperCase() + inputSpace.substr(1).toLowerCase();
     for (let k in validJsErrors) {
-    console.log(inputType , k);
 
       if (validJsErrors.hasOwnProperty(k)) {
         if (k === inputType && k !== 'password') {
@@ -131,7 +130,6 @@ class Login extends Component {
 
   validateCheck = (name) => {
     const validJsErrors = validate(this.state, this.constraints);
-console.log(validJsErrors);
     const errorKeys = validJsErrors ? Object.keys(validJsErrors) : {};
     if (validJsErrors) {
       Object.entries(validJsErrors)
@@ -145,7 +143,6 @@ console.log(validJsErrors);
                 [name]: undefined
               }
             }),() => {
-              console.log(this.state);
             })
           } else if (key[0] === name && key[1].length > 0) {
             //errors[name] = key[1][0];
@@ -207,7 +204,7 @@ console.log(validJsErrors);
                   <label>Username</label>
                 </div>
                 <div className='col-6 forgot-align'>
-                  <Link style={{color:"#0195D4"}} to='#'>Forgot username?</Link>
+                  <Link style={{color:variables.strongblu}} to='#'>Forgot username?</Link>
                 </div>
               </div>
               <input type='text' className={(this.state.isSubmitted && !this.state.touched.userName&&formErrors&&formErrors.userName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'} id='userName' name='userName' value={this.state.userName}
@@ -222,7 +219,7 @@ console.log(validJsErrors);
                   <label>Password</label>
                 </div>
                 <div className='col-6 forgot-align'>
-                  <Link style={{color:"#0195D4"}} to='/forgotpassword'>Forgot password?</Link>
+                  <Link style={{color:variables.strongblu}} to='/forgotpassword'>Forgot password?</Link>
                 </div>
               </div>
               <input type={this.state.type} className={(this.state.isSubmitted && !this.state.touched.password&&formErrors&&formErrors.password) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'} id='pwd' name='password' value={this.state.password}
@@ -235,7 +232,7 @@ console.log(validJsErrors);
               <button className='loginbtn' onClick={this.login} type='button' style={styles.Button}><span style={styles.textOnButton}>Login</span></button>
             </div>
             <div className='col-12 donthvacnt'>
-              <span>Don't have an account ?</span><Link to='/signup' style={{ paddingLeft:"9px",fontWeight:"500",color:"#0195D4",textDecoration:"none"}}>Sign up</Link>
+              <span>Don't have an account ?</span><Link to='/signup' style={{ paddingLeft:'9px',fontWeight:'500',color:variables.strongblu,textDecoration:'none'}}>Sign up</Link>
 
             </div>
           </form>

@@ -12,7 +12,6 @@ export const resendTwilioOtp = (preferredLanguage, phoneNumber,context) => (disp
     'Authorization': 'Basic QUM5ZDI0ZTgwMTVlNDIyOTVkNDNlNjQzMDkzZmRiNmYyNDowZTY3NWQyYjM2YjYxZmZkYTBhZjc5MWM0MTU1MTAzOQ=='
   }
   axios.post(GET_TWILIO_URL, formdata, { headers: headers }).then(twilldata => {
-    console.log(twilldata);
     dispatch({
       type: GET_EMAIL_VALIDATE,
       data: {
@@ -21,6 +20,5 @@ export const resendTwilioOtp = (preferredLanguage, phoneNumber,context) => (disp
       }
     });
   }).catch(error => {
-    console.log('error');
   });
 };

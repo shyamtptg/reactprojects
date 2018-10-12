@@ -1,7 +1,9 @@
+@import '../../css/variables.scss';
 .two-fact-auth{
   
-  color: #444444;
-  font-family: "Proxima Nova";
+  color: $color-charcoal;
+  //font-family: "Proxima Nova";
+  font-family: $font-family-prox;
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -18,7 +20,7 @@
 .please-enable-tfa{
   height: 120px;
   width: 420px;
-  color: #444444;
+  color: $color-charcoal;
  
   font-size: 16px;
 
@@ -28,12 +30,15 @@
     width: 100%;
     border: 1px solid rgb(0, 47, 135);
     border-radius: 3px;
-    background: white;
+    background:  $color-white;
+    font-family:$font-family-prox;
+    font-size: 14px!important;
+    font-weight: 600;
  }
  .skip{
   height: 46px;
   width: 100%;
-  color:white;
+  color: $color-white;
   border-radius: 3px;
   background:  rgb(0, 47, 135);
  }
@@ -41,24 +46,28 @@
   { 
   height: 17px;
   width: 247px;
-  color: #888888;
-  font-family: "Proxima Nova";
+  color: $color-grey;
+  font-family:$font-family-prox; 
   font-size: 14px;	
   line-height: 17px;
   text-align: center;
  }
  .Congrats-Header{
   padding:25px;
-  color: #666666;
-  font-family: "Museo Sans";
+  color: $color-dimgray;
+  font-family: $font-family-museo;
   font-size: 30px;
   line-height: 45px;
   text-align: center;
  }
  .header-content{
-  font-size:20px;
+  font-size:18px;
   line-height:11px;
-  font-family:"Proxima Nova"
+  font-family:$font-family-museo;
+  
+ }
+ .header-email{
+   padding-bottom: 10px;
  }
  .two-fact-validate{
   font-size:20px;
@@ -74,11 +83,20 @@
  .content-success{
   margin:0px auto;
   text-align: center;
-  
- h5{
-   
-    
    }
-   
+
+ /*added*/
+ .labeltext{
+  font-family: $font-family-museo!important;
  }
+ .enable2fA span{
+  font-family: $font-family-museo;
+ }
+ .securityfont{
+  font-family: $font-family-museo!important;
+ }
+ .decide p{
+  font-family:$font-family-prox; 
+ }
+ 
  

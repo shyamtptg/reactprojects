@@ -89,12 +89,8 @@ class ValidateEmail extends Component {
 
   }
   componentDidMount() {
-    console.log(this.props.userResponse['id']);
-    console.log('user response', this.props.userResponse);
   }
   getkey(e) {
-    console.log(e);
-    console.log(e.keyCode);
     if (e.keyCode === 20) {
       this.setState(prevState => ({
         isCapitalOn: !prevState.isCapitalOn
@@ -105,7 +101,6 @@ class ValidateEmail extends Component {
 
   validateCheck = (name) => {
     const validJsErrors = validate(this.state, this.constraints);
-    console.log('valid Js errors', validJsErrors)
     const errorKeys = validJsErrors ? Object.keys(validJsErrors) : {};
     if (validJsErrors) {
       Object.entries(validJsErrors)
@@ -129,7 +124,7 @@ class ValidateEmail extends Component {
     return (
       <div className='card validate-email-box col-md-5'>
         <div className='card-header'>
-          VALIDATE YOUR EMAIL
+        <span className="emailvalidcheck">Validate your email</span> 
            </div>
         {!this.props.getEmailValidate.resend && this.props.getEmailValidate.isValid === ''?
            <Errormessage error='Invalid security code. Please try again.'/> : ''}

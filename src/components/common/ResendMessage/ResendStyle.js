@@ -1,8 +1,8 @@
-// import { relative } from 'path';
+import variables from '../../../css/variables.scss';
 
 const resendMessage={
   height:'65px',
-  border:'1px solid #0252C3',
+  border:`1px solid ${variables.brightblue}`,
  position:'relative',
  bottom:'20px'
 }
@@ -10,7 +10,7 @@ const resendMessage={
 const resendIcon={
   height:'64px',
   width: '66px',
-  backgroundColor: '#0252C3',
+  backgroundColor: variables.brightblue,
   display:'inline-block',
   float:'left'
 }
@@ -29,7 +29,7 @@ const errorContent= {
   // marginLeft: '7px',
   // float:'left'
   display:'inline-block',
-    color:'#0252C3',
+    color: variables.brightblue,
   marginLeft:'7px',
   position:'absolute',
   top:'18px'

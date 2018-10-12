@@ -85,7 +85,6 @@ class TwoFactorDetails extends Component {
      
 
     }
-    console.log(data);
     this.props.updateUser(data, this.props.userDetails['access_token'], this.props.userResponse['id'], this.props);
 
 
@@ -93,7 +92,6 @@ class TwoFactorDetails extends Component {
 
   validateCheck = (name) => {
     const validJsErrors = validate(this.state, this.constraints);
-    console.log('valid Js errors', validJsErrors)
     const errorKeys = validJsErrors ? Object.keys(validJsErrors) : {};
     if (validJsErrors) {
       Object.entries(validJsErrors)
@@ -126,11 +124,11 @@ class TwoFactorDetails extends Component {
                 Provide your phone number
               </div>
               <div className='card-block'>
-                <form>
+                <form className="twofactdetails">
                   <div className='form-group col-12'>
                   <div className='row'>
                   <div className='col-12 '>
-                    <p>You will receive a security code at this number every time you 
+                    <p className="twofactdetails">You will receive a security code at this number every time you 
                        sign in.Standard messaging rates will apply.
                      </p>
                   </div>

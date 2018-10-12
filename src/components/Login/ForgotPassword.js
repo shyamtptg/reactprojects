@@ -69,7 +69,6 @@ class ForgotPassword extends Component {
 
   validateCheck = (name) => {
     const validJsErrors = validate(this.state, this.constraints);
-    console.log("valid Js errors", validJsErrors)
     const errorKeys = validJsErrors ? Object.keys(validJsErrors) : {};
     if (validJsErrors) {
       Object.entries(validJsErrors)
@@ -109,7 +108,7 @@ class ForgotPassword extends Component {
             <div className='form-group col-12'>
               <button className="forgotbtn" onClick={this.forgotpass} type='button' style={styles.Button}><span style={styles.textOnButton}>RESET PASSWORD</span></button>
             </div>
-            <div className="col-12">
+            <div className="col-12 forgotpassword">
             <span><Link to='/'>Back to Login</Link></span><span style={{float:"right"}}>Forgot your username</span>
 
             </div>

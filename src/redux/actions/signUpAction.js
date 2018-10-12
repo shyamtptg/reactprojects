@@ -9,7 +9,6 @@ export const signUp = (data,token,context) => (dispatch) => {
        }
 
 axios.post(SIGNUP_URL,data,{headers:header}).then(res=>{
-    console.log(res);
      dispatch({
             type:USER_SIGNUP,
             data: res.data
@@ -26,7 +25,6 @@ axios.post(SIGNUP_URL,data,{headers:header}).then(res=>{
     // }
 })
 .catch(error => {
-    console.log(error)
     // Alert.error(error,ALERT_CONFIG);
     // context.history.push('/');
 })
