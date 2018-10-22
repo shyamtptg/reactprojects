@@ -7,14 +7,14 @@ import Footer from '../common/Footer/Footer';
 const Home = () => {
   return (
     <React.Fragment>
-      <PhoneHeader/>
-      {window.location.pathname === '/twiliosuccess'||window.location.pathname === '/twofactordetails'||window.location.pathname === '/loginsuccess'||window.location.pathname === '/forgotusername'||window.location.pathname === '/forgotcheckmail'? '' :   (<PageHeader pathName ={window.location.pathname}/>)}
+      {window.location.pathname === '/validatetemplate'||window.location.pathname === '/passwordSuccess'?'':<PhoneHeader/>}
+      {window.location.pathname === '/twiliosuccess'||window.location.pathname === '/twofactordetails'||window.location.pathname === '/loginsuccess'||window.location.pathname === '/forgotusername'||window.location.pathname === '/forgotcheckmail'||window.location.pathname === '/validatetemplate'||window.location.pathname === '/passwordSuccess'? '' :   (<PageHeader pathName ={window.location.pathname}/>)}
       <div className='container'>
         <div className='row form-body'>
           <NavigateComponent/>
         </div>
       </div>
-      {window.location.pathname === '/twiliosuccess'||window.location.pathname === '/twofactordetails'||window.location.pathname === '/loginsuccess'||window.location.pathname === '/forgotusername'||window.location.pathname === '/forgotcheckmail'? '' :   <Footer/>}
+      {window.location.pathname === '/twiliosuccess'||window.location.pathname === '/twofactordetails'||window.location.pathname === '/loginsuccess'||window.location.pathname === '/forgotusername'||window.location.pathname === '/forgotcheckmail'||window.location.pathname === '/validatetemplate'||window.location.pathname === '/passwordSuccess'? '' :   <Footer/>}
     </React.Fragment>
   )
 }

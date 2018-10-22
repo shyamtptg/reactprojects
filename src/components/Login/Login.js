@@ -204,11 +204,11 @@ class Login extends Component {
                   <label>Username</label>
                 </div>
                 <div className='col-6 forgot-align'>
-                  <Link style={{color:variables.strongblu}} to='#'>Forgot username?</Link>
+                  <Link style={{color:variables.strongblu}} to=''>Forgot username?</Link>
                 </div>
               </div>
-              <input type='text' className={(this.state.isSubmitted && !this.state.touched.userName&&formErrors&&formErrors.userName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'} id='userName' name='userName' value={this.state.userName}
-                onChange={this.handleChange} />
+              <input tabIndex={1} type='text' className={(this.state.isSubmitted && !this.state.touched.userName&&formErrors&&formErrors.userName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'} id='userName' name='userName' value={this.state.userName}
+                onChange={this.handleChange} autoFocus={true} />
                 {(this.state.isSubmitted && !this.state.touched.userName && formErrors && formErrors.userName) ? <FontAwesomeIcon icon={faExclamationCircle} className='form-control-feedback' /> : ''}
                 {formErrors && this.state.errors.userName? this.getErrorMessage('userName') : ''}
 
@@ -223,13 +223,13 @@ class Login extends Component {
                 </div>
               </div>
               <input type={this.state.type} className={(this.state.isSubmitted && !this.state.touched.password&&formErrors&&formErrors.password) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'} id='pwd' name='password' value={this.state.password}
-                onChange={this.handleChange} />
+                onChange={this.handleChange} tabIndex={2}/>
                 {(this.state.isSubmitted && !this.state.touched.password && formErrors && formErrors.password) ? <FontAwesomeIcon icon={faExclamationCircle} className='form-control-feedback' /> : this.state.type === 'password'? (<img className='iconhidelog' src={icon_hide} alt='Eye' onClick ={() => this.showHidePassword()}/>): (<img className='iconshowlog' src={icon_show} alt='Eye' onClick ={() => this.showHidePassword()}/>)}
                 {formErrors && this.state.errors.password ? this.getErrorMessage('password') : ''}
                 
             </div>
             <div className='form-group col-12'>
-              <button className='loginbtn' onClick={this.login} type='button' style={styles.Button}><span style={styles.textOnButton}>Login</span></button>
+              <button className='loginbtn' onClick={this.login} type='button' style={styles.Button}><span style={styles.textOnButton} tabIndex={3}>Login</span></button>
             </div>
             <div className='col-12 donthvacnt'>
               <span>Don't have an account ?</span><Link to='/signup' style={{ paddingLeft:'9px',fontWeight:'500',color:variables.strongblu,textDecoration:'none'}}>Sign up</Link>

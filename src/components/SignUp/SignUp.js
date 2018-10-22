@@ -289,7 +289,7 @@ class SignUp extends Component {
                 <input type='text' className={(this.state.isSubmitted && !this.state.touched.firstName && formErrors && formErrors.firstName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'}
                   id='firstName' placeholder='Firstname'
                   name='firstName' value={this.state.firstName}
-                  onChange={this.handleChange} onFocus={this.handleChange} />
+                  onChange={this.handleChange} onFocus={this.handleChange}  autoFocus={true}/>
                 {(this.state.isSubmitted && !this.state.touched.firstName && formErrors && formErrors.firstName) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback" /> : ''}
                 {this.state.isSubmitted && this.state.touched.firstName && formErrors && this.state.errors.firstName ? this.getErrorMessage('firstName') : ''}
               </div>
@@ -359,8 +359,8 @@ class SignUp extends Component {
                 <button type='button' style={styles.Button} onClick={this.register}><span style={styles.textOnButton}> SIGN UP</span></button>
                 <div className="already-have-account">Already have an account?<span><Link className="login-link" to='/'>Log in</Link></span></div>
               </div>
-              <div className='form-terms'>By clicking sign up, you agree to the <span>terms of use</span> and <span>privacy</span><p style={{ marginBottom: "0px" }}>policy,
-              and acknowledge that you have read and understood</p>our disclosure brochure, which can be accessed here <span>FormADV2</span>.</div>
+              <div className='form-terms'>By clicking sign up, you agree to the <span>terms of use</span> and <span>privacy</span><span style={{ marginBottom: "0px" }}> policy,
+              and acknowledge that you have read and understood</span> our disclosure brochure, which can be accessed here <span>FormADV2</span>.</div>
             </div>
           </div>
         </div>

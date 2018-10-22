@@ -10,8 +10,10 @@ import TwoFactorAuth from '../TwoFactor/TwoFactorAuth';
 import TwilioSuccess from '../TwoFactor/TwilioSuccess';
 import LogintwoFactor from '../TwoFactor/logintwofact';
 import LoginSuccess from '../Login/loginsuccess';
- import Forgotusername from '../Login/Recoverusername/Forgotusername';
- import Forgotcheckmail from '../Login/Recoverusername/Forgotcheckmail';
+import Forgotusername from '../Login/Recoverusername/Forgotusername';
+import Forgotcheckmail from '../Login/Recoverusername/Forgotcheckmail';
+import validatEmailTemplate from '../Emailtemplates/validatEmailTemplate';
+import PasswordSuccessChanged from '../Emailtemplates/passwordSuccess';
 const Home = () => {
   return (
     <React.Fragment>
@@ -28,7 +30,8 @@ const Home = () => {
          <Route path='/loginsuccess' component={LoginSuccess}/>
          <Route path='/forgotusername' component={Forgotusername}/>
          <Route path='/forgotcheckmail' component={Forgotcheckmail}/>
-
+         <Route path='/validatetemplate' component={validatEmailTemplate}/>
+         <Route path='/passwordSuccess'  component={PasswordSuccessChanged}/>
 
       </Switch>
     </React.Fragment>

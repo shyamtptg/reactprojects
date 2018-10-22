@@ -50,6 +50,7 @@ body {
         line-height: 17px;
         padding-left: 9px;
         font-weight: normal;
+        cursor:pointer
         
     }
     .header-line{
@@ -673,4 +674,138 @@ body {
     .rounded-list ol > li p {
         margin-left:60px!important;
      }
+}
+
+.navbar-toggler i {
+    color: #519fd1;
+    font-size: 26px;
+}
+
+@media screen and (min-width: 768px) {
+    .mobilenav { display: none; }
+}
+@media screen and (max-width: 767px) {
+    .webnav { display: none; }
+    .header-main .mobilenav {
+        padding: 15px 20px;
+        box-shadow: 1px 2px 1px #e2e2e2;
+        button {
+            padding: 0px; 
+            &:focus { outline: none; }
+            &[aria-expanded="true"] {
+                .fa-bars { display: none; }
+                .fa-times { display: block; }
+            }
+            &[aria-hidden="true"] {
+                .fa-times { display: none; }
+            }
+            .fa-times { display: none; font-size: 30px; }
+        }
+        ul.navbar-nav {
+            padding: 15px 0px 0px 0px;
+            li {
+                padding-bottom: 15px;
+            }
+            li.needhelp a {
+                color: #666666;
+                text-decoration: none;
+            }
+            li.nav-item {
+                span:first-child {
+                    width: 35%;
+                    display: block;
+                    float: left;
+                    color: #999;
+                    font-size: 14px;
+                }
+                span:last-child {
+                    color: #666;
+                    font-size: 14px;
+                    a {
+                        color: #519fd1;
+                        text-decoration: none;
+                    }
+                }
+            }
+            li.login {
+                border-top: 1px solid #ccc;
+                padding: 20px 0px 5px 0px;
+                button {
+                    margin: 0px !important;
+                    border: 0px !important;
+                    margin: 0px auto !important;
+                    display: table !important;
+                    height: auto !important;
+                    a {
+                        width: auto;
+                        color: #60a0cc !important;
+                        font-size: 14px !important;
+                    }
+                }
+            }
+        }
+    }
+    .signup-header { padding-top: 0px !important; 
+        h1.page-header {
+            margin: 0px;
+            padding: 30px 0px;
+            color: #333;
+            line-height: 40px;
+            font-weight: bold;
+        }
+    }
+    .signup-left {
+        border-bottom: 1px solid #cdcdcd;
+        .after-sign-up {
+            h2 {
+                margin: 0px 0px 20px 0px;
+                padding-top: 20px;
+            }
+            .rounded-list {
+                ol li {
+                    background: transparent;
+                    p {
+                        margin-left: 30px;
+                        color: #666;
+                        &:before {
+                            left: 0em !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .signup-right {
+        .card {
+            box-shadow: none;
+            background: #fff;
+            border: 0px solid #ddd;
+            padding: 0px !important;
+            .form-check {
+                padding: 15px;
+            }
+            .already-have-account {
+                padding: 30px 0px 10px 0px;
+            }
+            .form-terms p {
+                float: left;
+            }
+        }
+    }
+    .footer-main { margin-top: 0px; 
+        .footer-list, .footer-middle {
+            border-right: 0px !important;
+        }
+        .col-md-4.col-sm-6, .col-md-6.col-sm-6, .col-md-2.col-xs-12 {
+            padding: 0px;
+        }
+    }
+    .login-box {
+        border: 0px solid #ddd;
+        padding: 0px 0px !important;
+        box-shadow: none;
+        .form-group {
+            padding: 0px;
+        }
+    }
 }

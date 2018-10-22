@@ -5,6 +5,7 @@ const Button = {
   height: '46px',
   width: '100%',
   border: '1px solid',
+  cursor:'pointer',
   borderColor:variables.darkcolor,
   borderRadius: '3px',
   background: `linear-gradient(180deg, ${variables.darkcolor} 0%,  ${variables.darkcolor} 100%)`,

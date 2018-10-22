@@ -10,6 +10,7 @@ import '../login.scss';
 class Forgotcheckmail extends Component {
   
   render() {
+    
      return (
 
       <React.Fragment>
