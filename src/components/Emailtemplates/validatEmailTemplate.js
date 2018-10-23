@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import { styles } from '../../common/style';
-// import { withRouter } from 'react-router';
-// import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+
 
 
 
@@ -35,7 +32,7 @@ class validatEmailTemplate extends Component {
                             marginTop: '-105px'}}>
                     <span>NextGen</span>
                     <span style={{fontWeight:'100',
-                                  marginLeft: '-6px'}}>Bank</span>
+                                  marginLeft: '1px'}}>Bank</span>
                 </h1>
                 <table style={{width: '600px', 
                               margin: '0px auto', 
@@ -91,7 +88,7 @@ class validatEmailTemplate extends Component {
                                     fontSize: '12px',
                                     lineHeight: '20px',
                                     paddingTop: '20px'}}>
-                            <Link to='#' style={{textDecoration:'none',
+                            <Link to='' style={{textDecoration:'none',
                                                 color:'#7979fd'}}>Click here</Link> to enter security code and validate your email address.
                         </td>
                     </tr>

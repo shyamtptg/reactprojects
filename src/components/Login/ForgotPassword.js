@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import validate from 'validate.js';
+import { token } from '../../redux/actions/tokenAction';
+import {forgotpasswordData} from '../../redux/actions/forgotpassword';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import {styles} from '../common/style';
+import { styles } from '../common/style';
 
 class ForgotPassword extends Component {
 
@@ -32,9 +37,15 @@ class ForgotPassword extends Component {
         }
       }
     }
+
+    const data = new URLSearchParams();
+    data.append('grant_type', 'client_credentials');
+    this.props.token(data, this.props);
+    this.handleChange = this.handleChange.bind(this);
+    this.forgotpass=this.forgotpass.bind(this);
   }
 
-  forgotpass(e){
+  forgotpass(e) {
     this.setState({
       ...this.state,
       isSubmitted: true
@@ -42,10 +53,15 @@ class ForgotPassword extends Component {
       this.setState({
         touched: {
           userName: false
-         
+
         }
       });
     });
+    const forgotData = {
+      'userName': this.state.userName
+     
+    }
+    this.props.forgotpasswordData(forgotData,this.props.userDetails['access_token'], this.props);
   }
   handleChange(e) {
     const name = e.target.name;
@@ -93,12 +109,28 @@ class ForgotPassword extends Component {
 
     return (
       <div className='card forgot-box col-sm-5'>
+
+        <div className='card-header two-fact-auth'>
+          Provide your username
+           </div>
         <div className='card-block'>
           <form>
+            <div class='form-group col-12'>
+              <div class='row'>
+                <div class='col-12 '>
+                  <p class="recover-user">We will send you an email with instructions on how
+                        to reset <br />your password.
+                   </p>
+                </div>
+              </div>
+            </div>
             <div className='form-group col-12'>
               <div className="row label-text">
-                <div className="col-6">
-                  <label>Provide username</label>
+                <div className="col-8">
+                  <label>Username</label>
+                </div>
+                <div className="col-4">
+                  <label style={{ color: '#0195D4' }}><Link to='/forgotusername'>Forgot username?</Link></label>
                 </div>
               </div>
               <input type='text' className={(this.state.isSubmitted && !this.state.touched.userName && formErrors.userName) ? 'form-control form-control-lg error-broder' : 'form-control form-control-lg'} id='userName' name='userName' value={this.state.userName}
@@ -106,12 +138,9 @@ class ForgotPassword extends Component {
 
             </div>
             <div className='form-group col-12'>
-              <button className="forgotbtn" onClick={this.forgotpass} type='button' style={styles.Button}><span style={styles.textOnButton}>RESET PASSWORD</span></button>
+              <button className="forgotbtn" onClick={this.forgotpass} type='button' style={styles.Button}><span style={styles.textOnButton}>CONTINUE</span></button>
             </div>
-            <div className="col-12 forgotpassword">
-            <span><Link to='/'>Back to Login</Link></span><span style={{float:"right"}}>Forgot your username</span>
 
-            </div>
           </form>
         </div>
       </div>
@@ -120,4 +149,18 @@ class ForgotPassword extends Component {
     )
   }
 }
-export default ForgotPassword;
+ForgotPassword.propTypes = {
+  // userDetails: PropTypes.arrayOf(PropTypes.object)
+  userDetails: PropTypes.any,
+  userResponse: PropTypes.any
+}
+const mapStateToProps = (state) => {
+  return {
+    userDetails: state.token.userDetails,
+    userResponse: state.signup.userSignupDetails
+    // getValidateForm: state.getValidate.getValidate
+
+  }
+}
+
+export default withRouter(connect(mapStateToProps, { token,forgotpasswordData })(ForgotPassword));

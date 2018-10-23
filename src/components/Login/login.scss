@@ -4,3 +4,139 @@
   padding-top:40px;
 
 }
+
+.forgot-box{
+ margin-top:50px;
+}
+
+
+.form-body {
+  padding-top: 15px;
+  margin-bottom: 20px;
+}
+
+.two-fact-card {
+  
+  margin: 20px auto;
+}
+.Success {
+  margin-bottom: 40px;
+}
+.card {
+ 
+  box-shadow: 0 2px 2px 0 #9c9c9c;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  padding: 20px 30px !important;
+  
+}
+.two-fact-auth1 {
+  color: #444444;
+  font-weight: 600;
+  font-size: 18px;
+  // line-height: 27px;
+}
+.card-block {
+  padding: 15px 0px;
+}
+.form-group {
+  padding-top: 10px;
+}
+.form-group .form-control{
+  height:43px;
+}
+.row {   
+ /* display: flex; */  
+
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.col-12 {
+ 
+  flex: 0 0 100%;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.form-group label {
+  color: #666666;
+  font-size: 14px;
+  font-weight: normal;
+  font-family: "Proxima Nova";
+ 
+ 
+}
+.form-group a{   
+  color: #0195D4;
+font-family: "Proxima Nova";
+  font-size: 14px;	
+  font-weight: 600;	
+  line-height: 20px;	
+  float: right;
+  
+
+}
+
+.recover-user {
+  color: #666666;
+  font-family: "Proxima Nova";
+  font-size: 16px;
+  line-height: 23px;
+}
+.card-header{
+  background: transparent !important;
+  border-bottom: 2px solid #eaeaea !important;
+  padding: 20px 0px !important;
+  font-family: "Proxima Nova";
+  margin-left:14px;
+}
+
+  
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+ /* margin-top:70px;*/
+ margin-top:25px;
+}
+.btn-class{
+  height: 46px;
+  width: 100%;
+  border: 1px solid rgb(0, 47, 135);
+  border-radius: 3px;
+  background: linear-gradient(rgb(0, 47, 135) 0%, rgb(0, 47, 135) 100%);
+  font-family: "Proxima Nova";
+  }
+  .btn-class span{
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  }
+
+.form-body{
+  margin: 0 auto;
+ /* width: 40%;*/
+}
+.form-body-forgot{
+margin: 0 auto;
+width: 45%;
+}
+
+.form-group .bottom{   
+  color: #0195D4;	
+  font-family: "Proxima Nova";	
+  font-size: 15px;	
+  font-weight: 600;	
+  line-height: 23px;	
+  text-align: center;
+}
