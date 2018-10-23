@@ -600,32 +600,7 @@ body {
 }
 }
 
-@media screen and (max-width: 767px) {
-    .header-contact {
-        height: auto;
-        text-align: left;
-    }
-    
-    .login-box {
-        max-width: 90% !important;
-        flex: 0 0 90% !important;
-    }
-    .footer-main {
-        padding: 30px !important;
-    }
-    .footer-list, .footer-middle {
-        border-right: 0px;
-    }
-    .footer-middle {
-        padding-top: 20px;
-    }
-    .footer-right p {
-        text-align: left;
-        padding-top: 10px;
-        margin-bottom: 0px;
-    }
-   
-}
+
 @media screen and (min-width: 768px) and (max-width: 991px) {
     .login-box {
         max-width: 60% !important;
@@ -653,7 +628,16 @@ body {
     }
     
 }
+@media screen and (min-width:1024px) {
+    .rounded-list ol > li p {
+        margin-left:60px!important;
+     }
+}
+
+//Responsive for tablets
 @media screen and (min-width: 768px) {
+    .mobilenav { display: none; }
+    .button-header{margin-left: 23.5px!important;}
     .rounded-list ol > li p {
        background-color:white;
     }
@@ -670,19 +654,44 @@ body {
     }
     
 }
-@media screen and (min-width:1024px) {
-    .rounded-list ol > li p {
-        margin-left:60px!important;
-     }
-}
+
 
 .navbar-toggler i {
     color: #519fd1;
     font-size: 26px;
 }
 
-@media screen and (min-width: 768px) {
-    .mobilenav { display: none; }
+
+
+
+//Responsive for mobile
+
+
+@media screen and (max-width: 767px) {
+    .header-contact {
+        height: auto;
+        text-align: left;
+    }
+    
+    .login-box {
+        max-width: 90% !important;
+        flex: 0 0 90% !important;
+    }
+    .footer-main {
+        padding: 30px !important;
+    }
+    .footer-list, .footer-middle {
+        border-right: 0px;
+    }
+    .footer-middle {
+        padding-top: 20px;
+    }
+    .footer-right p {
+        text-align: left;
+        padding-top: 10px;
+        margin-bottom: 0px;
+    }
+   
 }
 @media screen and (max-width: 767px) {
     .webnav { display: none; }
@@ -809,3 +818,15 @@ body {
         }
     }
 }
+
+@media (min-width: 320px) and (max-width: 768px){
+    .footer-list{
+        ul{
+            padding: 0 !important;
+            li{
+                display: block !important;
+                padding: 5px;
+            }
+        }
+    }
+ }
