@@ -98,6 +98,20 @@
  .decide p{
   font-family:$font-family-prox; 
  }
+ @media (min-width: 320px) and (max-width: 768px){
+   .two-fact-card{
+    padding-top: 0 !important;
+   }
+  #root .card {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    padding: 0px 20px !important
+  }
+  .header-content{
+    line-height:24px;
+   }
+}
  
  .forgotcheckmail{
    h3{

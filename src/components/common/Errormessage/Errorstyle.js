@@ -29,7 +29,7 @@ const errorContent= {
     color: variables.orange,
   marginLeft:'7px',
   position:'absolute',
-  top:'18px'
+  top:'10%'
 }
 
 

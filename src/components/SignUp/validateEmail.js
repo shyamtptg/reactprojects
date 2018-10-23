@@ -122,7 +122,7 @@ class ValidateEmail extends Component {
   }
   render() {
     return (
-      <div className='card validate-email-box col-md-5'>
+      <div className='card validate-email-box col-sm-12 col-md-5'>
         <div className='card-header'>
         <span className="emailvalidcheck">Validate your email</span> 
            </div>
@@ -132,19 +132,19 @@ class ValidateEmail extends Component {
           <form>
             <div className='form-group col-12'>
               <div className='row label-text-security'>
-                <div className='col-9'>
+                <div className='col-6'>
                   <label>Security Code</label>
                 </div>
-                <div className='col-3'>
+                <div className='col-6' style={{ textAlign: 'right' }}>
                   <span onClick={this.resend} style={{ color: '#0195D4',cursor:'pointer' }}>Resend code</span>
                 </div>
               </div>
-              <input type='text' className='input-validate-email' placeholder='123456'
+              <input type='text' className='form-control input-validate-email' placeholder='123456'
                 name='preferredLanguage' onKeyDown={(event) => this.getkey(event)} value={this.state.preferredLanguage} onChange={this.handleChange} />
               <p>{this.state.isCapitalOn ? 'capital on' : ''}</p>
 
             </div>
-            <div className='form-group col-11'>
+            <div className='form-group col-12'>
               <button className='forgotbtn' onClick={this.validateSecurity} type='button' style={styles.Button}><span style={styles.textOnButton}>SUBMIT</span></button>
             </div>
             {/* <div className='col-12'>

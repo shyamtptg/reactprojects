@@ -117,7 +117,7 @@ class TwoFactorDetails extends Component {
 
     return (
       <React.Fragment>
-        <div className='two-fact-card col-md-5'>
+        <div className='two-fact-card col-sm-12 col-md-5'>
           <div className='Success'>
             <div className='card'>
               <div className='card-header two-fact-auth'>
@@ -141,7 +141,7 @@ class TwoFactorDetails extends Component {
                       </div>
                     </div>
                     <select className="form-control input-select" id="country" name="country" value={this.state.country} placeholder="select"
-                      onChange={this.handleChange} autofocus="true">
+                      onChange={this.handleChange} autofocus>
                       <option>Uganda</option>
                       <option>Ukraine</option>
                       <option>United Arab Emirates 971</option>
