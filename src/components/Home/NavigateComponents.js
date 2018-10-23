@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route,Switch } from "react-router-dom";
+import { Route,Switch } from 'react-router-dom';
 import SignUp from '../SignUp/SignUp';
 import ForgotPassword from '../Login/ForgotPassword';
 import ValidateEmail from '../SignUp/validateEmail';
@@ -14,6 +14,9 @@ import Forgotusername from '../Login/Recoverusername/Forgotusername';
 import Forgotcheckmail from '../Login/Recoverusername/Forgotcheckmail';
 import validatEmailTemplate from '../Emailtemplates/validatEmailTemplate';
 import PasswordSuccessChanged from '../Emailtemplates/passwordSuccess';
+import ForgotPasswordcheckmail from '../Login/Forgotpasswordcheckmail';
+import Createnewpassword from '../Login/Createpassword';
+
 const Home = () => {
   return (
     <React.Fragment>
@@ -32,6 +35,9 @@ const Home = () => {
          <Route path='/forgotcheckmail' component={Forgotcheckmail}/>
          <Route path='/validatetemplate' component={validatEmailTemplate}/>
          <Route path='/passwordSuccess'  component={PasswordSuccessChanged}/>
+         <Route path='/forgotpassword'  component={ForgotPassword}/>
+         <Route path='/forgotpasswordcheckmail'  component={ForgotPasswordcheckmail}/>
+         <Route path='/createpassword'  component={Createnewpassword}/>
 
       </Switch>
     </React.Fragment>

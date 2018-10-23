@@ -14,6 +14,7 @@ import { token } from '../../redux/actions/tokenAction';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { styles } from '../common/style';
+import '../../css/style.scss';
 import About from '../Home/About';
 // import Pagelevelerror from '../../assets/pagelevel-error.svg';
 
@@ -356,7 +357,7 @@ class SignUp extends Component {
 
               </div>
               <div className='form-group'>
-                <button type='button' style={styles.Button} onClick={this.register}><span style={styles.textOnButton}> SIGN UP</span></button>
+                <button type='button'  style={styles.Button} onClick={this.register}><span style={styles.textOnButton}> SIGN UP</span></button>
                 <div className="already-have-account">Already have an account?<span><Link className="login-link" to='/'>Log in</Link></span></div>
               </div>
               <div className='form-terms'>By clicking sign up, you agree to the <span>terms of use</span> and <span>privacy</span><span style={{ marginBottom: "0px" }}> policy,
