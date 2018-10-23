@@ -9,7 +9,7 @@ const TwoFactor = () => {
   return (
     <React.Fragment>
      
-    <div className='two-fact-card col-md-5'>
+    <div className='two-fact-card col-sm-12 col-md-5'>
     <div className='Success'>
         <Successmessage success='Your email has been validated successfully'/></div>
         <div className='card'>
