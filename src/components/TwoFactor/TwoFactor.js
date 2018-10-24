@@ -33,10 +33,10 @@ const TwoFactor = () => {
             <div className='form-group col-md-12'>
               <div className='row'>
                 <div className='col-sm-6'>
-                <button className='Enable2FA' type='button' style={styles.Button}><span style={styles.textOnButton}><Link to ='/twofactordetails' style={{color:variables.whitecolor,textDecoration:'none'}}>SET UP 2FA</Link></span></button>                 
+                <button className='Enable2FA' type='button' style={styles.Button}><span style={styles.textOnButton}><Link to ='/twofactordetails' style={{color:variables.whitecolor,textDecoration:'none',float:'none'}}>SET UP 2FA</Link></span></button>                 
                 </div>
                 <div className='col-sm-6'>
-                <button className='Skip' type='button'><Link to ='/' style={{color:variables.primary}}>SKIP</Link></button>
+                <button className='Skip' type='button'><Link to ='/' style={{color:variables.primary,float:'none'}}>SKIP</Link></button>
                 </div>
               </div>
              </div>

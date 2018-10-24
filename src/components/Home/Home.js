@@ -14,7 +14,7 @@ const Home = () => {
           <NavigateComponent/>
         </div>
       </div>
-      {window.location.pathname === '/twiliosuccess'||window.location.pathname === '/twofactordetails'||window.location.pathname === '/loginsuccess'||window.location.pathname === '/forgotusername'||window.location.pathname === '/forgotcheckmail'||window.location.pathname === '/validatetemplate'||window.location.pathname === '/passwordSuccess'||window.location.pathname === '/forgotpassword'? '' :   <Footer/>}
+      {window.screen.width > 768 || window.location.pathname === '/loginsuccess'||window.location.pathname === '/forgotusername'||window.location.pathname === '/forgotcheckmail'||window.location.pathname === '/validatetemplate'||window.location.pathname === '/passwordSuccess'||window.location.pathname === '/forgotpassword'? '' :   <Footer/>}
     </React.Fragment>
   )
 }
