@@ -102,28 +102,26 @@ class Createnewpassword extends Component {
   render() {
     return (
 
-      <div class="container">
-        <div class="row form-body">
-          <div class='two-fact-card col-md-5'>
-            <div class='Success'>
-              <div class='card'>
-                <div class='card-header two-fact-auth1'>
+          <div className='two-fact-card col-md-5'>
+            <div className='Success'>
+              <div className='card'>
+                <div className='card-header two-fact-auth1'>
                   Create a new password
             </div>
-                <div class='card-block'>
+                <div className='card-block'>
                   <form>
-                    <div class='form-group col-12'>
-                      <div class='row'>
-                        <div class="col-12">
+                    <div className='form-group col-12'>
+                      <div className='row'>
+                        <div className="col-12">
                           <label>Password</label>
                         </div>
                       </div>
-                      <input type='password' class="form-control" id='password' name='password'
+                      <input type='password' className="form-control" id='password' name='password'
                       value={this.state.password} onChange={this.handleChange}/>
                     </div>
 
-                    <div class='form-group col-12'>
-                      <button onClick={this.updatePassword} type='button' class="btn-class"><span >CREATE PASSWORD</span></button>
+                    <div className='form-group col-12'>
+                      <button onClick={this.updatePassword} type='button' className="btn-class"><span >CREATE PASSWORD</span></button>
                     </div>
 
 
@@ -132,8 +130,6 @@ class Createnewpassword extends Component {
               </div>
             </div>
           </div>
-        </div>
-      </div>
     )
   }
 }

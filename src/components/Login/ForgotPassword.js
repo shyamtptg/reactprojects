@@ -115,10 +115,10 @@ class ForgotPassword extends Component {
            </div>
         <div className='card-block'>
           <form>
-            <div class='form-group col-12'>
-              <div class='row'>
-                <div class='col-12 '>
-                  <p class="recover-user">We will send you an email with instructions on how
+            <div className='form-group col-12'>
+              <div className='row'>
+                <div className='col-12 '>
+                  <p className="recover-user">We will send you an email with instructions on how
                         to reset <br />your password.
                    </p>
                 </div>
@@ -126,10 +126,10 @@ class ForgotPassword extends Component {
             </div>
             <div className='form-group col-12'>
               <div className="row label-text">
-                <div className="col-8">
+                <div className="col-6">
                   <label>Username</label>
                 </div>
-                <div className="col-4">
+                <div className="col-6" style={{ textAlign: 'right' }}>
                   <label style={{ color: '#0195D4' }}><Link to='/forgotusername'>Forgot username?</Link></label>
                 </div>
               </div>
