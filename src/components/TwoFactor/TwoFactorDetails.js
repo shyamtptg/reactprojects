@@ -117,7 +117,7 @@ class TwoFactorDetails extends Component {
 
     return (
       <React.Fragment>
-        <div className='two-fact-card col-sm-12 col-md-5'>
+        <div className='two-fact-card col-sm-12 col-md-7 col-lg-5'>
           <div className='Success'>
             <div className='card'>
               <div className='card-header two-fact-auth'>

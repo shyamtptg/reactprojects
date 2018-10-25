@@ -31,6 +31,7 @@ class Forgotusername extends Component {
       }
     }
     this.handleChange = this.handleChange.bind(this);
+    this.forgotUsername=this.forgotUsername.bind(this);
   }
   handleChange(e) {
     const name = e.target.name;

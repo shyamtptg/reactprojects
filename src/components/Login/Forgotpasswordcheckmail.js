@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import validate from 'validate.js';
-import {validateData} from '../../redux/actions/forgotvalidate';
+import { validateData } from '../../redux/actions/forgotvalidate';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -20,7 +20,7 @@ class ForgotPasswordcheckmail extends Component {
 
       },
       isSubmitted: false
-     
+
     }
 
     this.constraints = {
@@ -79,7 +79,7 @@ class ForgotPasswordcheckmail extends Component {
         });
     }
   }
-  
+
   handleChange(e) {
     const name = e.target.name;
     const value = e.target.value;
@@ -102,42 +102,43 @@ class ForgotPasswordcheckmail extends Component {
 
   render() {
     return (
-      <div className='container'>
-        <div className='row form-body-forgot'>
-          <div className='two-fact-card col-md-12'>
-            <div className='Success'>
-              <div className='card'>
-                <div className='card-header two-fact-auth1'>
-                  Enter security code
+      <div className='two-fact-card col-sm-12 col-md-7 col-lg-5'>
+        <div className='two-fact-card col-md-12'>
+          <div className='Success'>
+            <div className='card'>
+              <div className='card-header two-fact-auth1'>
+                Enter security code
                     </div>
-                <div className='card-block'>
-                  <form>
-                    <div className='form-group col-12'>
-                      <div className='row'>
-                        <div className='col-12'>
-                          <label>Security code</label>
-                          <Link to=''>Resend code</Link>
-                        </div>
+              <div className='card-block'>
+                <form>
+                  <div className='form-group col-12'>
+                    <div className='row'>
+                      <div className="col-8">
+                        <label>Security code</label>
                       </div>
-                      <input type='text' className='form-control' id='preferredLanguage' name='preferredLanguage'  value={this.state.preferredLanguage} placeholder='123456'
-                       onChange={this.handleChange}/>
+                      <div className="col-md-4 col-lg-4">
+                      <Link to=''>Resend code</Link>
+                    </div>
+                  </div>
+                  <input type='text' className='form-control' id='preferredLanguage' name='preferredLanguage' value={this.state.preferredLanguage} placeholder='123456'
+                    onChange={this.handleChange} />
                     </div>
 
-                    <div className='form-group col-12'>
-                      <button onClick={this.validateSecurity} type='button' className='btn-class'><span >CONTINUE</span></button>
-                    </div>
+                <div className='form-group col-12'>
+                  <button onClick={this.validateSecurity} type='button' className='btn-class'><span >CONTINUE</span></button>
+                </div>
 
-                    <div className='form-group col-12'>
-                      <p className='bottom'>Code was sent to wrong email address</p>
-                    </div>
+                <div className='form-group col-12'>
+                  <p className='bottom'>Code was sent to wrong email address</p>
+                </div>
 
                   </form>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
+        </div >
+      
 
 
     )
@@ -147,7 +148,7 @@ const mapStateToProps = (state) => {
   return {
     userDetails: state.token.userDetails,
     userResponse: state.signup.userSignupDetails,
-    getId:state.getTwilio.getTwilioUser
+    getId: state.getTwilio.getTwilioUser
     // getValidateForm: state.getValidate.getValidate
 
   }

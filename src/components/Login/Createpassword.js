@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import {updateUser} from '../../redux/actions/updatePassword';
+import { updateUser } from '../../redux/actions/updatePassword';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
+import icon_hide from '../../assets/icon_hide.svg';
+import icon_show from '../../assets/icon_show.svg';
 import validate from 'validate.js';
+import '../../css/style.scss';
 // import { Link } from 'react-router-dom';
 // import { styles } from '../common/style';
 import './login.scss';
@@ -11,6 +14,7 @@ class Createnewpassword extends Component {
     super(props)
     this.state = {
       password: '',
+      type: 'password',
       errors: {
         password: ''
 
@@ -20,7 +24,7 @@ class Createnewpassword extends Component {
 
       },
       isSubmitted: false
-     
+
     }
 
     this.constraints = {
@@ -54,7 +58,7 @@ class Createnewpassword extends Component {
       'password': this.state.password
 
     }
-    this.props.updateUser(password,this.props.userDetails['access_token'], this.props.getId['id'], this.props);
+    this.props.updateUser(password, this.props.userDetails['access_token'], this.props.getId['id'], this.props);
 
 
   }
@@ -79,7 +83,11 @@ class Createnewpassword extends Component {
         });
     }
   }
-  
+  showHidePassword() {
+    this.setState(prevState => ({
+      type: prevState.type === 'password' ? 'text' : 'password'
+    }));
+  }
   handleChange(e) {
     const name = e.target.name;
     const value = e.target.value;
@@ -102,38 +110,37 @@ class Createnewpassword extends Component {
   render() {
     return (
 
-      <div class="container">
-        <div class="row form-body">
-          <div class='two-fact-card col-md-5'>
-            <div class='Success'>
-              <div class='card'>
-                <div class='card-header two-fact-auth1'>
-                  Create a new password
+      <div className='two-fact-card col-sm-12 col-md-7 col-lg-5'>
+        <div class='Success'>
+          <div class='card'>
+            <div class='card-header two-fact-auth1'>
+              Create a new password
             </div>
-                <div class='card-block'>
-                  <form>
-                    <div class='form-group col-12'>
-                      <div class='row'>
-                        <div class="col-12">
-                          <label>Password</label>
-                        </div>
-                      </div>
-                      <input type='password' class="form-control" id='password' name='password'
-                      value={this.state.password} onChange={this.handleChange}/>
+            <div class='card-block'>
+              <form>
+                <div class='form-group col-12'>
+                  <div class='row'>
+                    <div class="col-12">
+                      <label>Password</label>
                     </div>
+                  </div>
+                  <input type={this.state.type} class="form-control" id='password' name='password'
+                    value={this.state.password} onChange={this.handleChange} />
+                  {this.state.type === 'password' ? (<img className='iconhidelog' src={icon_hide} alt='Eye' onClick={() => this.showHidePassword()} />) : (<img className='iconshowlog' src={icon_show} alt='Eye' onClick={() => this.showHidePassword()} />)}
 
-                    <div class='form-group col-12'>
-                      <button onClick={this.updatePassword} type='button' class="btn-class"><span >CREATE PASSWORD</span></button>
-                    </div>
-
-
-                  </form>
                 </div>
-              </div>
+
+                <div class='form-group col-12'>
+                  <button onClick={this.updatePassword} type='button' class="btn-class"><span >CREATE PASSWORD</span></button>
+                </div>
+
+
+              </form>
             </div>
           </div>
         </div>
       </div>
+
     )
   }
 }
@@ -141,7 +148,7 @@ const mapStateToProps = (state) => {
   return {
     userDetails: state.token.userDetails,
     userResponse: state.signup.userSignupDetails,
-    getId:state.getTwilio.getTwilioUser
+    getId: state.getTwilio.getTwilioUser
     // getValidateForm: state.getValidate.getValidate
 
   }

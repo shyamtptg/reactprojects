@@ -131,7 +131,7 @@ class TwoFactorAuth extends Component {
     return (
       <React.Fragment>
 
-        <div className='two-fact-card col-md-5'>
+        <div className='two-fact-card col-md-7 col-lg-5'>
           {this.props.getEmailValidate.resend ? <Resendmessage error='A new security code has sent to your phone' /> : ''}
           <div className='card'>
             <div className='card-header'>
