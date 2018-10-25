@@ -141,7 +141,7 @@ class TwoFactorDetails extends Component {
                       </div>
                     </div>
                     <select className="form-control input-select" id="country" name="country" value={this.state.country} placeholder="select"
-                      onChange={this.handleChange} autofocus>
+                      onChange={this.handleChange} autoFocus={true}>
                       <option>Uganda</option>
                       <option>Ukraine</option>
                       <option>United Arab Emirates 971</option>

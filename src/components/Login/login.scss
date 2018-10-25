@@ -146,3 +146,23 @@ width: 45%;
 .form-control-feedback-forget{
  right:20px;top:52px;
 }
+@media (min-width: 320px) and (max-width: 768px){
+  .two-fact-card{
+   margin: 0 !important;
+  }
+  .form-body{
+    padding-top:0 !important; 
+  }
+  #root .two-fact-auth{
+    padding-bottom: 30px !important;
+  }
+  .forgot-box{
+    margin-top:0 !important;
+   }
+   .form-body-forgot{
+      width: 100%;
+    }
+    #root .two-fact-auth1 {
+      padding-bottom: 30px !important;
+    }
+}

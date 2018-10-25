@@ -152,7 +152,7 @@ class TwoFactorAuth extends Component {
                     </div>
                   </div>
                   <input type='text' className='input-validate-email' placeholder='123456'
-                    name='preferredLanguage' onKeyDown={(event) => this.getkey(event)} value={this.state.preferredLanguage} onChange={this.handleChange} autofocus="true"/>
+                    name='preferredLanguage' onKeyDown={(event) => this.getkey(event)} value={this.state.preferredLanguage} onChange={this.handleChange} autoFocus={true}/>
                   <p>{this.state.isCapitalOn ? 'capital on' : ''}</p>
 
                 </div>

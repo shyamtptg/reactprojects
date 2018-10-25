@@ -170,10 +170,10 @@ class ForgotPassword extends Component {
             </div>
             <div className='form-group col-12'>
               <div className="row label-text">
-                <div className="col-md-6">
+                <div className="col-6">
                   <label>Username</label>
                 </div>
-                <div className="col-md-6 forgot-align">
+                <div className="col-6" style={{ textAlign: 'right' }}>
                   <label style={{ color: '#0195D4' }}><Link to='/forgotusername'>Forgot username?</Link></label>
                 </div>
               </div>
