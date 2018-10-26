@@ -38,6 +38,7 @@ const Home = () => {
          <Route path='/forgotpassword'  component={ForgotPassword}/>
          <Route path='/forgotpasswordcheckmail'  component={ForgotPasswordcheckmail}/>
          <Route path='/createpassword'  component={Createnewpassword}/>
+         <Route path='/login' component={() => window.location = 'https://myinno.myglu.com/'}/>
 
       </Switch>
     </React.Fragment>

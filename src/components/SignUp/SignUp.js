@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import qs from 'qs';
 import { Link } from 'react-router-dom';
 import validate from 'validate.js';
 import check from '../../assets/check.svg';
@@ -113,17 +114,18 @@ class SignUp extends Component {
         }
       }
     }
-    // const params={
-    //   grant_type:'client_credentials'
-    // }
+    const params={
+      grant_type:'client_credentials'
+    }
     //  const data = new FormData();
     // for(var k in params){
     //   data.append(k,params[k]);
     // }
     //  data.set('grant_type','client_credentials');
-     const data = new URLSearchParams();
-    data.append('grant_type', 'client_credentials');
-    this.props.token(data, this.props);
+    
+    //  const data = new URLSearchParams();
+    // data.append('grant_type', 'client_credentials');
+    this.props.token( qs.stringify(params), this.props);
     this.handleChange = this.handleChange.bind(this);
     this.register = this.register.bind(this);
     this.getErrorMessage = this.getErrorMessage.bind(this);

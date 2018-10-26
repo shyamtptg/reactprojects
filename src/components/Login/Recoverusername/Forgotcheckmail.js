@@ -13,6 +13,12 @@ class Forgotcheckmail extends Component {
   
   render() {
     
+    var user;
+   
+    for ( const key in this.props.updateuser['emails'] ){
+      user=this.props.updateuser['emails'][key]['value'];
+     }
+    
      return (
 
       <React.Fragment>
@@ -24,7 +30,7 @@ class Forgotcheckmail extends Component {
                   <div className='form-group'>
                     <div className='row'>
                       <div className='col-12'>
-                        <p>An email with instructions to recover your username was sent to your email address<br/>
+                        <p>An email with instructions to recover your username was sent to your email address {user}<br/>
                           if no email is received within ten minutes,please check your email spam folder, try again or contact support</p>
                           
                    
@@ -34,7 +40,7 @@ class Forgotcheckmail extends Component {
                  
 
                   <div className='form-group offset-4 col-4'>
-                    <button type='button' style={styles.Button} onClick={() => this.forgotUsername}><span style={styles.textOnButton}><Link to='/'>LOG INTO ACCOUNT</Link></span></button>
+                    <button type='button' style={styles.Button} onClick={() => this.forgotUsername}><span style={styles.textOnButton}><Link to='/' style={{color:'white'}}>LOG INTO ACCOUNT</Link></span></button>
                   </div>
                   <div className='form-group col-12'>
                     <div className='row'>
@@ -43,8 +49,7 @@ class Forgotcheckmail extends Component {
                         <label style={{ color: variables.strongblu,cursor:'pointer',paddingRight:'10px',borderRight:`1px solid ${variables.strongblu}` }}>Resend email</label>
                         <label style={{ color: variables.strongblu,cursor:'pointer',paddingLeft:'10px' }}><Link to='/forgotusername'>Email was sent to wrong email address</Link></label>
                       </div>
-                      
-                      </div>
+                       </div>
                     </div>
                  
 
@@ -60,19 +65,16 @@ class Forgotcheckmail extends Component {
 
 }
 Forgotcheckmail.propTypes = {
-  userDetails: PropTypes.any,
-  userResponse: PropTypes.any,
-  getEmailValidate: PropTypes.any,
-  validateData: PropTypes.func
+  updateUser: PropTypes.any
+ 
 }
 const mapStateToProps = (state) => {
   return {
-    userDetails: state.token.userDetails,
-    userResponse: state.signup.userSignupDetails,
-    getEmailValidate: state.getEmailValidation.getEmailValidate
+    updateuser: state.updateUser.updateUser
+    
 
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Forgotcheckmail));
+export default withRouter(connect(mapStateToProps,null)(Forgotcheckmail));
 

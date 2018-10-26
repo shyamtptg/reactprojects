@@ -137,4 +137,11 @@
     
  }
 }
+
+.form-group input:focus{
+  border: 1px solid #056DAE;	
+  background-color: #FFFFFF;
+  border-bottom:1px solid #056DAE;
+  box-shadow: 0 0 4px 0 rgba(1,149,212,0.3);
+}
  

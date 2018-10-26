@@ -16,7 +16,7 @@ axios.put(UPDATE_USER_URL,data,{headers:header}).then(res=>{
         });
       
         if(res){
-          context.history.push('/');
+          context.history.push('/login');
         }
       }).catch(error => {
       });

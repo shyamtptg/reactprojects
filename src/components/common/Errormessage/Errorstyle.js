@@ -24,12 +24,12 @@ const checkIcon = {
 }
 
 const errorContent= {
-  
   display:'inline-block',
-    color: variables.orange,
-  marginLeft:'7px',
+  color: variables.orange,
+  marginLeft:'3%',
+  paddingTop:'2%',
   position:'absolute',
-  top:'10%'
+  top:'8%'
 }
 
 

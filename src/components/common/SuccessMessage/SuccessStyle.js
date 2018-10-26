@@ -18,10 +18,10 @@ const SuccessIcon = {
 const SuccessContent = {
   display: 'inline-block',
   color:variables.lightGreen,
-  marginLeft: '20px',
+  marginLeft: '5%',
   width: 'calc(100% - 66px)',
   position: 'absolute',
-  paddingTop: '3%'
+  paddingTop: '4%'
 }
 const checkIcon = {
   display: 'flex',

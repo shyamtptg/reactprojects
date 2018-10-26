@@ -35,7 +35,7 @@ var button={
                 <div className='row'>
                 <div className='col-sm-12 col-md-5'></div>
                 <div className='col-sm-12 col-md-2'>
-                    <button className='Enable2FA' type='button' style={styles.Button}><span><Link style={{color:'white',textDecoration:"none"}} to='/'>Done</Link></span></button> 
+                    <button className='Enable2FA' type='button' style={styles.Button}><span><Link style={{color:'white',textDecoration:"none"}} to='/login'>Done</Link></span></button> 
                 </div>
                 <div className='col-sm-12 col-md-5'></div>
                 </div>
