@@ -42,7 +42,7 @@ export const login = (data, context) => (dispatch) => {
                     const formdata = new URLSearchParams();
                     formdata.append('Body', updatedres.data.preferredLanguage);
                     formdata.append('From', '+18597590916');
-                    formdata.append('To', '+91' + updatedres.data.phoneNumbers[0].value);
+                    formdata.append('To', updatedres.data.phoneNumbers[0].value);
                     const headers = {
                         'Content-type': 'application/x-www-form-urlencoded',
                         'Authorization': 'Basic QUM5ZDI0ZTgwMTVlNDIyOTVkNDNlNjQzMDkzZmRiNmYyNDowZTY3NWQyYjM2YjYxZmZkYTBhZjc5MWM0MTU1MTAzOQ=='

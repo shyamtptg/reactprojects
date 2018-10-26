@@ -174,7 +174,7 @@ class ForgotPassword extends Component {
                   <label>Username</label>
                 </div>
                 <div className="col-6" style={{ textAlign: 'right' }}>
-                  <label style={{ color: '#0195D4' }}><Link to='/forgotusername'>Forgot username?</Link></label>
+                  <label style={{ color: '#0195D4',cursor:'pointer' }}><Link to='/forgotusername'>Forgot username?</Link></label>
                 </div>
               </div>
               <input type='text' className={(this.state.isSubmitted && !this.state.touched.userName && formErrors && formErrors.userName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'} id='userName' name='userName' value={this.state.userName}

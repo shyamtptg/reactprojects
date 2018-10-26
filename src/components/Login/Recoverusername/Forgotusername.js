@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { styles } from '../../common/style';
 import validate from 'validate.js';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
+import '../../../css/style.scss';
 import PropTypes from 'prop-types';
-import { updateUser } from '../../../redux/actions/updateUserAction';
+import { token } from '../../../redux/actions/tokenAction';
+import { forgotuserData } from '../../../redux/actions/forgotusername';
 
 
 class Forgotusername extends Component {
@@ -16,7 +20,7 @@ class Forgotusername extends Component {
 
 
       errors: {
-        email: undefined,
+        email: '',
 
       },
       touched: {
@@ -30,8 +34,13 @@ class Forgotusername extends Component {
         email: true
       }
     }
+    const data = new URLSearchParams();
+    data.append('grant_type', 'client_credentials');
+    this.props.token(data, this.props);
     this.handleChange = this.handleChange.bind(this);
     this.forgotUsername=this.forgotUsername.bind(this);
+    // this.forgotUsername = this.forgotUsername.bind(this);
+    this.getErrorMessage = this.getErrorMessage.bind(this);
   }
   handleChange(e) {
     const name = e.target.name;
@@ -58,23 +67,43 @@ class Forgotusername extends Component {
     }, () => {
       this.setState({
         touched: {
-          country: false,
-          mobileNo: false
+          email: false
+
         }
       });
     });
 
     const data =
     {
-      "emails": [{
-        "value": this.state.email
-      }]
+      'emails': [{
+        'value': this.state.email
+      }],
+      'name': { 'familyName': 'Jemstep' }
 
     }
-    this.props.updateUser(data, this.props.userDetails['access_token'], this.props.userResponse['id'], this.props);
+    const email=data.emails[0].value;
+    this.props.forgotuserData(data,email,this.props.userDetails['access_token'], this.props);
 
-
+    
   }
+
+  getErrorMessage(inputType) {
+    const validJsErrors = validate(this.state, this.constraints);
+    const inputSpace = inputType.replace(/([A-Z])/g, ' $1').trim()
+    const toUpper = inputSpace.charAt(0).toUpperCase() + inputSpace.substr(1).toLowerCase();
+    for (let k in validJsErrors) {
+
+      if (validJsErrors.hasOwnProperty(k)) {
+        if (k === inputType) {
+          return (validJsErrors[k].map((ele, index) => {
+            return <p className='errorMessage' key={index}> { ele === toUpper + ' can\'t be blank' ? toUpper + ' address is required' : ele === toUpper + ' is invalid' ? toUpper + ' address is required' : ele === toUpper + ' is not a valid email' ? toUpper + '  address is required' : ele}</p>
+          })
+          )
+        }
+      }
+    }
+  }
+
 
   validateCheck = (name) => {
     const validJsErrors = validate(this.state, this.constraints);
@@ -82,25 +111,44 @@ class Forgotusername extends Component {
     if (validJsErrors) {
       Object.entries(validJsErrors)
         .forEach((key) => {
-          let errors = { ...this.state.errors };
+          // let errors = { ...this.props.getValidateForm };
           if (!errorKeys.includes(name)) {
-            errors[name] = '';
-            this.setState({
-              errors: errors
-            });
+
+            this.setState(prevState => ({
+              errors: {
+                ...prevState.errors,
+                [name]: undefined
+              }
+            }), () => {
+            })
           } else if (key[0] === name && key[1].length > 0) {
-            errors[name] = key[1][0];
-            this.setState({
-              errors: errors
-            });
+            //errors[name] = key[1][0];
+            // this.setState({
+            //   errors: errors
+            // });
+            this.setState(prevState => ({
+              errors: {
+                ...prevState.errors,
+                [name]: key[1][0]
+              }
+            }))
           }
         });
     }
+    else {
+      this.setState({
+        errors: {
+          email: undefined
 
+
+        }
+      });
+
+    }
   }
-
   render() {
-
+    const formErrors = validate(this.state, this.constraints);
+    console.log(formErrors);
     return (
       <React.Fragment>
         <div className='two-fact-card col-md-5'>
@@ -122,16 +170,20 @@ class Forgotusername extends Component {
                   </div>
                   <div className='form-group col-12'>
                     <div className='row'>
-                      <div className="col-6">
+                      <div className='col-6'>
                         <label>Email address</label>
                       </div>
                     </div>
-                    <input type='email' className="form-control" id='email' name='email' value={this.state.email}
-                      onChange={this.handleChange} />
+                    <input type='email' className={(this.state.isSubmitted && !this.state.touched.email && formErrors && formErrors.email) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'} id='email' name='email' value={this.state.email}
+                      onChange={this.handleChange} onFocus={this.handleChange} />
+                    {(this.state.isSubmitted && !this.state.touched.email && formErrors && formErrors.email) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-feedback form-control-feedback-forget" /> : ''}
+                    {this.state.isSubmitted && this.state.touched.email && formErrors && this.state.errors.email ?
+
+                      this.getErrorMessage('email') : ''}
                   </div>
 
                   <div className='form-group col-12'>
-                    <button type='button' style={styles.Button} onClick={() => this.forgotUsername}><span style={styles.textOnButton}>CONTINUE</span></button>
+                    <button type='button' style={styles.Button} onClick={this.forgotUsername}><span style={styles.textOnButton}>CONTINUE</span></button>
                   </div>
                   <div className='form-group col-12'>
                     <div className='row'>
@@ -168,5 +220,5 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, { updateUser })(Forgotusername));
+export default withRouter(connect(mapStateToProps, { forgotuserData,token })(Forgotusername));
 

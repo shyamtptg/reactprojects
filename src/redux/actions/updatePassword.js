@@ -9,11 +9,15 @@ export const updateUser = (data,token,id,context) => (dispatch) => {
     'code':`${id}`
    }
 axios.put(UPDATE_USER_URL,data,{headers:header}).then(res=>{
-  console.log("updatepassword",res);
+ 
      dispatch({
             type:UPDATE_USER,
             data: res.data
         });
+      
+        if(res){
+          context.history.push('/');
+        }
       }).catch(error => {
       });
     }

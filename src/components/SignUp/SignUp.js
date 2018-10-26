@@ -113,7 +113,15 @@ class SignUp extends Component {
         }
       }
     }
-    const data = new URLSearchParams();
+    // const params={
+    //   grant_type:'client_credentials'
+    // }
+    //  const data = new FormData();
+    // for(var k in params){
+    //   data.append(k,params[k]);
+    // }
+    //  data.set('grant_type','client_credentials');
+     const data = new URLSearchParams();
     data.append('grant_type', 'client_credentials');
     this.props.token(data, this.props);
     this.handleChange = this.handleChange.bind(this);
@@ -354,7 +362,6 @@ class SignUp extends Component {
                 {(this.state.isSubmitted && !this.state.touched.certify && formErrors && formErrors.certify) ? <FontAwesomeIcon icon={faExclamationCircle} className="form-control-check-feedback" /> : ''}
                 {/* {formErrors && !this.state.isSubmitted && this.state.errors.certify ? this.getErrorMessage('certify') : ''} */}
                 {this.state.isSubmitted && formErrors && formErrors.certify ? this.getErrorMessage('certify') : ''}
-
               </div>
               <div className='form-group'>
                 <button type='button'  style={styles.Button} onClick={this.register}><span style={styles.textOnButton}> SIGN UP</span></button>

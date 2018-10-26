@@ -5,7 +5,7 @@ export const resendTwilioOtp = (preferredLanguage, phoneNumber,context) => (disp
   const formdata = new URLSearchParams();
   formdata.append('Body', preferredLanguage);
   formdata.append('From', '+18597590916');
-  formdata.append('To', '+91' + phoneNumber);
+  formdata.append('To',  phoneNumber);
 
   const headers = {
     'Content-type': 'application/x-www-form-urlencoded',

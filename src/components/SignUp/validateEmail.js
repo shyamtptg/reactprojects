@@ -140,7 +140,7 @@ class ValidateEmail extends Component {
                 </div>
               </div>
               <input type='text' className='form-control input-validate-email' placeholder='123456'
-                name='preferredLanguage' onKeyDown={(event) => this.getkey(event)} value={this.state.preferredLanguage} onChange={this.handleChange} />
+                name='preferredLanguage' onKeyDown={(event) => this.getkey(event)} value={this.state.preferredLanguage} onChange={this.handleChange} autoFocus={true}/>
               <p>{this.state.isCapitalOn ? 'capital on' : ''}</p>
 
             </div>

@@ -120,18 +120,18 @@ class Createnewpassword extends Component {
               <form>
                 <div class='form-group col-12'>
                   <div class='row'>
-                    <div class="col-12">
+                    <div class='col-12'>
                       <label>Password</label>
                     </div>
                   </div>
-                  <input type={this.state.type} class="form-control" id='password' name='password'
+                  <input type={this.state.type} class='form-control' id='password' name='password'
                     value={this.state.password} onChange={this.handleChange} />
                   {this.state.type === 'password' ? (<img className='iconhidelog' src={icon_hide} alt='Eye' onClick={() => this.showHidePassword()} />) : (<img className='iconshowlog' src={icon_show} alt='Eye' onClick={() => this.showHidePassword()} />)}
 
                 </div>
 
                 <div class='form-group col-12'>
-                  <button onClick={this.updatePassword} type='button' class="btn-class"><span >CREATE PASSWORD</span></button>
+                  <button onClick={this.updatePassword} type='button' className='btn-class'><span >CREATE PASSWORD</span></button>
                 </div>
 
 

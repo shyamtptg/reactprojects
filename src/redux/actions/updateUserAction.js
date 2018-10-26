@@ -16,7 +16,7 @@ axios.put(UPDATE_USER_URL,data,{headers:header}).then(res=>{
           const formdata = new URLSearchParams();
           formdata.append('Body', res.data.preferredLanguage);
           formdata.append('From', '+18597590916');
-          formdata.append('To', '+91'+ res.data.phoneNumbers[0].value);
+          formdata.append('To', res.data.phoneNumbers[0].value);
          
            const headers = {
             'Content-type':'application/x-www-form-urlencoded',

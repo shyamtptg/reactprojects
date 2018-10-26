@@ -3,7 +3,11 @@ import validate from 'validate.js';
 import { validateData } from '../../redux/actions/forgotvalidate';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import variables from '../../css/variables.scss';
+import Resendmessage from '../common/ResendMessage/ResendMessage';
+import Errormessage from '../common/Errormessage/Errormessage';
+import { resendData } from '../../redux/actions/resendOtp';
+// import { Link } from 'react-router-dom';
 // import { styles } from '../common/style';
 import './login.scss';
 class ForgotPasswordcheckmail extends Component {
@@ -36,6 +40,7 @@ class ForgotPasswordcheckmail extends Component {
     }
     this.validateSecurity = this.validateSecurity.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.resend=this.resend.bind(this);
   }
 
   validateSecurity() {
@@ -79,7 +84,14 @@ class ForgotPasswordcheckmail extends Component {
         });
     }
   }
-
+  resend() {
+    console.log(this.props);
+    const email = {
+      'emails': this.props.getId['emails'],
+      'locale': 'en_US'
+    }
+    this.props.resendData(email,this.props.userDetails['access_token'],  this.props.getId['id'], this.props);
+  }
   handleChange(e) {
     const name = e.target.name;
     const value = e.target.value;
@@ -103,12 +115,16 @@ class ForgotPasswordcheckmail extends Component {
   render() {
     return (
       <div className='two-fact-card col-sm-12 col-md-7 col-lg-5'>
+      {this.props.getEmailValidate.resend ? <Resendmessage error='A new security code has sent to your mail' /> : ''}
         <div className='two-fact-card col-md-12'>
           <div className='Success'>
             <div className='card'>
               <div className='card-header two-fact-auth1'>
                 Enter security code
                     </div>
+                    {!this.props.getEmailValidate.resend && this.props.getEmailValidate.isValid === '' ?
+              <Errormessage error='Invalid security code. Please try again.' /> : ''}
+
               <div className='card-block'>
                 <form>
                   <div className='form-group col-12'>
@@ -116,8 +132,8 @@ class ForgotPasswordcheckmail extends Component {
                       <div className="col-8">
                         <label>Security code</label>
                       </div>
-                      <div className="col-md-4 col-lg-4">
-                      <Link to=''>Resend code</Link>
+                      <div className='col-4'>
+                      <label onClick={this.resend} style={{ color: variables.strongblu,cursor:'pointer' }}>Resend code</label>
                     </div>
                   </div>
                   <input type='text' className='form-control' id='preferredLanguage' name='preferredLanguage' value={this.state.preferredLanguage} placeholder='123456'
@@ -148,13 +164,14 @@ const mapStateToProps = (state) => {
   return {
     userDetails: state.token.userDetails,
     userResponse: state.signup.userSignupDetails,
-    getId: state.getTwilio.getTwilioUser
+    getId: state.getTwilio.getTwilioUser,
+    getEmailValidate: state.getEmailValidation.getEmailValidate
     // getValidateForm: state.getValidate.getValidate
 
   }
 }
 
-export default withRouter(connect(mapStateToProps, { validateData })(ForgotPasswordcheckmail));
+export default withRouter(connect(mapStateToProps, {validateData, resendData  })(ForgotPasswordcheckmail));
 
 
 

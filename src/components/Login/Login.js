@@ -204,7 +204,7 @@ class Login extends Component {
                   <label>Username</label>
                 </div>
                 <div className='col-6 forgot-align'>
-                  <Link style={{color:variables.strongblu}} to=''>Forgot username?</Link>
+                  <Link style={{color:variables.strongblu}} to='/forgotusername'>Forgot username?</Link>
                 </div>
               </div>
               <input tabIndex={1} type='text' className={(this.state.isSubmitted && !this.state.touched.userName&&formErrors&&formErrors.userName) ? 'form-control form-control-lg error-border' : 'form-control form-control-lg'} id='userName' name='userName' value={this.state.userName}

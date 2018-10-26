@@ -15,6 +15,7 @@ axios.put(GET_EMAIL_URL,data,{headers:header}).then(res=>{
             data:{isValid: res.data,
             resend: false}
         });
+        console.log(res);
         if(res && res.data){
           context.history.push('/createpassword')
         }

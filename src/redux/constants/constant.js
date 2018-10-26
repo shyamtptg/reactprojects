@@ -12,6 +12,7 @@ export const domain_mahesh='mahesh.myglu.com'
 export const USER_TOKEN = 'TOKEN_USER';
 export const USER_SIGNUP = 'USER_SIGNUP';
 export const UPDATE_USER= 'UPDATE_USER';
+export const FORGOT_USER= 'UPDATE_USER';
 export const GET_VALIDATE='GET_VALIDATE';
 export const GET_USER='GET_USER';
 export const GET_LOGINTWILIO='GET_LOGINTWILIO';
@@ -38,4 +39,6 @@ export const GET_LOGINURL_TWILIO = protocol_http+domain_mahesh+'/jemstepUser/use
 export const GET_TWILIO_URL ='https://api.twilio.com/2010-04-01/Accounts/AC9d24e8015e42295d43e643093fdb6f24/Messages.json';
 
 
+//Forgot user
 
+export const FORGOT_USER_URL = protocol_http+domain_mahesh+'/jemstepUser/user/forgotUserInfo';

@@ -73,7 +73,7 @@ class TwoFactorAuth extends Component {
     if (this.props.updateuser && this.props.updateuser.preferredLanguage &&
       this.props.updateuser.phoneNumbers && this.props.updateuser.phoneNumbers.length) {
 
-      this.props.resendTwilioOtp(this.props.updateuser.preferredLanguage, this.props.updateuser.phoneNumbers[0].value, this.props);
+      this.props.resendTwilioOtp(this.props.updateuser.preferredLanguage,this.props.updateuser.phoneNumbers[0].value, this.props);
 
     }
   }
@@ -148,7 +148,7 @@ class TwoFactorAuth extends Component {
                       <label>Security Code</label>
                     </div>
                     <div className='col-3'>
-                      <label onClick={this.resend} style={{ color: variables.strongblu }}>Resend code</label>
+                      <label onClick={this.resend} style={{ color: variables.strongblu,cursor:'pointer' }}>Resend code</label>
                     </div>
                   </div>
                   <input type='text' className='input-validate-email' placeholder='123456'

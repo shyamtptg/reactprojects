@@ -76,12 +76,12 @@ class TwoFactorDetails extends Component {
 
     const data =
     {
-      "addresses": [{
+      'addresses': [{
 
-        "country": this.state.country
+        'country': this.state.country
 
       }],
-      "phoneNumbers": [{ "value": this.state.mobileNo, "type": "mobile" }]
+      'phoneNumbers': [{ 'value': '+91'+this.state.mobileNo, 'type': 'mobile' }]
      
 
     }
@@ -124,11 +124,11 @@ class TwoFactorDetails extends Component {
                 Provide your phone number
               </div>
               <div className='card-block'>
-                <form className="twofactdetails">
+                <form className='twofactdetails'>
                   <div className='form-group col-12'>
                   <div className='row'>
                   <div className='col-12 '>
-                    <p className="twofactdetails">You will receive a security code at this number every time you 
+                    <p className='twofactdetails'>You will receive a security code at this number every time you 
                        sign in.Standard messaging rates will apply.
                      </p>
                   </div>
@@ -136,11 +136,11 @@ class TwoFactorDetails extends Component {
                   </div>
                   <div className='form-group col-12'>
                     <div className='row'>
-                      <div className="col-6">
+                      <div className='col-6'>
                         <label>Country Code</label>
                       </div>
                     </div>
-                    <select className="form-control input-select" id="country" name="country" value={this.state.country} placeholder="select"
+                    <select className='form-control input-select' id='country' name='country' value={this.state.country} placeholder='select'
                       onChange={this.handleChange} autoFocus={true}>
                       <option>Uganda</option>
                       <option>Ukraine</option>
@@ -152,12 +152,12 @@ class TwoFactorDetails extends Component {
                     </select>
                   </div>
                   <div className='form-group col-12'>
-                    <div className="row label-text">
-                      <div className="col-6">
+                    <div className='row label-text'>
+                      <div className='col-6'>
                         <label>Mobile number</label>
                       </div>
                     </div>
-                    <input type='text' className="form-control" id='mobileNo' name='mobileNo' value={this.state.mobileNo}
+                    <input type='text' className='form-control' id='mobileNo' name='mobileNo' value={this.state.mobileNo}
                       onChange={this.handleChange} />
 
 
