@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="21px" viewBox="0 0 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>5EE519DB-E8AE-4958-859A-FB9DF760C95B</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Designs-14th-sep" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.1_Signup" transform="translate(-1177.000000, -776.000000)">
+            <g id="signup-form" transform="translate(757.000000, 238.000000)">
+                <g id="field-error" transform="translate(40.000000, 528.000000)">
+                    <g id="error-icon">
+                        <g transform="translate(380.000000, 10.000000)">
+                            <g>
+                                <circle id="Oval-2" fill="#FF6633" fill-rule="nonzero" cx="10.5" cy="10.5" r="10.5"></circle>
+                                <path d="M9,15.2368421 L9,10.3947368 C9,9.56630972 9.67157288,8.89473684 10.5,8.89473684 L10.5,8.89473684 C11.3284271,8.89473684 12,9.56630972 12,10.3947368 L12,15.2368421 C12,16.0652692 11.3284271,16.7368421 10.5,16.7368421 L10.5,16.7368421 C9.67157288,16.7368421 9,16.0652692 9,15.2368421 Z M9,5.47368421 L9,5.47368421 C9,4.65979089 9.65979089,4 10.4736842,4 L10.5263158,4 C11.3402091,4 12,4.65979089 12,5.47368421 L12,5.47368421 C12,6.28757753 11.3402091,6.94736842 10.5263158,6.94736842 L10.4736842,6.94736842 C9.65979089,6.94736842 9,6.28757753 9,5.47368421 Z" id="exclaimation" fill="#FFFFFF" transform="translate(10.500000, 10.368421) rotate(180.000000) translate(-10.500000, -10.368421) "></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

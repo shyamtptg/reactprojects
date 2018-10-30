@@ -1,2 +1,0 @@
-# credentials
-Credential Management 

@@ -1,0 +1,132 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:jsf="http://xmlns.jcp.org/jsf" template="/WEB-INF/incl/layout/template.xhtml">
+<f:metadata>
+	<f:viewAction action="#{authenticator.prepareAuthenticationForStep}" if="#{not identity.loggedIn}"/>
+</f:metadata>
+
+<ui:define name="head">
+  <title>TwoFact</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://use.typekit.net/lzp4utr.css"/>
+  <style type="text/css">
+    
+    .loginbtn {
+      height: 46px;
+      width: 100%;
+      border: 1px solid rgb(0, 47, 135);
+      border-radius: 3px;
+      background: linear-gradient(rgb(0, 47, 135) 0%, rgb(0, 47, 135) 100%);
+      font-family: "Proxima Nova";
+    }
+
+    .form-group label {
+      color: #666666;
+      font-size: 14px;
+      font-weight: normal;
+      font-family: inherit;
+    }
+
+    .col-6 {
+      -ms-flex: 0 0 50%;
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+
+    .row {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      margin-right: -15px;
+      margin-left: -15px;
+    }
+
+    .form-group input {
+      border-radius: 0px !important;
+    }
+
+    .form-body {
+      margin-bottom: 20px;
+    }
+
+    .login-box {
+      margin: 18px auto;
+    }
+
+    .login-box .card-header {
+      font-size: 18px;
+      font-weight: normal;
+      line-height: 24px;
+    }
+
+    .login-box .label-text a {
+      float: right;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 14px;
+    }
+
+    .card {
+      padding: 20px 30px !important;
+      -webkit-box-shadow: 0 2px 2px 0 #9c9c9c;
+      box-shadow: 0 2px 2px 0 #9c9c9c;
+      background: #fff;
+      border: 1px solid #ddd;
+      margin: 42px auto;
+      float: none;
+      margin-bottom: 10px;
+
+    }
+    .card-header {
+            background: transparent !important;
+            border-bottom: 2px solid #eaeaea !important;
+            padding: 20px 0px !important;
+            font-family: "Proxima Nova";
+        }
+    .card-block {
+            padding: 15px 0px;
+        }
+  </style>
+</ui:define>
+
+<ui:define name="pageTitle">#{msgs['twiliosms.pageTitle']}</ui:define>
+
+<ui:define name="body">
+  <div class="container">
+    <div class='card login-box col-xs-12 col-sm-6 col-md-5'>
+      <div class='card-header'>Enter security code</div>
+      <div class='card-block'>
+        <h:form id="TwilioSmsloginForm">
+          <div class='form-group col-12'>
+            <div class='row label-text-security'>
+              <div class='col-6'>
+                <label>Security Code</label>
+              </div>
+              <div class='col-6'>
+                <label style="color:#0195D4;cursor: pointer;float: right;">Resend code</label>
+              </div>
+            </div>
+			<!--<h2>#{msgs['twilio.verification']}</h2>
+			<p>#{msgs['twilio.usedevice']}</p>
+			<img src="#{oxAuthConfigurationService.getImgLocation()}/phone-ver.png" alt="phone-ver" />
+			<h4>#{msgs['twilio.verificationcode']}</h4>
+			<p>
+				<h:outputText value="#{msgs['twilio.codesent']} " escape="false" />
+				<h:outputText value="#{authenticator.getMaskMobilenumber(identity.getWorkingParameter('mobile_number'))}" />
+			</p>-->
+            <input type='text' class="form-control form-control-lg" placeholder='123456' name='passcode' />
+          </div>
+          <div class='form-group col-12'>
+            <button class="loginbtn" type='submit' jsf:action="#{authenticator.authenticate}"> <span style="color: rgb(255, 255, 255); font-size: 14px; font-weight: 400; line-height: 24px; text-align: center; font-family:Proxima Nova;">CONTINUE</span></button>
+          </div>
+        </h:form>
+      </div>
+    </div>
+  </div>
+</ui:define>
+</ui:composition>
