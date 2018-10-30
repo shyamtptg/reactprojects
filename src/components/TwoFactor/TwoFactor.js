@@ -36,7 +36,7 @@ const TwoFactor = () => {
                 <button className='Enable2FA' type='button' style={styles.Button}><span style={styles.textOnButton}><Link to ='/twofactordetails' style={{color:variables.whitecolor,textDecoration:'none',float:'none'}}>SET UP 2FA</Link></span></button>                 
                 </div>
                 <div className='col-sm-6'>
-                <button className='Skip' type='button'><Link to ='/' style={{color:variables.primary,float:'none'}}>SKIP</Link></button>
+                <button className='Skip' type='button'><Link to ='/login' style={{color:variables.primary,float:'none'}}>SKIP</Link></button>
                 </div>
               </div>
              </div>

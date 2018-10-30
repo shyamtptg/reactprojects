@@ -40,7 +40,7 @@ class Forgotcheckmail extends Component {
                  
 
                   <div className='form-group offset-4 col-4'>
-                    <button type='button' style={styles.Button} onClick={() => this.forgotUsername}><span style={styles.textOnButton}><Link to='/' style={{color:'white'}}>LOG INTO ACCOUNT</Link></span></button>
+                    <button type='button' style={styles.Button} onClick={() => this.forgotUsername}><span style={styles.textOnButton}><Link to='/login' style={{color:'white'}}>LOG INTO ACCOUNT</Link></span></button>
                   </div>
                   <div className='form-group col-12'>
                     <div className='row'>

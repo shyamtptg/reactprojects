@@ -1,6 +1,8 @@
 @import './variables.scss';
 
-
+html{
+    background-color:white;
+}
 body {
         background: whitesmoke no-repeat center center fixed;
     }
@@ -8,6 +10,7 @@ body {
     .navbar { 
         box-shadow: 1px 0px 10px $color-nobel;
        }
+
 
  
   //Header 

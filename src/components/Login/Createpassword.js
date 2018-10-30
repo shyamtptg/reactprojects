@@ -111,26 +111,26 @@ class Createnewpassword extends Component {
     return (
 
       <div className='two-fact-card col-sm-12 col-md-7 col-lg-5'>
-        <div class='Success'>
-          <div class='card'>
-            <div class='card-header two-fact-auth1'>
+        <div className='Success'>
+          <div className='card'>
+            <div className='card-header two-fact-auth1'>
               Create a new password
             </div>
-            <div class='card-block'>
+            <div className='card-block'>
               <form>
-                <div class='form-group col-12'>
-                  <div class='row'>
-                    <div class='col-12'>
+                <div className='form-group col-12'>
+                  <div className='row'>
+                    <div className='col-12'>
                       <label>Password</label>
                     </div>
                   </div>
-                  <input type={this.state.type} class='form-control' id='password' name='password'
+                  <input type={this.state.type} className='form-control' id='password' name='password'
                     value={this.state.password} onChange={this.handleChange} />
                   {this.state.type === 'password' ? (<img className='iconhidelog' src={icon_hide} alt='Eye' onClick={() => this.showHidePassword()} />) : (<img className='iconshowlog' src={icon_show} alt='Eye' onClick={() => this.showHidePassword()} />)}
 
                 </div>
 
-                <div class='form-group col-12'>
+                <div className='form-group col-12'>
                   <button onClick={this.updatePassword} type='button' className='btn-class'><span >CREATE PASSWORD</span></button>
                 </div>
 
