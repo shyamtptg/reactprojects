@@ -11,6 +11,8 @@ public class JemSetpUserServiceConstants {
 	
 	
 	public static final String USER_NAME_FILTER_INFO="jemstep.user.info.uri";
+	
+	public static final String FORGOT_USER_FILTER_INFO="jemstep.user.forgotUser.uri";
 
 	
 	

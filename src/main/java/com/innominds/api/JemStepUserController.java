@@ -2,29 +2,54 @@ package com.innominds.api;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/user")
 public class JemStepUserController {
 
+    private static final Logger LOGGER = Logger.getLogger(JemStepUserController.class);
+
+	
 	@Autowired
 	private JemStepUserService jemstepUserService;
 	
 	@Autowired
 	private Environment env;
+	
+	
+	@PostMapping(value="/getToken")
+	public ResponseEntity<String> getAuthToken(@RequestBody String userPayLoad){
+		System.out.println("Get getToken token  is:\t"+userPayLoad);
+		String usergetAccesCode;
+		try {
+		usergetAccesCode = userPayLoad.substring(1, userPayLoad.length()-1);
+		
+		System.out.println("user getToken code:\t"+usergetAccesCode);
+		
+		String userCreatedResp = jemstepUserService.getauthToken(userPayLoad);
+		
+		return new ResponseEntity<String>(userCreatedResp, HttpStatus.CREATED);
+		}
+		catch (Exception e) {
+			String message = e.getMessage();
+			System.out.println("exception message is:\t"+message);
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	
+	}
+	
+	
 	
 	@PostMapping(value="/createUser")
 	public ResponseEntity<String> createUser(@RequestBody String userPayLoad){
@@ -63,6 +88,7 @@ public class JemStepUserController {
 				return new ResponseEntity<String>(sb.toString(), HttpStatus.NO_CONTENT);
 			}
 		}catch (Exception e) {
+	        LOGGER.info("This is info message"+e);
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
@@ -107,7 +133,6 @@ public class JemStepUserController {
 	
 	
 	
-	
 	@GetMapping(value="/userInfo")
 	public ResponseEntity<String> userInfo(HttpServletRequest req){
 		
@@ -122,6 +147,20 @@ public class JemStepUserController {
 		return new ResponseEntity<String>(userinfoRec, HttpStatus.OK);
 	}
 	
+	
+	@GetMapping(value="/forgotUserInfo")
+	public ResponseEntity<String> forgotUserInfo(HttpServletRequest req){
+		
+		System.out.println("forgotUserInfo METHOD");
+		
+		String code = req.getHeader("code");
+		System.out.println("code is:\t"+code);
+		
+		String forgotUserInfoRec = jemstepUserService.forgotUserInfo(code);
+		System.out.println("Response"+forgotUserInfoRec);
+		
+		return new ResponseEntity<String>(forgotUserInfoRec, HttpStatus.OK);
+	}
 	
 	
 	

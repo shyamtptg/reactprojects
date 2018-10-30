@@ -445,5 +445,39 @@ public class JemstepApiProxy {
 		
 		return userInfo;		
 	}
+
+	public static String forgotUserInfo(String userInfoUrl, String authToken) {
+		String forGotuserInfo = null;
+		try {
+			
+			System.out.println("Update User Url  %%% "+userInfoUrl);
+			SSLContextBuilder builder = new SSLContextBuilder();
+			builder.loadTrustMaterial(null, new TrustSelfSignedStrategy());
+			SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(builder.build());
+			
+					    CloseableHttpClient httpClient = HttpClients.custom()
+		                    .setSSLSocketFactory(sslsf)
+		                    .build();
+
+		    HttpComponentsClientHttpRequestFactory requestFactory =
+		                    new HttpComponentsClientHttpRequestFactory();
+
+		    requestFactory.setHttpClient(httpClient);
+		    
+			RestTemplate restTemplate = new RestTemplate(requestFactory);
+			HttpHeaders headers = createHttpHeaders(authToken);
+	        HttpEntity<String> entity = new HttpEntity<String>(headers);
+	        ResponseEntity<String> response = restTemplate.exchange(userInfoUrl, HttpMethod.GET, entity, String.class);
+	        System.out.println("Result - status ("+ response.getStatusCode() + ") has body: " + response.hasBody());
+	        forGotuserInfo = response.getBody();
+			System.out.println("Update Url Resp"+forGotuserInfo);
+		
+	} catch (Exception e) {
+		System.out.println(e.getMessage());
+	}
+		
+		
+		return forGotuserInfo;		
+	}
 	
 }

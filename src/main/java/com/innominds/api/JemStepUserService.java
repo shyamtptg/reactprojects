@@ -108,6 +108,40 @@ public String userInfo(String code) {
 
 	return userInfoRec;
 }
+
+public String getauthToken(String userPayLoad) {
+	String loginUrl = env.getProperty(JemSetpUserServiceConstants.LOGIN_URI);
+	System.out.println("loginUrl is:\t"+loginUrl);
+	
+	String fixedToken = env.getProperty(JemSetpUserServiceConstants.FIXED_AUTH_TOKEN);
+	System.out.println("fixedToken is:\t"+fixedToken);
+	
+	String authToken = JemstepApiProxy.getAuthToken(loginUrl, fixedToken);
+	authToken = authToken.substring(1, authToken.length()-1);
+	
+	return authToken;
+}
+
+public String forgotUserInfo(String code) {
+	// 
+	String forgotUserInfo = env.getProperty(JemSetpUserServiceConstants.FORGOT_USER_FILTER_INFO);
+	System.out.println("updateUser:\t"+forgotUserInfo);
+	
+	String userInfoUrl=forgotUserInfo+"\""+code+"\"";
+	System.out.println("USRE INFO URL:\t"+userInfoUrl);
+	String loginUrl = env.getProperty(JemSetpUserServiceConstants.LOGIN_URI);
+	System.out.println("loginUrl is:\t"+loginUrl);
+	
+	String fixedToken = env.getProperty(JemSetpUserServiceConstants.FIXED_AUTH_TOKEN);
+	System.out.println("fixedToken is:\t"+fixedToken);
+	
+	String authToken = JemstepApiProxy.getAuthToken(loginUrl, fixedToken);
+	authToken = authToken.substring(1, authToken.length()-1);
+	
+	String forgotUserInfoRec = JemstepApiProxy.forgotUserInfo(userInfoUrl, authToken);
+
+	return forgotUserInfoRec;
+}
 	
 	
 	
