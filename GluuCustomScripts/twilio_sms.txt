@@ -1,7 +1,7 @@
-# oxAuth is available under the MIT License (2008). See httpopensource.orglicensesMIT for full text.
+# oxAuth is available under the MIT License (2008). See http://opensource.org/licenses/MIT for full text.
 # Copyright (c) 2018, Gluu
 #
-# Author Jose Gonzalez
+# Author: Jose Gonzalez
 
 from org.xdi.service.cdi.util import CdiUtil
 from org.xdi.oxauth.security import Identity
@@ -20,121 +20,122 @@ import java
 import random
 import jarray
 
-class PersonAuthentication(PersonAuthenticationType)
-    def __init__(self, currentTimeMillis)
+class PersonAuthentication(PersonAuthenticationType):
+    def __init__(self, currentTimeMillis):
         self.currentTimeMillis = currentTimeMillis
 
-    def init(self, configurationAttributes)
-        print Twilio SMS. Initialization
+    def init(self, configurationAttributes):
+        print "Twilio SMS. Initialization"
 
         self.ACCOUNT_SID = None
         self.AUTH_TOKEN = None
         self.FROM_NUMBER = None
 
         # Get Custom Properties
-        try
-            self.ACCOUNT_SID = configurationAttributes.get(twilio_sid).getValue2()
-        except
-            print 'TwilioSMS, Missing required configuration attribute twilio_sid'
+        try:
+            self.ACCOUNT_SID = configurationAttributes.get("twilio_sid").getValue2()
+        except:
+            print 'TwilioSMS, Missing required configuration attribute "twilio_sid"'
 
-        try
-            self.AUTH_TOKEN = configurationAttributes.get(twilio_token).getValue2()
-        except
-            print'TwilioSMS, Missing required configuration attribute twilio_token'
-        try
-            self.FROM_NUMBER = configurationAttributes.get(from_number).getValue2()
-        except
-            print'TwilioSMS, Missing required configuration attribute from_number'
+        try:
+            self.AUTH_TOKEN = configurationAttributes.get("twilio_token").getValue2()
+        except:
+            print'TwilioSMS, Missing required configuration attribute "twilio_token"'
+        try:
+            self.FROM_NUMBER = configurationAttributes.get("from_number").getValue2()
+        except:
+            print'TwilioSMS, Missing required configuration attribute "from_number"'
 
-        if None in (self.ACCOUNT_SID, self.AUTH_TOKEN, self.FROM_NUMBER)
-            print twilio_sid, twilio_token, from_number is empty ... returning False
+        if None in (self.ACCOUNT_SID, self.AUTH_TOKEN, self.FROM_NUMBER):
+            print "twilio_sid, twilio_token, from_number is empty ... returning False"
             return False
 
-        print Twilio SMS. Initialized successfully
+        print "Twilio SMS. Initialized successfully"
 
         return True
 
-    def destroy(self, configurationAttributes)
-        print Twilio SMS. Destroy
-        print Twilio SMS. Destroyed successfully
+    def destroy(self, configurationAttributes):
+        print "Twilio SMS. Destroy"
+        print "Twilio SMS. Destroyed successfully"
         return True
 
-    def getApiVersion(self)
+    def getApiVersion(self):
         return 1
 
-    def isValidAuthenticationMethod(self, usageType, configurationAttributes)
+    def isValidAuthenticationMethod(self, usageType, configurationAttributes):
         return True
 
-    def getAlternativeAuthenticationMethod(self, usageType, configurationAttributes)
+    def getAlternativeAuthenticationMethod(self, usageType, configurationAttributes):
         return None
 
-    def authenticate(self, configurationAttributes, requestParameters, step)
+    def authenticate(self, configurationAttributes, requestParameters, step):
         userService = CdiUtil.bean(UserService)
         authenticationService = CdiUtil.bean(AuthenticationService)
         identity = CdiUtil.bean(Identity)
         session_attributes = identity.getSessionId().getSessionAttributes()
 
-        form_passcode = ServerUtil.getFirstValue(requestParameters, passcode)
-        form_name = ServerUtil.getFirstValue(requestParameters, TwilioSmsloginForm)
+        form_passcode = ServerUtil.getFirstValue(requestParameters, "passcode")
+        form_name = ServerUtil.getFirstValue(requestParameters, "TwilioSmsloginForm")
 
-        print TwilioSMS. form_response_passcode %s % str(form_passcode)
+        print "TwilioSMS. form_response_passcode: %s" % str(form_passcode)
 
-        if step == 1
-            print TwilioSMS. Step 1 Password Authentication
+        if step == 1:
+            print "TwilioSMS. Step 1 Password Authentication"
             identity = CdiUtil.bean(Identity)
             credentials = identity.getCredentials()
 
             user_name = credentials.getUsername()
             user_password = credentials.getPassword()
-            print User Name. Step %s % user_name
+            print "User Name. Step %s" % user_name
 
             logged_in = False
-            print @@ TwilioSMS Logged IN @@ 
-            if StringHelper.isNotEmptyString(user_name) and StringHelper.isNotEmptyString(user_password)
+            print "@@ TwilioSMS Logged IN @@ "
+            if StringHelper.isNotEmptyString(user_name) and StringHelper.isNotEmptyString(user_password):
                 logged_in = authenticationService.authenticate(user_name, user_password)
 
-            if not logged_in
+            if not logged_in:
                 return False
 
             # Get the Person's number and generate a code
             foundUser = None
-            print @@ FoundUser IN @@ 
-            try
+            print "@@ FoundUser IN @@ "
+            try:
                 foundUser = authenticationService.getAuthenticatedUser()
-                print foundUser Object %s % dir(foundUser)
-            except
+                print "foundUser Object %s" % dir(foundUser)
+            except:
                 print 'TwilioSMS, Error retrieving user %s from LDAP' % (user_name)
                 return False
 
-            try
-                isVerified = foundUser.getAttribute(phoneNumberVerified)
-                print TwilioSMS. isVerified %s  % isVerified 
+            try:
+                isVerified = foundUser.getAttribute("phoneNumberVerified")
+                print "TwilioSMS. isVerified %s " % isVerified 
                 isVerified =True
 
-                #print TwilioSMS. isVerified %s  % isVerified 
-                if isVerified
-                    print Test For Inside
-                    mobile_number = foundUser.getAttributeValues(oxTrustPhoneValue)
-                    for item in mobile_number
-                        print  inside for $$  %s  % item
-                        x=item.split()
-                        print  inside for444 %s  % x[1]         
-                        y=x[1].split(,)
-                        print  inside pavan%s  % y[0]
+                #print "TwilioSMS. isVerified %s " % isVerified 
+                if isVerified:
+                    print "Test For Inside"
+                    mobile_number = foundUser.getAttributeValues("oxTrustPhoneValue")
+                    print " Mobile Number %s " % mobile_number 
+                    for item in mobile_number:
+                        print " inside for $$  %s " % item
+                        x=item.split(":")
+                        print " inside for444 %s " % x[1]         
+                        y=x[1].split(",")
+                        print " inside pavan%s " % y[0]
                         k=str(y[0])
-                        k=k[114]
-                        print  kkkkkkkkkkkkkkkkk%s  % k
+                        k=k[1:14]
+                        print " kkkkkkkkkkkkkkkkk%s " % k
                     mobile_number=k
-                    print TwilioSMS. mobile_number %s  % mobile_number
-                if  mobile_number == None
-                    mobile_number = foundUser.getAttribute(mobile)
-                    print TwilioSMS. mobile %s  % mobile
-                if  mobile_number == None
-                    mobile_number = foundUser.getAttribute(telephoneNumber)
-                if  mobile_number == None
-                    print TwilioSMS, Error finding mobile number for user '%' % user_name
+                    print "TwilioSMS. mobile_number %s " % mobile_number
+                if  mobile_number == None:
+                    mobile_number = foundUser.getAttribute("mobile")
+                    print "TwilioSMS. mobile %s " % mobile
+                if  mobile_number == None:
+                    mobile_number = foundUser.getAttribute("telephoneNumber")
+                if  mobile_number == None:
+                    print "TwilioSMS, Error finding mobile number for user '%'" % user_name
                     
-            except
+            except:
                 #print 'TwilioSMS, Error finding mobile number for' % (user_name)
                 return False
 
@@ -142,74 +143,74 @@ class PersonAuthentication(PersonAuthenticationType)
             code = random.randint(100000, 999999)
 
             # Get code and save it in LDAP temporarily with special session entry
-            identity.setWorkingParameter(code, code)
+            identity.setWorkingParameter("code", code)
 
-            try
+            try:
                 Twilio.init(self.ACCOUNT_SID, self.AUTH_TOKEN);
-                print TwilioSMS. self.FROM_NUMBER %s % self.FROM_NUMBER
+                print "TwilioSMS. self.FROM_NUMBER: %s" % self.FROM_NUMBER
                 message = Message.creator(PhoneNumber(mobile_number), PhoneNumber(self.FROM_NUMBER), str(code)).create();
 
-                print 'TwilioSMs, Message Sid %s' % (message.getSid())
+                print 'TwilioSMs, Message Sid: %s' % (message.getSid())
                 return True
-            except Exception, ex
-                print TwilioSMS. Error sending message to Twilio
-                print TwilioSMS. Unexpected error, ex
+            except Exception, ex:
+                print "TwilioSMS. Error sending message to Twilio"
+                print "TwilioSMS. Unexpected error:", ex
 
             return False
-        elif step == 2
+        elif step == 2:
             # Retrieve the session attribute
-            print TwilioSMS. Step 2 SMSOTP Authentication
-            code = session_attributes.get(code)
-            print TwilioSMS. Code %s % str(code)
+            print "TwilioSMS. Step 2 SMS/OTP Authentication"
+            code = session_attributes.get("code")
+            print "TwilioSMS. Code: %s" % str(code)
 
-            if code is None
-                print TwilioSMS. Failed to find previously sent code
+            if code is None:
+                print "TwilioSMS. Failed to find previously sent code"
                 return False
 
-            if form_passcode is None
-                print TwilioSMS. Passcode is empty
+            if form_passcode is None:
+                print "TwilioSMS. Passcode is empty"
                 return False
 
-            if len(form_passcode) != 6
-                print TwilioSMS. Passcode from response is not 6 digits %s % form_passcode
+            if len(form_passcode) != 6:
+                print "TwilioSMS. Passcode from response is not 6 digits: %s" % form_passcode
                 return False
 
-            if form_passcode == code
-                print TiwlioSMS, SUCCESS! User entered the same code!
+            if form_passcode == code:
+                print "TiwlioSMS, SUCCESS! User entered the same code!"
                 return True
 
-            print TwilioSMS. FAIL! User entered the wrong code! %s != %s % (form_passcode, code)
+            print "TwilioSMS. FAIL! User entered the wrong code! %s != %s" % (form_passcode, code)
 
             return False
 
-        print TwilioSMS. ERROR step param not found or != (12)
+        print "TwilioSMS. ERROR: step param not found or != (1|2)"
 
         return False
 
-    def prepareForStep(self, configurationAttributes, requestParameters, step)
-        if step == 1
-            print TwilioSMS. Prepare for Step 1
+    def prepareForStep(self, configurationAttributes, requestParameters, step):
+        if step == 1:
+            print "TwilioSMS. Prepare for Step 1"
             return True
-        elif step == 2
-            print TwilioSMS. Prepare for Step 2
+        elif step == 2:
+            print "TwilioSMS. Prepare for Step 2"
             return True
 
         return False
 
-    def getExtraParametersForStep(self, configurationAttributes, step)
-        if step == 2
-            return Arrays.asList(code)
+    def getExtraParametersForStep(self, configurationAttributes, step):
+        if step == 2:
+            return Arrays.asList("code")
 
         return None
 
-    def getCountAuthenticationSteps(self, configurationAttributes)
+    def getCountAuthenticationSteps(self, configurationAttributes):
         return 2
 
-    def getPageForStep(self, configurationAttributes, step)
-        if step == 2
-            return authtwiliosmstwiliosms.xhtml
+    def getPageForStep(self, configurationAttributes, step):
+        if step == 2:
+            return "/auth/twiliosms/twiliosms.xhtml"
 
-        return 
+        return ""
 
-    def logout(self, configurationAttributes, requestParameters)
+    def logout(self, configurationAttributes, requestParameters):
         return True
