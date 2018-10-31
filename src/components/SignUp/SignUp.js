@@ -3,13 +3,8 @@ import qs from 'qs';
 import { Link } from 'react-router-dom';
 import validate from 'validate.js';
 import check from '../../assets/check.svg';
-// import {validatingFields} from '../common/validation';
 import './SignUp.scss';
 import PropTypes from 'prop-types';
-// import pagelevel from '../../assets/pagelevel_error.svg';
-
-// import ReactTooltip from 'react-tooltip'
-// import { validateCheck } from "../../redux/actions/validationAction"
 import { signUp } from '../../redux/actions/signUpAction';
 import { token } from '../../redux/actions/tokenAction';
 import { withRouter } from 'react-router';
@@ -17,14 +12,12 @@ import { connect } from 'react-redux';
 import { styles } from '../common/style';
 import '../../css/style.scss';
 import About from '../Home/About';
-// import Pagelevelerror from '../../assets/pagelevel-error.svg';
-
 import icon_hide from '../../assets/icon_hide.svg';
 import icon_show from '../../assets/icon_show.svg';
 import Errormessage from '../common/Errormessage/Errormessage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
-// import variables from '../../css/variables.scss'
+
 
 class SignUp extends Component {
   constructor(props) {
@@ -193,7 +186,7 @@ class SignUp extends Component {
     if (validJsErrors) {
       Object.entries(validJsErrors)
         .forEach((key) => {
-          // let errors = { ...this.props.getValidateForm };
+         
           if (!errorKeys.includes(name)) {
 
             this.setState(prevState => ({
@@ -204,10 +197,7 @@ class SignUp extends Component {
             }), () => {
             })
           } else if (key[0] === name && key[1].length > 0) {
-            //errors[name] = key[1][0];
-            // this.setState({
-            //   errors: errors
-            // });
+            
             this.setState(prevState => ({
               errors: {
                 ...prevState.errors,
@@ -292,7 +282,7 @@ class SignUp extends Component {
 
             {/* {(this.props.userResponse.status === '409' && !this.props.userResponse.detail.includes("UID")) ?
               <Errormessage error={this.props.userResponse.detail} /> : ''} */}
-            {(this.props.userResponse.status === '500') ?
+            {(this.props.userResponse['emailAlreadyExisted'] === 'Email Already Existed') ?
               <Errormessage error="This email is already in use.Try logging in to your account" /> : ''}
             <div className='card-block'>
               <div className='form-group has-feedback'>
@@ -367,7 +357,7 @@ class SignUp extends Component {
               </div>
               <div className='form-group'>
                 <button type='button'  style={styles.Button} onClick={this.register}><span style={styles.textOnButton}> SIGN UP</span></button>
-                <div className="already-have-account">Already have an account?<span><Link className="login-link" to='/'>Log in</Link></span></div>
+                <div className="already-have-account">Already have an account?<span><Link className="login-link" to='/login'>Log in</Link></span></div>
               </div>
               <div className='form-terms'>By clicking sign up, you agree to the <span>terms of use</span> and <span>privacy</span><span style={{ marginBottom: "0px" }}> policy,
               and acknowledge that you have read and understood</span> our disclosure brochure, which can be accessed here <span>FormADV2</span>.</div>

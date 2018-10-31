@@ -68,7 +68,7 @@ class ValidateEmail extends Component {
     const email = {
       'emails': this.props.userResponse['emails']
     }
-    this.props.resendData(email,this.props.userDetails['access_token'], this.props.userResponse['id'], this.props);
+    this.props.resendData(email, this.props.userDetails['access_token'], this.props.userResponse['id'], this.props);
   }
   handleChange(e) {
     const name = e.target.name;
@@ -124,10 +124,10 @@ class ValidateEmail extends Component {
     return (
       <div className='card validate-email-box col-sm-12 col-md-5'>
         <div className='card-header'>
-        <span className="emailvalidcheck">Validate your email</span> 
-           </div>
-        {!this.props.getEmailValidate.resend && this.props.getEmailValidate.isValid === ''?
-           <Errormessage error='Invalid security code. Please try again.'/> : ''}
+          <span className="emailvalidcheck">Validate your email</span>
+        </div>
+        {!this.props.getEmailValidate.resend && this.props.getEmailValidate.isValid === '' ?
+          <Errormessage error='Invalid security code. Please try again.' /> : ''}
         <div className='card-block'>
           <form>
             <div className='form-group col-12'>
@@ -136,21 +136,18 @@ class ValidateEmail extends Component {
                   <label>Security Code</label>
                 </div>
                 <div className='col-6' style={{ textAlign: 'right' }}>
-                  <span onClick={this.resend} style={{ color: '#0195D4',cursor:'pointer' }}>Resend code</span>
+                  <span onClick={this.resend} style={{ color: '#0195D4', cursor: 'pointer' }}>Resend code</span>
                 </div>
               </div>
               <input type='text' className='form-control input-validate-email' placeholder='123456'
-                name='preferredLanguage' onKeyDown={(event) => this.getkey(event)} value={this.state.preferredLanguage} onChange={this.handleChange} autoFocus={true}/>
+                name='preferredLanguage' onKeyDown={(event) => this.getkey(event)} value={this.state.preferredLanguage} onChange={this.handleChange} autoFocus={true} />
               <p>{this.state.isCapitalOn ? 'capital on' : ''}</p>
 
             </div>
             <div className='form-group col-12'>
               <button className='forgotbtn' onClick={this.validateSecurity} type='button' style={styles.Button}><span style={styles.textOnButton}>SUBMIT</span></button>
             </div>
-            {/* <div className='col-12'>
-            <span>Didn't Recieve Security code</span><span style={{float:'right',color: '#0195D4'}} onClick={this.resend}>Resend</span>
-
-            </div> */}
+          
 
           </form>
         </div>
