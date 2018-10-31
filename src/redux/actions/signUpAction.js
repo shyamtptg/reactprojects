@@ -13,8 +13,7 @@ axios.post(SIGNUP_URL,data,{headers:header}).then(res=>{
             type:USER_SIGNUP,
             data: res.data
         });
-        console.log(res);
-        console.log(res.data);
+        
     if(res&&res.data&&res.status===201){
       context.history.push('/validatemail')
     }

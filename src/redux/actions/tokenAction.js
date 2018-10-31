@@ -8,6 +8,8 @@ export const token = (data,context) => (dispatch) => {
     'Content-type':'application/x-www-form-urlencoded',
     'Authorization':'Basic QCFGMTU3LjBBNUIuOUE3Ni42QTdEITAwMDEhMjA2My44MjQ5ITAwMDghQkQ2MS40ODczLkJCRjcuMEUyQzpwYXNzd29yZA=='
     }
+
+
    axios.post(LOGIN_URL,data,{headers:headers}).then(res=>{
          dispatch({
                 type:USER_TOKEN,
