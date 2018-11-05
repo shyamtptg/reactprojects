@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="150px" height="150px" viewBox="0 0 150 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>icon check circle</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Designs-14th-sep" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2.7_Acknowledgement" transform="translate(-608.000000, -110.000000)">
+            <g id="modal" transform="translate(380.000000, 110.000000)">
+                <g id="icon-check-circle" transform="translate(228.000000, 0.000000)">
+                    <circle id="Oval" stroke="#79B876" stroke-width="3" cx="75" cy="75" r="73.5"></circle>
+                    <g id="confirm-check" transform="translate(43.000000, 52.000000)" fill="#79B876" fill-rule="nonzero">
+                        <path d="M21.6436273,46.2637467 L0.517081818,25.1348381 C-0.170827273,24.4469202 -0.170827273,22.3324513 0.517081818,21.6445333 C1.2029,20.9566154 3.31735455,20.9566154 4.00526364,21.6445333 L22.8898091,40.5293349 L62.9029909,0.517715757 C63.5909,-0.172293131 65.7074455,-0.172293131 66.3932636,0.517715757 C67.0811727,1.20354277 67.0811727,3.31801167 66.3932636,4.00592963 L24.1359909,46.2637467 C23.7909909,46.6087511 23.3414455,46.7802079 22.8898091,46.7802079 C22.4381727,46.7802079 21.9886273,46.6087511 21.6436273,46.2637467 Z" id="Fill-1"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
