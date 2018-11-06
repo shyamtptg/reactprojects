@@ -1,0 +1,192 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html" template="/WEB-INF/incl/layout/login-template.xhtml">
+
+	<f:metadata>
+		<f:viewAction action="#{authenticator.prepareAuthenticationForStep}" if="#{sessionIdService.notSessionIdAuthenticated}" />
+		<f:viewParam name="login_hint" value="#{loginAction.loginHint}" />
+	</f:metadata>
+
+	<ui:define name="head">		
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="./ext/resources/stylesheet/login.css"/>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h:outputText value="#{msgs['login.pageTitle']}" />
+	</ui:define>
+
+	<ui:define name="body">
+	<div>
+		<nav class="navbar header-main">
+			<div class="container-fluid headerbar">  
+				<div class='col-md-6'>
+					<ui:param name="client" value="#{clientService.getClient(identity.sessionId.sessionAttributes['client_id'])}" />
+					<img class="logo" src="./ext/resources/img/logo_nextgen_bank.png" alt="NextGen Bank" />
+				</div>
+				<div class="col-md-6 col-sm-6 header-contact">	
+					<img  class="question" src="./ext/resources/img/question.svg" alt="Contact"/>
+					<span class="header-tel-no">800-800-0000</span>
+					<span class="header-line"></span>
+					<span class="header-help">Help</span>
+					<button class="header-btn" jsf:action="#{external_registration_uri}"><span class="textonbtn">SIGNUP</span></button>
+				</div>
+			</div>
+		</nav> 
+	</div>
+	<div class="container">
+		<div class="col-md-12">
+			<h1 class="welcome">welcome back to bank</h1>
+		</div>
+	</div>
+	<div class="container">
+		<div class='card login-box col-xs-12 col-sm-6 col-md-5'>
+			<div class='card-header'>Log in to your account</div>       
+        <div class='card-block login-form-exclamation'>
+          <h:form id="loginForm">
+             <div class="form-group  col-12">
+				<div class="row label-text">
+					<div class="col-6"><label>Username</label></div>
+					<div class="col-6 forgot-align"><a  style="color: rgb(1, 149, 212);">Forgot username</a></div>
+				</div>
+				<h:inputText styleClass="form-control form-control-lg" id="username" name="username" value="#{credentials.username}" />
+			 </div>
+            <div class="form-group col-12">
+                <div class="row label-text">
+					<div class="col-6">
+						<label>Password</label>
+					</div>
+					<div class="col-6 forgot-align">
+						<a  style="color: rgb(1, 149, 212);" href="/identity/person/passwordReminder.htm">Forgot password</a>
+					</div>
+				</div>							  
+				<h:inputSecret styleClass="form-control form-control-lg" id="password" name="password" value="#{credentials.password}" />
+				<img class="iconhidelog" src="./ext/resources/img/icon_hide.svg" alt="Eye" />
+          </div>
+            <div class="form-group col-12"><button jsf:id="loginButton" class="loginbtn" type="submit" style="height: 46px; width: 100%; border: 1px solid rgb(0, 47, 135); border-radius: 3px; background: linear-gradient(rgb(0, 47, 135) 0%, rgb(0, 47, 135) 100%); font-family: &quot;Proxima Nova&quot;;" jsf:action="#{authenticator.authenticate}">
+                <span style="color: rgb(255, 255, 255); font-size: 14px; font-weight: 400; line-height: 24px; text-align: center; font-family: &quot;Proxima Nova&quot;;">Login</span></button></div>
+            <div class='col-12 donthvacnt'>
+              <span>Don't have an account ?</span><a href="" >Sign up</a>
+            </div>
+          </h:form>
+        </div>
+      </div>
+</div>
+
+<div class="container-fluid footer-main">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="footer-list">
+                            <ul>
+                                <li><a to="#">Privacy Policy</a></li>
+                                <li><a to="#">Form ADV Part 2</a></li>
+                            </ul>
+                            <ul>
+                                <li><a to="#">Terms of use</a></li>
+                                <li><a to="#">Adviser Agreement</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="footer-middle">
+                            <p>NextGen Investment Advisors is a registered Investment Adviser under the rules of the SEC. All data provided by Xignite</p>
+                            <p class="copyright">&copy; 2018 NextGen Bank. All Rights Reserved</p>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xs-12">
+                        <div class="footer-right">
+                            <p>Powered by <Link to="#">Jemstep</Link></p>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+
+                    <div class="row">
+                        <div class="footer-bottom">
+                            <p>Past performance is not a guarantee for future results.
+                                Investmant returns and principal value will fluctuate. 
+                                so that investor shares when sold may be worth more or 
+                                less than the original cost Projectin by NextGen Investor Advisors are 
+                                based on number of factors beyond our control are in no way guaranteed.
+                                NextGen Investor Advisors are not tax advisors and Investor should obtain independent advice on tax consequences of their investments </p>
+                        </div>
+                    </div>
+  </div>
+		<script type="text/javascript">
+
+            window.onload = function () {
+                var userNameField = document.getElementById("loginForm:username");
+                var passwordField = document.getElementById("loginForm:password");
+                var userName = '#{!empty loginAction.loginHint ? loginAction.loginHint : ""}';
+                if (userName) {
+                    userNameField.value = userName;
+                    passwordField.focus();
+                } else {
+                    userNameField.focus();
+                }
+
+                var displayRegister = #{display_register_action or identity.sessionId.sessionAttributes['display_register_action']};
+                if (displayRegister) {
+                    var registerButton = document.getElementById("loginForm:registerId");
+                    if (registerButton != null) {
+                        registerButton.style.display = 'inline';
+                    }
+                }
+            };
+
+    		$(document).ready(function () {
+    			$('.other').click(function(){
+    				$('#social_new').toggle();
+    			});
+
+    			// Remember me
+                if (localStorage.chkbx &amp;&amp; localStorage.chkbx != '') {
+                    $('#rememberme').attr('checked', 'checked')
+                    document.getElementById("loginForm:username").value = localStorage.usrname;
+                    //document.getElementById("loginForm:password").value = localStorage.password;
+
+                } else {
+                    $('#rememberme').removeAttr('checked');
+                    document.getElementById("loginForm:username").value = "";
+                    //document.getElementById("loginForm:password").value = "";
+                }
+
+                $('#rememberme').click(function() {
+                    checkRemembeMe();
+                });
+
+                fillPlatformField();
+    		});
+
+    		function checkRemembeMe() {
+                if ($('#rememberme').is(':checked')) {
+                    // save username
+                    localStorage.usrname = document.getElementById("loginForm:username").value;
+                    //localStorage.password = document.getElementById("loginForm:password").value;
+                    localStorage.chkbx = $('#rememberme').val();
+                } else {
+                    localStorage.usrname = '';
+                    //localStorage.password = '';
+                    localStorage.chkbx = '';
+                }
+			}
+
+            function fillPlatformField() {
+                //Fix browser version to contain major.minor portion only
+                try {
+                    re = /^([^\.]+\.[^\.]+)\..+/;
+                    //This will remember "33.0" in "33.0.1.2.3"
+                    result = re.exec(platform.version);
+                    if (result != null) {
+                        //There was a match against the regexp
+                        platform.version=result[1];
+                    }
+                } catch (e) {
+                }
+    			document.getElementById("loginForm:platform").value = JSON.stringify(platform);
+            }
+        </script>
+	</ui:define>
+</ui:composition>

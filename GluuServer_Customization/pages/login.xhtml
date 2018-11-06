@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html" template="/WEB-INF/incl/layout/login-template.xhtml">
+
+	<f:metadata>
+		<f:viewAction action="#{authenticator.prepareAuthenticationForStep}" if="#{sessionIdService.notSessionIdAuthenticated}" />
+		<f:viewParam name="login_hint" value="#{loginAction.loginHint}" />
+	</f:metadata>
+
+	<ui:define name="head">		
+		<!-- Latest compiled JavaScript -->
+		 <meta charset="utf-8"/>
+		 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://use.typekit.net/lzp4utr.css"/>
+		<link rel="stylesheet" href="./ext/resources/stylesheet/login.css"/>
+		<script  type="text/javascript">
+			function myFunction(){           
+				var node = document.getElementById("contentavailable");
+				textContent = node.textContent;
+				var icon_error = document.getElementById('show-error-icon');
+				if(textContent==''||textContent==undefined){
+					 icon_error.style.display="none"                
+				}
+				else{             
+				icon_error.style.display="block"
+				 var img = document.getElementById('imgClickAndChange');
+				 var icon_error = document.getElementById('icon_error');
+
+				 /*img.style.top="281px";
+				 icon_error.style.top="291px";*/
+				}					  
+			}
+			
+			function changeImage(){
+				var image =  document.getElementById("imgClickAndChange");
+				var input = document.getElementById('loginForm:password');
+				var imageBasePath="./ext/resources/img/";
+				if (image.getAttribute('src') == imageBasePath+"icon_hide.svg")
+					{
+						console.log("In image show");
+						image.src = imageBasePath+"icon_show.svg";
+						input.setAttribute('type','text');
+					}
+					else
+					{
+						console.log("In image hide");
+						image.src = imageBasePath+"icon_hide.svg";
+						input.setAttribute('type','password');
+					}
+			}
+			function FormValidation()
+			{
+				myFunction();
+				var userName=document.getElementById('loginForm:username').value;
+				var pwd=document.getElementById('loginForm:password').value;
+				var img = document.getElementById('imgClickAndChange');
+				var icon_error = document.getElementById('icon_error');
+				var erroricon=document.getElementById('erroricon');
+				if(userName == ""){        
+					document.getElementById('loginForm:username').style.borderColor = "#FF6633";   
+					erroricon.style.display='block'    
+				}
+				if(pwd==""){
+					document.getElementById('loginForm:password').style.borderColor = "#FF6633";
+					img.style.display='none';
+					icon_error.style.display='block'
+				}
+				if(userName!=""){
+					if(pwd!=""){
+						console.log("Authenticate");
+						//document.forms[0].submit();
+					}else{
+						document.getElementById('errorMsgSpan').innerHTML="Incorrect username and password";
+						myFunction();
+						return false;
+					}
+				}else{
+					console.log("Input missing");
+					document.getElementById('errorMsgSpan').innerHTML="Incorrect username and password";
+					myFunction();
+					return false;
+				}
+			}
+			
+			/*
+			function checkInput() {
+				var userName=document.getElementById('loginForm:username').value;
+				var erroricon=document.getElementById('erroricon');
+
+				if(userName!=""){ 
+					document.getElementById('loginForm:username').style.borderColor = "";  
+					erroricon.style.visibility='hidden' ;
+				}
+				else{
+					document.getElementById('loginForm:username').style.borderColor = "#FF6633";
+					erroricon.style.visibility='visible'; 
+					// icon_error.style.visibility='visible' 
+				}
+			}*/
+			
+			function checkInput() {
+				var userName=document.getElementById('loginForm:username').value;
+				var erroricon=document.getElementById('erroricon');
+
+				if(userName!=""){ 
+					document.getElementById('loginForm:username').style.borderColor = "";  
+					erroricon.style.display='none' ;
+				}
+				else{
+					document.getElementById('loginForm:username').style.borderColor = "#FF6633";
+					erroricon.style.display='block'  
+					// icon_error.style.visibility='visible' 					
+				}
+			}
+
+			/*function checkInputUSer() {
+				var pwd=document.getElementById('loginForm:password').value;
+				var img = document.getElementById('imgClickAndChange');
+
+			 var icon_error = document.getElementById('icon_error');
+
+				if(pwd!=""){ 
+					document.getElementById('loginForm:password').style.borderColor = ""; 
+					img.style.visibility='visible'; 
+					icon_error.style.visibility='hidden' 
+				}
+				else{
+					document.getElementById('loginForm:password').style.borderColor = "#FF6633";  
+					img.style.visibility='hidden';  
+					icon_error.style.visibility='visible'  
+				}
+			}*/
+			
+			function checkInputUSer() {
+				var pwd=document.getElementById('loginForm:password').value;
+				var img = document.getElementById('imgClickAndChange');
+
+			 var icon_error = document.getElementById('icon_error');
+
+				if(pwd!=""){ 
+					document.getElementById('loginForm:password').style.borderColor = ""; 
+					img.style.display='block'; 
+					icon_error.style.display='none' 
+				}
+				else{
+					document.getElementById('loginForm:password').style.borderColor = "#FF6633";  
+					img.style.display='none';  
+					icon_error.style.display='block'  
+				}
+			}
+
+			/*
+			function checkuser(){
+				var userName=document.getElementById('loginForm:username').value;
+				var erroricon=document.getElementById('erroricon');
+				if(userName!=""){  
+					document.getElementById('loginForm:username').style.borderColor = "";  
+					erroricon.style.visibility='hidden'  
+				}
+				else{
+					document.getElementById('loginForm:username').style.borderColor = "#FF6633";
+					erroricon.style.visibility='visible'  
+				}
+			}*/
+			
+			/*function checkuserPassword(){
+				var pwd=document.getElementById('loginForm:password').value;
+				var img = document.getElementById('imgClickAndChange');
+				var icon_error = document.getElementById('icon_error');
+				if(pwd!=""){  
+					document.getElementById('loginForm:password').style.borderColor = "";
+					icon_error.style.visibility='hidden'    
+				   
+				}
+				else{
+					document.getElementById('loginForm:password').style.borderColor = "#FF6633";
+					img.style.visibility='hidden';
+					icon_error.style.visibility='visible'  
+				}
+			}*/
+			function checkRemembeMe() {
+                if ($('#rememberme').is(':checked')) {
+                    // save username
+                    localStorage.usrname = document.getElementById("loginForm:username").value;
+                    //localStorage.password = document.getElementById("loginForm:password").value;
+                    localStorage.chkbx = $('#rememberme').val();
+                } else {
+                    localStorage.usrname = '';
+                    //localStorage.password = '';
+                    localStorage.chkbx = '';
+                }
+			}
+		</script>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h:outputText value="#{msgs['login.pageTitle']}" />
+	</ui:define>
+
+	<ui:define name="body">
+	<div>
+		<nav class="navbar header-main">
+			<div class="container-fluid headerbar">  
+				<div class='col-md-6'>
+					<ui:param name="client" value="#{clientService.getClient(identity.sessionId.sessionAttributes['client_id'])}" />
+					<img class='logo' src="./ext/resources/img/logo_nextgen_bank.png" alt='NextGen Bank' />
+				</div>
+
+				<div class="col-md-6 col-sm-6 header-contact">	 
+					<img  class="question" src="./ext/resources/img/question.svg" alt='Contact'/>
+					<span class="header-tel-no">800-800-0000</span>
+					<span class="header-line"></span>
+					<span class="header-help">Help</span>
+					<button class="header-btn" onclick="window.location.href='https://115.111.91.8:8443/signup'"><span class="textonbtn">SIGN UP</span></button>
+				</div>							
+			</div> 
+		</nav> 
+	</div>
+	<div class="container">
+		<div class="col-md-12">
+			<h1 class="welcome">Welcome back to Bank</h1>
+		</div>
+	</div>	
+
+<div class="container">
+	<div class='card login-box col-xs-12 col-sm-6 col-md-5'>
+        <div class='card-header'>Log in to your account</div>
+		<ui:param name="client"	value="#{clientService.getClient(identity.sessionId.sessionAttributes['client_id'])}" />
+		
+		<div class="err-msg" id="show-error-icon">
+			<div class="err-icon">
+			   <div class="err-checkicon"><img src="./ext/resources/img/icon_warning.svg"/></div>
+			</div>
+			<div id="contentavailable"><span id="errorMsgSpan"><h:messages /></span></div>
+        </div>
+		
+        <div class='card-block login-form-exclamation'>
+          <h:form id="loginForm" onsubmit="return FormValidation()">           
+             <div class="form-group  col-12">
+				 <div class="row label-text">
+					 <div class="col-6"><label>Username</label></div>
+					 <div class="col-6 forgot-align"><a href="https://115.111.91.8:8443/forgotusername" style="color: rgb(1, 149, 212);">Forgot username</a>
+					 </div>
+				</div>
+				<h:inputText styleClass="form-control form-control-lg" id="username" name="username" value="#{credentials.username}" onkeyup="checkInput()"/>
+				<img  class="erroricon" id="erroricon" src="./ext/resources/img/icon_error.svg" alt="error" />
+			 </div>
+
+            <div class="form-group col-12">
+                <div class="row label-text">
+					<div class="col-6"><label>Password</label></div>
+					<div class="col-6 forgot-align"><a href="https://115.111.91.8:8443/forgotpassword" style="color: rgb(1, 149, 212);">Forgot password</a></div>
+				</div>
+				<h:inputSecret styleClass="form-control form-control-lg" id="password" name="password" value="#{credentials.password}" onkeyup="checkInputUSer()"/>
+				<img class="iconhidelog" src="./ext/resources/img/icon_hide.svg" alt="Eye" id="imgClickAndChange" onclick="changeImage()"/>
+				<img class="errordialog"  id="icon_error" src="./ext/resources/img/icon_error.svg" alt="error" />
+			</div>
+            
+			<div class="form-group col-12"><button class="loginbtn" jsf:id="loginButton" type="submit" style="height: 46px; width: 100%; border: 1px solid rgb(0, 47, 135); border-radius: 3px; background: linear-gradient(rgb(0, 47, 135) 0%, rgb(0, 47, 135) 100%); font-family: Proxima Nova;" jsf:action="#{authenticator.authenticate}"><span style="color: rgb(255, 255, 255); font-size: 14px; font-weight: 400; line-height: 24px; text-align: center; font-family:Proxima Nova">Login</span></button></div>
+
+            <div class='col-12 donthvacnt'>
+              <span>Don't have an account ?</span><a href="https://115.111.91.8:8443/signup" >Sign up</a>
+            </div>
+          </h:form>
+		  <script  type="text/javascript">
+			myFunction();
+		  </script>
+        </div>
+      </div>
+</div>
+		
+<div class="container-fluid footer-main">
+	<div class="row">
+		<div class="col-md-4 col-sm-6">
+			<div class="footer-list">
+				<ul>
+					<li><a to="#">Privacy Policy</a></li>
+					<li><a to="#">Form ADV Part 2</a></li>
+				</ul>
+				<ul>
+					<li><a to="#">Terms of use</a></li>
+					<li><a to="#">Adviser Agreement</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-6 col-sm-6">
+			<div class="footer-middle">
+				<p>NextGen Investment Advisors is a registered Investment Adviser under the rules of the SEC. All data provided by Xignite</p>
+				<p class="copyright">@2018 NextGen Bank. All Rights Reserved</p>
+			</div>
+		</div>
+		<div class="col-md-2 col-xs-12">
+			<div class="footer-right">
+				<p>Powered by <Link to="#">Jemstep</Link></p>
+			</div>
+		</div>
+	</div>
+	<br/>
+
+	<div class="row">
+		<div class="footer-bottom">
+			<p>Past performance is not a guarantee for future results.
+				Investmant returns and principal value will fluctuate. 
+				so that investor shares when sold may be worth more or 
+				less than the original cost Projectin by NextGen Investor Advisors are 
+				based on number of factors beyond our control are in no way guaranteed.
+				NextGen Investor Advisors are not tax advisors and Investor should obtain independent advice on tax consequences of their investments </p>
+		</div>
+	</div>
+</div>
+</ui:define>
+</ui:composition>
