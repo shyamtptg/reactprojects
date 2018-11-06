@@ -92,6 +92,10 @@ class PersonAuthentication(PersonAuthenticationType):
             print "@@ TwilioSMS Logged IN @@ "
             if StringHelper.isNotEmptyString(user_name) and StringHelper.isNotEmptyString(user_password):
                 logged_in = authenticationService.authenticate(user_name, user_password)
+                foundUser = authenticationService.getAuthenticatedUser()
+                mobileNoExists = foundUser.getAttributeValues("oxTrustPhoneValue")
+                if mobileNoExists ==None:
+                        return True
 
             if not logged_in:
                 return False
@@ -124,7 +128,7 @@ class PersonAuthentication(PersonAuthenticationType):
                         print " inside pavan%s " % y[0]
                         k=str(y[0])
                         k=k[1:14]
-                        print " kkkkkkkkkkkkkkkkk%s " % k
+                        print " k=%s " % k
                     mobile_number=k
                     print "TwilioSMS. mobile_number %s " % mobile_number
                 if  mobile_number == None:
@@ -204,7 +208,13 @@ class PersonAuthentication(PersonAuthenticationType):
         return None
 
     def getCountAuthenticationSteps(self, configurationAttributes):
-        return 2
+       print "Twilio getCountAuthenticationSteps "
+       authenticationService = CdiUtil.bean(AuthenticationService)
+       foundUser = authenticationService.getAuthenticatedUser()
+       mobile_number = foundUser.getAttributeValues("oxTrustPhoneValue")
+       if mobile_number ==None:
+            return 1
+       return 2
 
     def getPageForStep(self, configurationAttributes, step):
         if step == 2:
